@@ -1,6 +1,7 @@
 bin/
 ipch/
 obj/
+packages
 *.opensdf
 *.sdf
 *.suo
