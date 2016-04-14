@@ -1,0 +1,9 @@
+bin/
+ipch/
+obj/
+*.opensdf
+*.sdf
+*.suo
+*.user
+StyleCop.Cache
+
