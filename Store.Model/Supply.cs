@@ -1,9 +1,7 @@
 ﻿
-
-using System.Runtime.CompilerServices;
-
 namespace Store.Model
 {
+    // Модель описывает поставки на склад
     public class Supply: BaseModel<int>
     {
         public Supply()
@@ -16,8 +14,8 @@ namespace Store.Model
         //public virtual Material MaterialObj { get; set; }
 
         // Идентификатор организации-поставщика
-        public virtual int ProviderId { get; set; }
-        public virtual Provider ProviderObj { get; set; }
+        //public virtual int ProviderId { get; set; }
+        //public virtual Provider ProviderObj { get; set; }
 
         // Идентификатор работника, который оформил поставку
         //public virtual int UserId { get; set; }

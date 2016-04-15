@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace Store.Model
 {
@@ -16,8 +12,8 @@ namespace Store.Model
         //public virtual Material MaterialObj { get; set; }
 
         // Идентификатор организации-потребителя
-        public virtual int CostumerId { get; set; }
-        public virtual Costumer CostumerObj { get; set; }
+        //public virtual int CostumerId { get; set; }
+        //public virtual Costumer CostumerObj { get; set; }
 
         // Идентификатор работника, который оформил отгрузку
         //public virtual int UserId { get; set; }
