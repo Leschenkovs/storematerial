@@ -141,6 +141,10 @@
     <Content Include="Angular\app.js" />
     <Content Include="Angular\app.config.js" />
     <Content Include="Angular\controllers\store.controller.index.js" />
+    <Content Include="Angular\directives\store.directive.footer.js" />
+    <Content Include="Angular\partials\footer.html" />
+    <Content Include="Angular\partials\header.html" />
+    <Content Include="Angular\services\store.service.user.js" />
     <Content Include="Angular\views\index.html" />
     <Content Include="Content\styles\store.app.css" />
     <Content Include="Global.asax" />
@@ -162,10 +166,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Angular\directives\" />
     <Folder Include="Angular\helpers\" />
-    <Folder Include="Angular\partials\" />
-    <Folder Include="Angular\services\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\" />
     <Folder Include="Models\" />
@@ -188,6 +189,9 @@
       <Project>{3493323b-af05-4928-bf34-c195c582ace5}</Project>
       <Name>Store.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Angular\directives\store.directive.header.js" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

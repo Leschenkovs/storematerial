@@ -7,7 +7,7 @@
             $stateProvider.state("Index", {
                 url: "/",
                 templateUrl: "/Angular/views/index.html",
-                controller: "IndexController"
+                controller: "indexController"
             });
 
             $urlRouterProvider.otherwise("/");

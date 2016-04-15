@@ -15,13 +15,13 @@
     "use strict";
 
     // controller class definintion
-    var IndexController = function ($scope) {
+    var indexController = function ($scope) {
     };
 
 
     // register your controller into a dependent module 
     angular
         .module("store.WebUI.Controllers")
-        .controller("IndexController", ["$scope", IndexController]);
+        .controller("indexController", ["$scope", indexController]);
 
 })();
