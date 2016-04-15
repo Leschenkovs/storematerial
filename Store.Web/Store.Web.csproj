@@ -138,6 +138,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\styles\store.app.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -158,9 +159,9 @@
     <Folder Include="Angular\services\" />
     <Folder Include="Angular\views\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Content\" />
+    <Folder Include="Content\images\" />
     <Folder Include="Models\" />
-    <Folder Include="Scripts\" />
+    <Folder Include="Scripts\angular\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -4,11 +4,14 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Store of materials - @ViewBag.Title</title>
-	@Styles.Render("~/Store.Web/content/css")
+	@Styles.Render("~/Store.Web/css")
 </head>
-<body ng-app="Store.Web.WebUI">
+<body ng-app="store.WebUI">
 	@RenderBody()
+
 	@Scripts.Render("~/Store.Web/angular")
+	@Scripts.Render("~/Store.Web/app")
+
 	@RenderSection("scripts", required: false)
 </body>
 </html>
