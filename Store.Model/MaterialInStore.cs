@@ -1,5 +1,8 @@
 ﻿
 
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
 namespace Store.Model
 {
     // Модель описывает материалы на складе
@@ -7,19 +10,25 @@ namespace Store.Model
     {
         public MaterialInStore()
         {
-            //Prices = new Collection<Price>();
+            Prices = new Collection<Price>();
+            Supplies = new Collection<Supply>();
+            Experses = new Collection<Experse>();
         }
 
         // Идентификатор вида материала
-        //public virtual int KindMaterialId { get; set; }
-        //public virtual KindMaterial KindMaterialObj { get; set; }
+        public virtual int KindMaterialId { get; set; }
+        public virtual KindMaterial KindMaterialObj { get; set; }
 
-        // Идентификатор работника(для цены реализации)
-        //public virtual int UserId { get; set; }
-        //public virtual User UserObj { get; set; }
 
         // Список цен реализации
-        //public virtual ICollection<Price> Prices { get; set; }
+        public virtual ICollection<Price> Prices { get; set; }
+
+        // Список поставок
+        public virtual ICollection<Supply> Supplies { get; set; }
+
+        // Список расходов (отгрузок)
+        public virtual ICollection<Experse> Experses { get; set; }
+
 
 
         // Кол-во

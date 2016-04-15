@@ -1,5 +1,8 @@
 ﻿
 
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
 namespace Store.Model
 {
     // Модель описывает работника
@@ -7,8 +10,8 @@ namespace Store.Model
     {
         public User()
         {
-            //Experses = new Collection<Experse>();
-            //Supplies = new Collection<Supply>();
+            Experses = new Collection<Experse>();
+            Supplies = new Collection<Supply>();
         }
 
         // ФИО
@@ -21,14 +24,14 @@ namespace Store.Model
         public string Position { get; set; }
 
         // Список оформленных поставок
-        //public virtual ICollection<Supply> Supplies { get; set; }
+        public virtual ICollection<Supply> Supplies { get; set; }
 
         // Список оформленных отгрузок (расходов)
-        //public virtual ICollection<Experse> Experses { get; set; }
+        public virtual ICollection<Experse> Experses { get; set; }
 
         // Идентификатор роли
-        //public virtual int RoleId { get; set; }
-        //public virtual Role RoleObj { get; set; }
+        public virtual int RoleId { get; set; }
+        public virtual Role RoleObj { get; set; }
 
 
     }

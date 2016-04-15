@@ -1,4 +1,4 @@
-﻿
+﻿ 
 namespace Store.Model
 {
     // Модель описывает поставки на склад
@@ -10,16 +10,16 @@ namespace Store.Model
         }
 
         // Идентификатор материала на складе
-        //public virtual int MaterialId { get; set; }
-        //public virtual Material MaterialObj { get; set; }
+        public virtual int MaterialInStoreId { get; set; }
+        public virtual MaterialInStore MaterialInStoreObj { get; set; }
 
         // Идентификатор организации-поставщика
-        //public virtual int ProviderId { get; set; }
-        //public virtual Provider ProviderObj { get; set; }
+        public virtual int ProviderId { get; set; }
+        public virtual Provider ProviderObj { get; set; }
 
         // Идентификатор работника, который оформил поставку
-        //public virtual int UserId { get; set; }
-        //public virtual User UserObj { get; set; }
+        public virtual int UserId { get; set; }
+        public virtual User UserObj { get; set; }
 
         // Кол-во
         public decimal Count { get; set; }

@@ -1,5 +1,8 @@
 ﻿
 
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
 namespace Store.Model
 {
     // Модель описывает организации-поставщиков
@@ -7,7 +10,7 @@ namespace Store.Model
     {
         public Provider()
         {
-            //Supplies = new Collection<Supply>();
+            Supplies = new Collection<Supply>();
         }
 
         // Название 
@@ -20,7 +23,7 @@ namespace Store.Model
         public string Description { get; set; }
 
         // Список поставок на склад
-        //public virtual ICollection<Supply> Supplies { get; set; }
+        public virtual ICollection<Supply> Supplies { get; set; }
 
     }
 }

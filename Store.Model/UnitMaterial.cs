@@ -11,12 +11,12 @@ namespace Store.Model
         }
 
         // Идентификатор вида материала
-        //public virtual int KindMaterialId { get; set; }
-        //public virtual KindMaterial KindMaterialObj { get; set; }
+        public virtual int KindMaterialId { get; set; }
+        public virtual KindMaterial KindMaterialObj { get; set; }
 
         // Идентификатор ед. измерения
-        //public virtual int UnitId { get; set; }
-        //public virtual Unit UnitObj { get; set; }
+        public virtual int UnitId { get; set; }
+        public virtual Unit UnitObj { get; set; }
 
     }
 }

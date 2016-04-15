@@ -9,8 +9,8 @@ namespace Store.Model
         public Price() { }
 
         // Идентификатор материала на складе
-        //public virtual int MaterialInStoreId { get; set; }
-        //public virtual MaterialInStore MaterialInStoreObj { get; set; }
+        public virtual int MaterialInStoreId { get; set; }
+        public virtual MaterialInStore MaterialInStoreObj { get; set; }
 
 
         // Цена реализации

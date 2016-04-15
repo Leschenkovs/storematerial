@@ -30,7 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
@@ -40,6 +48,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DalFactory.cs" />
+    <Compile Include="Dal\CostumerDal.cs" />
+    <Compile Include="Dal\ExperseDal.cs" />
+    <Compile Include="Dal\KindMaterialDal.cs" />
+    <Compile Include="Dal\MaterialInStoreDal.cs" />
+    <Compile Include="Dal\PriceDal.cs" />
+    <Compile Include="Dal\ProviderDal.cs" />
+    <Compile Include="Dal\RoleDal.cs" />
+    <Compile Include="Dal\SupplyDal.cs" />
+    <Compile Include="Dal\UnitDal.cs" />
+    <Compile Include="Dal\UnitMaterialDal.cs" />
+    <Compile Include="Dal\UserDal.cs" />
+    <Compile Include="DataContext.cs" />
+    <Compile Include="DataContextDbInitializer.cs" />
+    <Compile Include="GenericRepository.cs" />
+    <Compile Include="Mapping\CostumerMap.cs" />
+    <Compile Include="Mapping\ExperseMap.cs" />
+    <Compile Include="Mapping\KindMaterialMap.cs" />
+    <Compile Include="Mapping\MaterialInStoreMap.cs" />
+    <Compile Include="Mapping\PriceMap.cs" />
+    <Compile Include="Mapping\ProviderMap.cs" />
+    <Compile Include="Mapping\RoleMap.cs" />
+    <Compile Include="Mapping\SupplyMap.cs" />
+    <Compile Include="Mapping\UnitMap.cs" />
+    <Compile Include="Mapping\UnitMaterialMap.cs" />
+    <Compile Include="Mapping\UserMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -47,6 +81,10 @@
       <Project>{3493323b-af05-4928-bf34-c195c582ace5}</Project>
       <Name>Store.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

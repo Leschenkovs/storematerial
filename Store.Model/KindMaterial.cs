@@ -1,5 +1,8 @@
 ﻿
 
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
 namespace Store.Model
 {
     // Модель описывает виды материалов
@@ -7,8 +10,8 @@ namespace Store.Model
     {
         public KindMaterial()
         {
-            //Units = new Collection<Unit>();
-            //MaterialInStores = new Collection<MaterialInStore>();
+            UnitMaterials = new Collection<UnitMaterial>();
+            MaterialInStores = new Collection<MaterialInStore>();
         }
 
         // Артикул (ID)
@@ -17,10 +20,10 @@ namespace Store.Model
         public string Name { get; set; }
 
         // Список ед. измерения
-        //public virtual ICollection<Unit> Units { get; set; }
+        public virtual ICollection<UnitMaterial> UnitMaterials { get; set; }
 
         // Список материалов на складе
-        //public virtual ICollection<MaterialInStore> MaterialInStores { get; set; }
+        public virtual ICollection<MaterialInStore> MaterialInStores { get; set; }
 
     }
 }

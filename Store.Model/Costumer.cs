@@ -1,5 +1,8 @@
 ﻿
 
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
 namespace Store.Model
 {
     // Модель описывает организации-потребители 
@@ -7,7 +10,7 @@ namespace Store.Model
     {
         public Costumer()
         {
-            //Experses = new Collection<Experse>();
+            Experses = new Collection<Experse>();
         }
 
         // Название 
@@ -20,7 +23,7 @@ namespace Store.Model
         public string Description { get; set; }
 
         // Список поставок для потребителей
-        //public virtual ICollection<Experse> Experses { get; set; }
+        public virtual ICollection<Experse> Experses { get; set; }
 
     }
 }
