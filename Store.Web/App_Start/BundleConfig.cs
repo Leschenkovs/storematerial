@@ -6,13 +6,16 @@ namespace Store.Web.App_Start
 	{
 		public static void RegisterBundles(BundleCollection bundles)
 		{
+			//bundles.Add(new ScriptBundle("~/ecportal/base").Include(
+			//			 ));
+
 			bundles.Add(new ScriptBundle("~/Store.Web/angular").Include(
-																			"~/Scripts/angular/angularjs.1.5.3/content/Scripts/angular.js",
-																			"~/Scripts/angular/angularjs.1.5.3/content/Scripts/angular-sanitize.js",
-																			"~/Scripts/angular/Angular.UI.Bootstrap.1.3.1/content/Scripts/angular-ui/ui-bootstrap.js",
-																			"~/Scripts/angular/Angular.UI.Bootstrap.1.3.1/content/Scripts/angular-ui/ui-bootstrap-tpls.js",
-																			"~/Scripts/angular/Angular.UI.UI-Router.0.2.18/content/scripts/angular-ui-router.js",
-																			"~/Scripts/angular/angular-ui-date.1.0.0/content/Scripts/date.js"
+																			"~/Scripts/angular/angular.js",
+																			"~/Scripts/angular/angular-sanitize.js",
+																			"~/Scripts/angular/ui-bootstrap.js",
+																			"~/Scripts/angular/ui-bootstrap-tpls.js",
+																			"~/Scripts/angular/angular-ui-router.js",
+																			"~/Scripts/angular/date.js"
 															));
 
 			bundles.Add(new StyleBundle("~/Store.Web/css").Include(

@@ -138,8 +138,18 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Angular\app.js" />
+    <Content Include="Angular\app.config.js" />
+    <Content Include="Angular\controllers\store.controller.index.js" />
+    <Content Include="Angular\views\index.html" />
     <Content Include="Content\styles\store.app.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\angular\angular-sanitize.js" />
+    <Content Include="Scripts\angular\angular-ui-router.js" />
+    <Content Include="Scripts\angular\angular.js" />
+    <Content Include="Scripts\angular\date.js" />
+    <Content Include="Scripts\angular\ui-bootstrap-tpls.js" />
+    <Content Include="Scripts\angular\ui-bootstrap.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -152,16 +162,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Angular\controllers\" />
     <Folder Include="Angular\directives\" />
     <Folder Include="Angular\helpers\" />
     <Folder Include="Angular\partials\" />
     <Folder Include="Angular\services\" />
-    <Folder Include="Angular\views\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\" />
     <Folder Include="Models\" />
-    <Folder Include="Scripts\angular\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
