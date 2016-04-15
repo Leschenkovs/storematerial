@@ -128,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -158,7 +159,6 @@
     <Folder Include="Angular\views\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\" />
   </ItemGroup>
@@ -170,6 +170,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Store.Bll\Store.Bll.csproj">
+      <Project>{e1f3e1c1-7220-4e25-9fc2-a685c8a28bb5}</Project>
+      <Name>Store.Bll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Store.Model\Store.Model.csproj">
+      <Project>{3493323b-af05-4928-bf34-c195c582ace5}</Project>
+      <Name>Store.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
