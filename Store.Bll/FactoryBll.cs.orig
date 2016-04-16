@@ -5,8 +5,11 @@ namespace Store.Bll
 {
 	public interface IFactoryBll
 	{
+<<<<<<< Updated upstream
+
+=======
 		IUserBll UserBll { get; }
-		IRoleBll RoleBll { get; }
+>>>>>>> Stashed changes
 	}
 
 	public class FactoryBll : IFactoryBll
@@ -19,15 +22,23 @@ namespace Store.Bll
 		}
 
 		private IUserBll _userBll;
+<<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
 		public IUserBll UserBll
 		{
 			get { return _userBll ?? (_userBll = new UserBll(_factoryDal)); }
 		}
+<<<<<<< Updated upstream
 
 		private IRoleBll _roleBll;
+
 		public IRoleBll RoleBll
 		{
 			get { return _roleBll ?? (_roleBll = new RoleBll(_factoryDal)); }
 		}
+=======
+>>>>>>> Stashed changes
 	}
 }

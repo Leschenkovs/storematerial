@@ -20,6 +20,8 @@ namespace Store.Bll.Bll
 		{
 			FactoryDal = factoryDal;
 		}
+<<<<<<< Updated upstream
+
 		public User GetByTn(string tn)
 		{
 			return FactoryDal.UserDal.First(x => x.Tn == tn);
@@ -29,5 +31,7 @@ namespace Store.Bll.Bll
 		{
 			return FactoryDal.UserDal.GetAll().ToList();
 		}
+=======
+>>>>>>> Stashed changes
 	}
 }

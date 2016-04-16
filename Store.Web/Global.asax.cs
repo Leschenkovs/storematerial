@@ -18,6 +18,9 @@ namespace Store.Web
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+			//GlobalConfiguration.Configuration.DependencyResolver = new UnityResolver(ComponentRegistry.RegisterComponents());
+			//GlobalConfiguration.Configuration.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(ComponentRegistry.RegisterComponents());
 		}
 	}
 }
