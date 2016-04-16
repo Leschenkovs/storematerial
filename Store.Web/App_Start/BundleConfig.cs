@@ -7,10 +7,8 @@ namespace Store.Web.App_Start
 		public static void RegisterBundles(BundleCollection bundles)
 		{
 		  bundles.Add(new ScriptBundle("~/Store.Web/base").Include(
-			 "~/Scripts/jquery-1.9.1.min.js",
-			 "~/Scripts/bootstrap.js",
-			 "~/Scripts/bootstrap.min.js"
-
+			 "~/Scripts/jquery-1.9.1*",
+			 "~/Scripts/bootstrap.js"
 						));
 
 			bundles.Add(new ScriptBundle("~/Store.Web/angular").Include(
