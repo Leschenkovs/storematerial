@@ -1,13 +1,24 @@
+<<<<<<< 2f22ec0cc23f35faec35720ba629d87765336bc0
+﻿using Store.Dal;
+=======
 ﻿
 using System.Collections.Generic;
 using System.Linq;
 using Store.Dal;
 using Store.Model;
+>>>>>>> Add RoleBll, modified UserBll
 
 namespace Store.Bll.Bll
 {
 	public interface IUserBll
 	{
+<<<<<<< 2f22ec0cc23f35faec35720ba629d87765336bc0
+
+	}
+	public class UserBll : IUserBll
+	{
+		protected IFactoryDal FactoryDal;
+=======
 		User GetByTn(string tn);
 		IList<User> GetAll();
 	}
@@ -16,12 +27,14 @@ namespace Store.Bll.Bll
 	{
 		protected IFactoryDal FactoryDal;
 
+>>>>>>> Add RoleBll, modified UserBll
 		public UserBll(IFactoryDal factoryDal)
 		{
 			FactoryDal = factoryDal;
 		}
-<<<<<<< Updated upstream
 
+<<<<<<< 2f22ec0cc23f35faec35720ba629d87765336bc0
+=======
 		public User GetByTn(string tn)
 		{
 			return FactoryDal.UserDal.First(x => x.Tn == tn);
@@ -31,7 +44,6 @@ namespace Store.Bll.Bll
 		{
 			return FactoryDal.UserDal.GetAll().ToList();
 		}
-=======
->>>>>>> Stashed changes
+>>>>>>> Add RoleBll, modified UserBll
 	}
 }
