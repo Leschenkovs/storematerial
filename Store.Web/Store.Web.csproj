@@ -172,7 +172,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\fonts\icomoon.dev.svg" />
     <Content Include="Content\fonts\icomoon.svg" />
-    <Content Include="Content\images\bg.jpg" />
+    <Content Include="Content\images\bcg.jpg" />
     <Content Include="Content\styles\business-casual.css" />
     <Content Include="Content\styles\component.css" />
     <Content Include="Content\styles\default.css" />

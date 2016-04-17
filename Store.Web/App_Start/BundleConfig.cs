@@ -24,8 +24,11 @@ namespace Store.Web.App_Start
 
 			bundles.Add(new StyleBundle("~/Store.Web/css").Include(
 			  "~/Content/styles/store.app.css",
+				"~/Content/*.css",
 				"~/Content/styles/business-casual.css",
-				"~/Content/*.css"
+				"~/Content/styles/component.css",
+				"~/Content/styles/default.css"
+
 				));
 
 			bundles.Add(new ScriptBundle("~/Store.Web/app").Include(

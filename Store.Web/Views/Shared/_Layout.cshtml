@@ -11,8 +11,11 @@
 	@Styles.Render("~/Store.Web/css")
 </head>
 <body ng-app="store.WebUI">
-	<div class="brand">Store of Building Material</div>
-	<div class="address-bar">203 Pobediteley | Minsk</div>
+<div class="container">
+	<div class="brand">Склад СтройМатериалов</div>
+	<div class="address-bar">203 Победителей | Минск</div>
+</div>
+
 	<store-header></store-header>
 	<div class="container">
 		<div class="row">
@@ -20,15 +23,17 @@
 				<div class="col-lg-12 text-center">
 					@RenderBody()
 
-					@Scripts.Render("~/Store.Web/Base")
+				@Scripts.Render("~/Store.Web/Base")
 					@Scripts.Render("~/Store.Web/angular")
 					@Scripts.Render("~/Store.Web/app")
 
-					@RenderSection("scripts", required: false)
-				</div>
+				@RenderSection("scripts", required: false)
 			</div>
 		</div>
 	</div>
-	<store-footer></store-footer>
+
+</div>
+<store-footer></store-footer>
+
 </body>
 </html>
