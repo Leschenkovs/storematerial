@@ -12,8 +12,8 @@ namespace Store.Dal.Mapping
             HasKey(t => t.Id);
 
             // Properties
-            Property(t => t.Name).HasMaxLength(15);
-            Property(t => t.ShortName).HasMaxLength(5).IsRequired();
+            Property(t => t.Name).HasMaxLength(20);
+            Property(t => t.ShortName).HasMaxLength(10).IsRequired();
 
             // Table & Column Mappings
             ToTable("Unit");

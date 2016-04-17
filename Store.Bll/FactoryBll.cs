@@ -7,6 +7,8 @@ namespace Store.Bll
 	{
 		IUserBll UserBll { get; }
 		IRoleBll RoleBll { get; }
+		IProviderBll ProviderBll { get; }
+		ICostumerBll CostumerBll { get; }
 	}
 
 	public class FactoryBll : IFactoryBll
@@ -28,6 +30,18 @@ namespace Store.Bll
 		public IRoleBll RoleBll
 		{
 			get { return _roleBll ?? (_roleBll = new RoleBll(_factoryDal)); }
+		}
+
+		private IProviderBll _providerBll;
+		public IProviderBll ProviderBll
+		{
+		  get { return _providerBll ?? (_providerBll = new ProviderBll(_factoryDal)); }
+		}
+
+		private ICostumerBll _costumerBll;
+		public ICostumerBll CostumerBll
+		{
+		  get { return _costumerBll ?? (_costumerBll = new CostumerBll(_factoryDal)); }
 		}
 	}
 }

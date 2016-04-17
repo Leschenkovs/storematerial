@@ -15,7 +15,7 @@ namespace Store.Dal
 		T GetById(int id);
 		T Add(T entity);
 		bool Delete(T entity);
-		bool Update(T entity);
+		T Update(T entity);
 		void Save();
 	}
 
@@ -87,17 +87,17 @@ namespace Store.Dal
 			}
 		}
 
-		public virtual bool Update(T entity)
+		public virtual T Update(T entity)
 		{
 			try
 			{
 				_entities.Entry(entity).State = EntityState.Modified;
 				_entities.SaveChanges();
-				return true;
+				return entity;
 			}
 			catch (Exception e)
 			{
-				return false;
+				return null;
 			}
 		}
 

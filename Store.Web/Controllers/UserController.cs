@@ -48,7 +48,7 @@ namespace Store.Web.Controllers
 		}
 
 		[HttpDelete]
-		public bool DeleteUser(int id)
+		public bool DeleteUser(string tn)
 		{
 			return true;
 		}

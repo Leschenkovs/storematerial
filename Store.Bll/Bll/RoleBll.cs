@@ -24,6 +24,5 @@ namespace Store.Bll.Bll
 			IList<Role> list = FactoryDal.RoleDal.GetAll().ToList();
 			return list;
 		}
-
 	}
 }

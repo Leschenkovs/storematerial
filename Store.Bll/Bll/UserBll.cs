@@ -1,6 +1,6 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Store.Bll.Exception;
 using Store.Dal;
 using Store.Model;
 
@@ -10,6 +10,9 @@ namespace Store.Bll.Bll
 	{
 		User GetByTn(string tn);
 		IList<User> GetAll();
+		User Add(User obj);
+		User Update(User obj);
+		bool Delete(string tn);
 	}
 
 	public class UserBll : IUserBll
@@ -20,6 +23,7 @@ namespace Store.Bll.Bll
 		{
 			FactoryDal = factoryDal;
 		}
+
 		public User GetByTn(string tn)
 		{
 			return FactoryDal.UserDal.First(x => x.Tn == tn);
@@ -27,7 +31,28 @@ namespace Store.Bll.Bll
 
 		public IList<User> GetAll()
 		{
-			return FactoryDal.UserDal.GetAll().ToList();
+			return FactoryDal.UserDal.GetAll().OrderBy(x=>x.Tn).ToList();
+		}
+
+		public User Add(User obj)
+		{
+			bool isExist = FactoryDal.UserDal.First(x => x.Tn == obj.Tn.Trim()) == null ? true : false;
+			if (isExist) throw new DbOwnException("Работник ТН = " + obj.Tn + " уже существует в БД!");
+
+			User newObj = FactoryDal.UserDal.Add(obj);
+			return newObj;
+		}
+
+		public User Update(User obj)
+		{
+			return FactoryDal.UserDal.Update(obj);
+		}
+
+		public bool Delete(string tn)
+		{
+			User obj = FactoryDal.UserDal.First(x => x.Tn == tn.Trim());
+			if (obj == null) throw new DbOwnException ("Пользователя TH = " + tn + " нет в БД!");
+			return FactoryDal.UserDal.Delete(obj);
 		}
 	}
 }
