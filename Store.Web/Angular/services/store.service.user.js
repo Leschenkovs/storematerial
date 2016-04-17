@@ -5,19 +5,14 @@
     function UserService($rootScope, $http, $q) {
         this.getAllUsers = function () {
             var deferred = $q.defer();
-            $http.get("http://localhost:8062/api/user").then(function(response) {
-                debugger;
-                deferred.resolve(response);
+            $http.get("api/user").
+                success(function(data, status, headers, config) {
+                    deferred.resolve(data);
+                }).
+            error(function (data, status, headers, config) {
+                deferred.reject(status);
             });
-            debugger;
             return deferred.promise;
-            
-            return $.ajax({
-                type: 'GET',
-                async: false,
-                contentType: 'application/json; charset=utf-8',
-                url: 'http://localhost:8062/api/user'
-            });
         };
     };
 

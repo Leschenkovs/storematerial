@@ -17,7 +17,7 @@
     // controller class definintion
     var IndexController = function ($scope, $state, UserService) {
 
-        $scope.users = UserService.getAllUsers();
+        UserService.getAllUsers().then(function (value) { $scope.users = value; });
     };
 
     // register your controller into a dependent module 
