@@ -19,6 +19,6 @@ namespace Store.Model
         public DateTime DateOt { get; set; }
 
         // Дата действия ДО
-        public DateTime DateDo { get; set; }
+        public DateTime? DateDo { get; set; }
     }
 }

@@ -9,6 +9,12 @@ namespace Store.Bll
 		IRoleBll RoleBll { get; }
 		IProviderBll ProviderBll { get; }
 		ICostumerBll CostumerBll { get; }
+		IKindMaterialBll KindMaterialBll { get; }
+		ISupplyBll SupplyBll { get; }
+		IUnitMaterialBll UnitMaterialBll { get; }
+		IExperseBll ExperseBll { get; }
+		IMaterialInStoreBll MaterialInStoreBll { get; }
+		IPriceBll PriceBll { get; }
 	}
 
 	public class FactoryBll : IFactoryBll
@@ -43,5 +49,42 @@ namespace Store.Bll
 		{
 		  get { return _costumerBll ?? (_costumerBll = new CostumerBll(_factoryDal)); }
 		}
+
+		private IKindMaterialBll _kindMaterialBll;
+		public IKindMaterialBll KindMaterialBll
+		{
+		  get { return _kindMaterialBll ?? (_kindMaterialBll = new KindMaterialBll(_factoryDal)); }
+		}
+
+		private ISupplyBll _supplyBll;
+		public ISupplyBll SupplyBll
+		{
+		  get { return _supplyBll ?? (_supplyBll = new SupplyBll(_factoryDal)); }
+		}
+
+		private IUnitMaterialBll _unitMaterialBll;
+		public IUnitMaterialBll UnitMaterialBll
+		{
+		  get { return _unitMaterialBll ?? (_unitMaterialBll = new UnitMaterialBll(_factoryDal)); }
+		}
+
+		private IExperseBll _experseBll;
+		public IExperseBll ExperseBll
+		{
+		  get { return _experseBll ?? (_experseBll = new ExperseBll(_factoryDal)); }
+		}
+
+		private IMaterialInStoreBll _materialInStoreBll;
+		public IMaterialInStoreBll MaterialInStoreBll
+		{
+		  get { return _materialInStoreBll ?? (_materialInStoreBll = new MaterialInStoreBll(_factoryDal)); }
+		}
+
+		private IPriceBll _priceBll;
+		public IPriceBll PriceBll
+		{
+		  get { return _priceBll ?? (_priceBll = new PriceBll(_factoryDal)); }
+		}
+
 	}
 }

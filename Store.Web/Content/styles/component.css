@@ -8,6 +8,7 @@
 	font-weight: normal;
 	font-style: normal;
 }
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
 	@font-face {
 		font-family: 'icomoon';
@@ -24,7 +25,7 @@
 	line-height: 1;
 	-webkit-font-smoothing: antialiased;
 }
-.icon-menu, .icon-team, .icon-blog, .icon-home, .icon-contact, .icon-services, .icon-portfolio, .icon-exit {
+.icon-home, .icon-paint-format, .icon-phone, .icon-address-book, .icon-envelop, .icon-users, .icon-truck, .icon-download3, .icon-upload3,.icon-exit,.icon-mail4 {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -34,30 +35,41 @@
 	line-height: 1;
 	-webkit-font-smoothing: antialiased;
 }
-.icon-menu:before {
-	content: "\e000";
-}
-.icon-team:before {
-	content: "\e001";
-}
-.icon-blog:before {
-	content: "\e002";
-}
 .icon-home:before {
-	content: "\e005";
+    content: "\e902";
 }
-.icon-portfolio:before {
-	content: "\e006";
+.icon-paint-format:before {
+    content: "\e905";
 }
-.icon-services:before {
-	content: "\e003";
+.icon-phone:before {
+    content: "\e901";
 }
-.icon-contact:before {
-	content: "\e004";
+.icon-address-book:before {
+    content: "\e906";
+}
+.icon-envelop:before {
+    content: "\e907";
+}
+.icon-users:before {
+    content: "\e908";
+}
+.icon-truck:before {
+    content: "\e909";
+}
+.icon-download3:before {
+    content: "\e90a";
+}
+.icon-upload3:before {
+    content: "\e90b";
 }
 .icon-exit:before {
     content: "\e900";
 }
+.icon-mail4:before {
+    content: "\e90c";
+}
+
+
 
 a, li {
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);

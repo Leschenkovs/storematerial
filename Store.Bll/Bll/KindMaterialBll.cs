@@ -12,7 +12,8 @@ namespace Store.Bll.Bll
 	  IList<KindMaterial> GetAll();
 	  KindMaterial Add(KindMaterial obj);
 	  KindMaterial Update(KindMaterial obj);
-		bool Delete(string articul);
+	  bool Delete(string articul);
+		bool IsExistMaterialInStore(string articul);
 	}
 
 	public class KindMaterialBll : IKindMaterialBll
@@ -53,6 +54,11 @@ namespace Store.Bll.Bll
 		  KindMaterial obj = FactoryDal.KindMaterialDal.First(x => x.Articul == articul.Trim());
 		  if (obj == null) throw new DbOwnException("Вида материала АРТИКУЛ = " + articul + " нет в БД!");
 		  return FactoryDal.KindMaterialDal.Delete(obj);
+		}
+
+		public bool IsExistMaterialInStore(string articul)
+		{
+			return FactoryDal.KindMaterialDal.First(x => x.Articul == articul.Trim()).MaterialInStores.Any();
 		}
 
 	}

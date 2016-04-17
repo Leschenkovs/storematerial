@@ -49,9 +49,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bll\CostumerBll.cs" />
+    <Compile Include="Bll\ExperseBll.cs" />
     <Compile Include="Bll\KindMaterialBll.cs" />
+    <Compile Include="Bll\MaterialInStoreBll.cs" />
+    <Compile Include="Bll\PriceBll.cs" />
     <Compile Include="Bll\ProviderBll.cs" />
     <Compile Include="Bll\RoleBll.cs" />
+    <Compile Include="Bll\SupplyBll.cs" />
     <Compile Include="Bll\UnitMaterialBll.cs" />
     <Compile Include="Bll\UserBll.cs" />
     <Compile Include="Exception\DbOwnException.cs" />
