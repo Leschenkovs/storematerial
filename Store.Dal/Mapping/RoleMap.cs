@@ -1,5 +1,4 @@
-﻿
-using System.Data.Entity.ModelConfiguration;
+﻿using System.Data.Entity.ModelConfiguration;
 using Store.Model;
 
 namespace Store.Dal.Mapping
@@ -20,7 +19,6 @@ namespace Store.Dal.Mapping
 			Property(t => t.Id).HasColumnName("Id");
 			Property(t => t.Name).HasColumnName("Name");
 			Property(t => t.Code).HasColumnName("Code");
-
 		}
 	}
 }

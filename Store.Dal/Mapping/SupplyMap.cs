@@ -29,8 +29,7 @@ namespace Store.Dal.Mapping
             // Relationships  
             HasRequired(t => t.MaterialInStoreObj).WithMany(t => t.Supplies).HasForeignKey(d => d.MaterialInStoreId).WillCascadeOnDelete(true);
             HasRequired(t => t.ProviderObj).WithMany(t => t.Supplies).HasForeignKey(d => d.ProviderId).WillCascadeOnDelete(false);
-            HasRequired(t => t.UserObj).WithMany(t => t.Supplies).HasForeignKey(d => d.UserId).WillCascadeOnDelete(false);
-
+            //HasRequired(t => t.UserObj).WithMany(t => t.Supplies).HasForeignKey(d => d.UserId).WillCascadeOnDelete(false);
         }
     }
 }

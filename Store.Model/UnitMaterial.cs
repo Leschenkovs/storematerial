@@ -1,6 +1,4 @@
-﻿
-
-namespace Store.Model
+﻿namespace Store.Model
 {
     // Модель описывает единицы измерения для материалов
     public class UnitMaterial: BaseModel<int>

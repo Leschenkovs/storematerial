@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace Store.Model
 {
     // Модель описывает цену реализации

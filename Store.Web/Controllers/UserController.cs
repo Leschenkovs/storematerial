@@ -22,35 +22,33 @@ namespace Store.Web.Controllers
 		}
 
 		[HttpGet]
-		public List<User> GetUsers()
+		public IList<User> GetUsers()
 		{
-			List<User> a = new List<User>();
-			a.Add(new User{ Tn = "aaa", Fio = "Test"});
-			return a;
+			return _userBll.GetAll();
 		}
 
 		[HttpGet]
-		public User GetUser(int id)
+		public User GetUser(string tn)
 		{
-			return new User();
+			return _userBll.GetByTn(tn);
 		}
 
 		[HttpPost]
 		public User CreateUser(User entity)
 		{
-			return new User();
+			return _userBll.Add(entity);
 		}
 
 		[HttpPut]
 		public User UpdateUser(User entity)
 		{
-			return new User();
+			return _userBll.Update(entity);
 		}
 
 		[HttpDelete]
-		public bool DeleteUser(string tn)
+		public bool DeleteUser(int id)
 		{
-			return true;
+			return _userBll.Delete(id);
 		}
 	}
 }

@@ -1,6 +1,8 @@
 bin/
 ipch/
 obj/
+amd64/
+x86/
 .vs/
 packages
 *.opensdf

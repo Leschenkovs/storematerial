@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Store.Bll.Exception;
 using Store.Dal;
 using Store.Model;
@@ -15,7 +12,7 @@ namespace Store.Bll.Bll
 	  IList<KindMaterial> GetAll();
 	  KindMaterial Add(KindMaterial obj);
 	  KindMaterial Update(KindMaterial obj);
-	  bool Delete(int id);
+		bool Delete(string articul);
 	}
 
 	public class KindMaterialBll : IKindMaterialBll

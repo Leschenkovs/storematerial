@@ -1,6 +1,4 @@
-﻿
-
-namespace Store.Model
+﻿namespace Store.Model
 {
     // Модель описывает расходы (отгрузки) со склада
     public class Experse: BaseModel<int>

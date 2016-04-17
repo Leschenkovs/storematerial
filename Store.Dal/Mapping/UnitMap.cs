@@ -1,5 +1,4 @@
-﻿
-using System.Data.Entity.ModelConfiguration;
+﻿using System.Data.Entity.ModelConfiguration;
 using Store.Model;
 
 namespace Store.Dal.Mapping

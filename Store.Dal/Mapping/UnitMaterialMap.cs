@@ -1,5 +1,4 @@
-﻿
-using System.Data.Entity.ModelConfiguration;
+﻿using System.Data.Entity.ModelConfiguration;
 using Store.Model;
 
 namespace Store.Dal.Mapping
@@ -21,10 +20,9 @@ namespace Store.Dal.Mapping
             Property(t => t.KindMaterialId).HasColumnName("KindMaterialId").IsRequired();
             Property(t => t.UnitId).HasColumnName("UnitId").IsRequired();
 
-            // Relationships  
-            HasRequired(t => t.KindMaterialObj).WithMany(t => t.UnitMaterials).HasForeignKey(d => d.KindMaterialId).WillCascadeOnDelete(true);
+            // Relationships
+            HasRequired(t => t.KindMaterialObj).WithMany(t => t.UnitMaterials).HasForeignKey(d => d.KindMaterialId).WillCascadeOnDelete(false);
             HasRequired(t => t.UnitObj).WithMany(t => t.UnitMaterials).HasForeignKey(d => d.UnitId).WillCascadeOnDelete(false);
-
         }
     }
 }

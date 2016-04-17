@@ -1,5 +1,4 @@
-﻿
-using System.Data.Entity.ModelConfiguration;
+﻿using System.Data.Entity.ModelConfiguration;
 using Store.Model;
 
 namespace Store.Dal.Mapping
@@ -8,7 +7,6 @@ namespace Store.Dal.Mapping
     {
         public CostumerMap()
         {
-            // Primary Key
             // Primary Key
             HasKey(t => t.Id);
 
@@ -25,7 +23,6 @@ namespace Store.Dal.Mapping
             Property(t => t.Address).HasColumnName("Address");
             Property(t => t.Telephone).HasColumnName("Telephone");
             Property(t => t.Description).HasColumnName("Description");
-
         }
     }
 }

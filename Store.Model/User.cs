@@ -1,18 +1,17 @@
-﻿
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Store.Model
 {
 	// Модель описывает работника
-	public class User
+	public class User : BaseModel<int>
 	{
 		public User()
 		{
 			Experses = new Collection<Experse>();
 			Supplies = new Collection<Supply>();
 		}
+
 		// Табельный
 		public string Tn { get;set; }
 
@@ -34,7 +33,5 @@ namespace Store.Model
 		// Идентификатор роли
 		public virtual int RoleId { get; set; }
 		public virtual Role RoleObj { get; set; }
-
-
 	}
 }

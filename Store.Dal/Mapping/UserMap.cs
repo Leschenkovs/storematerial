@@ -1,5 +1,4 @@
-﻿
-using System.Data.Entity.ModelConfiguration;
+﻿using System.Data.Entity.ModelConfiguration;
 using Store.Model;
 
 namespace Store.Dal.Mapping
@@ -9,7 +8,7 @@ namespace Store.Dal.Mapping
 		public UserMap()
 		{
 			// Primary Key
-			HasKey(t => t.Tn);
+			HasKey(t => t.Id);
 
 			// Properties
 			Property(t => t.Tn).HasMaxLength(6).IsRequired();
@@ -20,6 +19,7 @@ namespace Store.Dal.Mapping
 
 			// Table & Column Mappings
 			ToTable("User");
+			Property(t => t.Id).HasColumnName("Id");
 			Property(t => t.Tn).HasColumnName("Tn");
 			Property(t => t.Fio).HasColumnName("Fio");
 			Property(t => t.Department).HasColumnName("Department");

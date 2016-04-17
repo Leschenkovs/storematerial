@@ -12,7 +12,7 @@ namespace Store.Bll.Bll
 		IList<User> GetAll();
 		User Add(User obj);
 		User Update(User obj);
-		bool Delete(string tn);
+		bool Delete(int id);
 	}
 
 	public class UserBll : IUserBll
@@ -48,10 +48,10 @@ namespace Store.Bll.Bll
 			return FactoryDal.UserDal.Update(obj);
 		}
 
-		public bool Delete(string tn)
+		public bool Delete(int id)
 		{
-			User obj = FactoryDal.UserDal.First(x => x.Tn == tn.Trim());
-			if (obj == null) throw new DbOwnException ("Пользователя TH = " + tn + " нет в БД!");
+			User obj = FactoryDal.UserDal.First(x => x.Id == id);
+			if (obj == null) throw new DbOwnException ("Пользователя ID = " + id + " нет в БД!");
 			return FactoryDal.UserDal.Delete(obj);
 		}
 	}

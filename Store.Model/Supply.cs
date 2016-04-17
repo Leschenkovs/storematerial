@@ -1,5 +1,4 @@
-﻿ 
-namespace Store.Model
+﻿namespace Store.Model
 {
     // Модель описывает поставки на склад
     public class Supply: BaseModel<int>

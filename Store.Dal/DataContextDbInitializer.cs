@@ -1,6 +1,6 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using Store.Model;
 
 namespace Store.Dal
@@ -8,7 +8,7 @@ namespace Store.Dal
 	//DropCreateDatabaseAlways<DataContext>
 	//DropCreateDatabaseIfModelChanges<DataContext>
 
-	public class DataContextDbInitializer : DropCreateDatabaseAlways<DataContext>
+	public class DataContextDbInitializer : DropCreateDatabaseIfModelChanges<DataContext>
 	{
 		protected override void Seed(DataContext context)
 		{
@@ -22,15 +22,23 @@ namespace Store.Dal
 
 			context.Units.AddRange(new List<Unit>
 			{
-				new Unit {Name = "штуки", ShortName = "шт"},
-				new Unit {Name = "т", ShortName = "тонна"},
-				new Unit {Name = "кг", ShortName = "киллограм"},
-				new Unit {Name = "г", ShortName = "грамм"},
-				new Unit {Name = "л", ShortName = "литр"},
-				new Unit {Name = "мл", ShortName = "миллилитр"},
+				new Unit {Name = "шт", ShortName = "штуки"},
+				new Unit {Name = "тонна", ShortName = "т"},
+				new Unit {Name = "киллограм", ShortName = "кг"},
+				new Unit {Name = "грамм", ShortName = "г"},
+				new Unit {Name = "литр", ShortName = "л"},
+				new Unit {Name = "миллилитр", ShortName = "мл"},
 				new Unit {Name = "рулон", ShortName = "рулон"},
-				new Unit {Name = "м.кв", ShortName = "метр квадратный"},
-				new Unit {Name = "м.куб", ShortName = "метр кубический"}
+				new Unit {Name = "метр квадратный", ShortName = "м.кв"},
+				new Unit {Name = "метр кубический", ShortName = "м.куб"}
+			});
+			context.SaveChanges();
+
+			//********************
+			// Test data
+			context.Users.AddRange(new List<User>
+			{
+				new User {Tn = "11", Fio = "Кукуруза А.В.", RoleId = context.Roles.First(x => x.Code == "admin").Id, Position = "Оператор", Department = "Склад"}
 			});
 			context.SaveChanges();
 		}
