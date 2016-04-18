@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bll\BaseBll.cs" />
     <Compile Include="Bll\CostumerBll.cs" />
     <Compile Include="Bll\ExperseBll.cs" />
     <Compile Include="Bll\KindMaterialBll.cs" />
