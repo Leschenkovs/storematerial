@@ -2,70 +2,55 @@
     "use strict";
 
     // controller class definintion
-    var UserController = function ($scope, $state, UserService) {
+    var UserController = function($scope, $state, UserService, RoleService) {
 
-        //$scope.model = {};
-        //$scope.model.pageSizeList = UserService.getPageSizeList(); // list
-        //$scope.showProductList = true;
-
-        UserService.getAllUsers().then(function (value) {
-            $scope.users = value.Users;
-            $scope.roles = value.Roles;
+        UserService.getAllUsers().then(function(value) {
+            $scope.users = value;
         });
 
+        RoleService.getAllRoles().then(function(value) {
+            $scope.roles = value;
+        });
 
-        $scope.user = 
+        $scope.user =
         {
-            Tn: "",
-            Fio: "",
-            Position: "",
-            Department: "",
-            RoleId: ""
+            tn: "",
+            fio: "",
+            position: "",
+            department: "",
+            roleId: ""
         };
 
-        $scope.save = function (user, createUser) {
+        $scope.save = function(user, createUser) {
             if (createUser.$valid) {
-                // return listUser
-                //click("#cancel");
-
-                UserService.addUser(user).then(function (value) {
-                    $scope.user.Tn = value.Tn + "!!!!!!";
+                UserService.addUser(user).then(function(value) {
+                    $state.go("user/index");
                 });
             }
         };
 
-        //Called from on-data-required directive.
-        //$scope.onServerSideItemsRequested = function (currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
-        //    //loadUserList(currentPage, pageItems, orderBy, orderByReverse);
-        //    //$timeout(loadProductList(currentPage, pageItems, orderBy, orderByReverse), 3000);
-        //    UserService.getAllUsers().then(function (value) {
-        //        $scope.model.users = value.Users;
-        //        $scope.model.TotalCount = value.TotalCount;
-        //    });
-        //};
-
-
-        //Default paging and sorting paramters.
-        //var pCurrentPage = 0; //PageIndex
-        //var pPageItems = 5;   //PageSize  
-        //var pOrderBy = "";    //SortBy
-        //var pOrderByReverse = false;  //SortDirection = 0
-        //var resetSearchFlag = false;
-
-        //Set search items for starting and reset.
-        //var initiateSearchItems = function() {
-        //    $scope.model.pSearchType = { selected: "0" };
-        //    $scope.model.pStatusType = { selected: 0 };
-        //    $scope.model.pPageSizeObj = { selected: 5 };
-
-        //    $scope.showProductList = true;
-        //};
-        //initiateSearchItems();
-
+        $scope.deleteUser = function (id) {
+            UserService.deleteUser(id).then(function(value) {
+                if (value) {
+                    var index = -1;
+                    var userArr = eval($scope.users);
+                    for (var i = 0; i < userArr.length; i++) {
+                        if (userArr[i].id === id) {
+                            index = i;
+                            break;
+                        }
+                    }
+                    if (index === -1) {
+                        alert("Something gone wrong");
+                    }
+                    $scope.users.splice(index, 1);
+                }
+            });
+        };
     };
 
     // register your controller into a dependent module 
     angular
         .module("store.WebUI.Controllers")
-        .controller("UserController", ["$scope", "$state", "UserService", UserController]);
+        .controller("UserController", ["$scope", "$state", "UserService", "RoleService", UserController]);
 })();

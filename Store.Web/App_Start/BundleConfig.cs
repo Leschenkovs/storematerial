@@ -16,6 +16,7 @@ namespace Store.Web.App_Start
 			bundles.Add(new ScriptBundle("~/Store.Web/angular").Include(
 				"~/Scripts/angular/modernizr.custom.js",
 				"~/Scripts/angular/angular.js",
+				"~/Scripts/angular/angular-messages.min.js",
 				"~/Scripts/angular/angular-sanitize.js",
 				"~/Scripts/angular/ui-bootstrap.js",
 				"~/Scripts/angular/ui-bootstrap-tpls.js",

@@ -1,28 +1,22 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Store.Dal;
+﻿using Store.Dal;
+using Store.Dal.Dal;
 using Store.Model;
 
 namespace Store.Bll.Bll
 {
-	public interface IRoleBll
+  public interface IRoleBll : IBaseBll<Role>
 	{
-		IList<Role> GetAll();
 	}
 
-	public class RoleBll : IRoleBll
+  public class RoleBll : BaseBll<Role, IRoleDal>, IRoleBll
 	{
 		protected IFactoryDal FactoryDal;
 
 		public RoleBll(IFactoryDal factoryDal)
+		  : base(factoryDal.RoleDal)
 		{
 			FactoryDal = factoryDal;
 		}
 
-		public IList<Role> GetAll()
-		{
-			IList<Role> list = FactoryDal.RoleDal.GetAll().ToList();
-			return list;
-		}
 	}
 }

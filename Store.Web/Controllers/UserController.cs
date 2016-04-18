@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using AutoMapper;
 using Store.Bll;
 using Store.Bll.Bll;
 using Store.Model;
-using Store.Web.ViewModel;
+using Store.Model.DTOObjects;
 
 namespace Store.Web.Controllers
 {
@@ -12,7 +14,6 @@ namespace Store.Web.Controllers
 	public class UserController : BaseApiController
 	{
 		private readonly IUserBll _userBll;
-		private readonly IRoleBll _roleBll;
 
 		public UserController(IFactoryBll factoryBll)
 		{
@@ -21,24 +22,21 @@ namespace Store.Web.Controllers
 				throw new ArgumentNullException("factoryBll");
 			}
 			_userBll = factoryBll.UserBll;
-			_roleBll = factoryBll.RoleBll;
 		}
 
 		[HttpGet]
-		public UserVm GetUsers()
+		public List<UserDTO> GetUsers()
 		{
-			UserVm model = new UserVm
-			{
-				Users = _userBll.GetAll().ToList(),
-				Roles = _roleBll.GetAll().ToList()
-			};
-			return model;
+		  Mapper.CreateMap<User, UserDTO>();
+		  List<UserDTO> users = Mapper.Map<IQueryable<User>, List<UserDTO>>(_userBll.GetAll());
+
+		  return users;
 		}
 
 		[HttpGet]
-		public User GetUser(string tn)
+		public User GetUser(int id)
 		{
-			return _userBll.GetByTn(tn);
+			return _userBll.GetById(id);
 		}
 
 		[HttpPost]

@@ -41,6 +41,8 @@
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
     <Compile Include="Costumer.cs" />
+    <Compile Include="DTOObjects\RoleDTO.cs" />
+    <Compile Include="DTOObjects\UserDTO.cs" />
     <Compile Include="Experse.cs" />
     <Compile Include="KindMaterial.cs" />
     <Compile Include="MaterialInStore.cs" />

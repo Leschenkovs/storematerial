@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Store.Bll;
 using Store.Web.App_Start;
 
 namespace Store.Web
@@ -18,6 +19,8 @@ namespace Store.Web
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+			AutoMapperConfig.RegisterAllObjects();
 
 			//GlobalConfiguration.Configuration.DependencyResolver = new UnityResolver(ComponentRegistry.RegisterComponents());
 			//GlobalConfiguration.Configuration.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(ComponentRegistry.RegisterComponents());

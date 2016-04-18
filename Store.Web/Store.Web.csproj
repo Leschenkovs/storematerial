@@ -45,6 +45,9 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -159,6 +162,7 @@
     <Compile Include="App_Start\ComponentRegistry.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -177,6 +181,7 @@
     <Content Include="Angular\directives\store.directive.footer.js" />
     <Content Include="Angular\partials\footer.html" />
     <Content Include="Angular\partials\header.html" />
+    <Content Include="Angular\services\store.service.role.js" />
     <Content Include="Angular\services\store.service.user.js" />
     <Content Include="Angular\views\user\create.html" />
     <Content Include="Angular\views\user\index.html" />
@@ -196,6 +201,9 @@
     <Content Include="Content\styles\store.app.css" />
     <Content Include="Content\styles\trNgGrid.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\angular\angular-messages.js" />
+    <Content Include="Scripts\angular\angular-messages.min.js" />
+    <Content Include="Scripts\angular\angular-mocks.js" />
     <Content Include="Scripts\angular\angular-sanitize.js" />
     <Content Include="Scripts\angular\angular-ui-router.js" />
     <Content Include="Scripts\angular\angular.js" />
@@ -212,6 +220,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Scripts\angular\angular-messages.min.js.map" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

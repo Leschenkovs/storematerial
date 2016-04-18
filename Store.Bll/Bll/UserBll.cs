@@ -1,15 +1,15 @@
-﻿using Store.Bll.Exception;
+﻿using System.Collections.Generic;
+using Store.Bll.Exception;
 using Store.Dal;
 using Store.Dal.Dal;
 using Store.Model;
+using Store.Model.DTOObjects;
 
 namespace Store.Bll.Bll
 {
 	public interface IUserBll : IBaseBll<User>
 	{
-		User GetByTn(string tn);
-		//IList<User> GetAll();
-		User Add(User obj);
+		new User Add(User obj);
 	}
 
 	public class UserBll : BaseBll<User, IUserDal>, IUserBll
@@ -21,17 +21,12 @@ namespace Store.Bll.Bll
 			FactoryDal = factoryDal;
 		}
 
-		public User GetByTn(string tn)
-		{
-			return FactoryDal.UserDal.First(x => x.Tn == tn);
-		}
-
-		public User Add(User obj)
+		public new User Add(User obj)
 		{
 			bool isExist = FactoryDal.UserDal.First(x => x.Tn == obj.Tn.Trim()) != null;
-			if (isExist) throw new DbOwnException("Работник ТН = " + obj.Tn + " уже существует в БД!");
+			if (isExist) {throw new DbOwnException("Работник ТН = " + obj.Tn + " уже существует в БД!");}
 
-			User newObj = Add(obj);
+			User newObj = base.Add(obj);
 			return newObj;
 		}
 	}

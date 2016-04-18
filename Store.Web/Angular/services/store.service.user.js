@@ -28,6 +28,19 @@
             return deferred.promise;
         };
 
+        this.deleteUser = function (id) {
+            var deferred = $q.defer();
+
+            $http.delete("api/user?id="+ id).
+                success(function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).
+                error(function (data, status, headers, config) {
+                    deferred.reject(status);
+                });
+            return deferred.promise;
+        };
+
         //this.getPageSizeList = function() {
         //    return [
         //        { value: 5, text: "5" },
@@ -39,9 +52,6 @@
         //    ];
         //};
     };
-
-
-    
 
     angular
         .module("store.WebUI.Services")

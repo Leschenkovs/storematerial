@@ -1,4 +1,8 @@
-﻿/*Overwrite trNgGrid pagination */
+﻿.error-message {
+    color: red;
+}
+
+/*Overwrite trNgGrid pagination */
 .tr-ng-grid .tr-ng-grid-footer .pagination {
   display: inline-block;
   padding-left: 0;
