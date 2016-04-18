@@ -9,7 +9,7 @@ namespace Store.Model
 		public User()
 		{
 			Experses = new Collection<Experse>();
-			Supplies = new Collection<Supply>();
+            //Supplies = new Collection<Supply>();
 		}
 
 		// Табельный
@@ -25,7 +25,7 @@ namespace Store.Model
 		public string Position { get; set; }
 
 		// Список оформленных поставок
-		public virtual ICollection<Supply> Supplies { get; set; }
+        //public virtual ICollection<Supply> Supplies { get; set; }
 
 		// Список оформленных отгрузок (расходов)
 		public virtual ICollection<Experse> Experses { get; set; }

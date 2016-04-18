@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using Store.Bll;
 using Store.Bll.Bll;
 using Store.Model;
+using Store.Web.ViewModel;
 
 namespace Store.Web.Controllers
 {
@@ -11,6 +13,7 @@ namespace Store.Web.Controllers
 	public class UserController : BaseApiController
 	{
 		private readonly IUserBll _userBll;
+        private readonly IRoleBll _roleBll;
 
 		public UserController(IFactoryBll factoryBll)
 		{
@@ -19,12 +22,18 @@ namespace Store.Web.Controllers
 				throw new ArgumentNullException("factoryBll");
 			}
 			_userBll = factoryBll.UserBll;
+            _roleBll = factoryBll.RoleBll;
 		}
 
 		[HttpGet]
-		public IList<User> GetUsers()
+        public UserVm GetUsers()
 		{
-			return _userBll.GetAll();
+            UserVm model = new UserVm
+            {
+                Users = _userBll.GetAll().ToList(),
+                Roles = _roleBll.GetAll().ToList()
+            };
+            return model;
 		}
 
 		[HttpGet]

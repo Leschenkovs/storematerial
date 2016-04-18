@@ -164,6 +164,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\UserVm.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -191,7 +192,9 @@
     <Content Include="Content\styles\business-casual.css" />
     <Content Include="Content\styles\component.css" />
     <Content Include="Content\styles\default.css" />
+    <Content Include="Content\styles\ng-table.css" />
     <Content Include="Content\styles\store.app.css" />
+    <Content Include="Content\styles\trNgGrid.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular\angular-sanitize.js" />
     <Content Include="Scripts\angular\angular-ui-router.js" />
@@ -228,6 +231,8 @@
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\modernizr.custom.js" />
+    <Content Include="Scripts\ng-table.js" />
+    <Content Include="Scripts\trNgGrid.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -243,6 +248,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Angular\helpers\" />
+    <Folder Include="Angular\viem\" />
     <Folder Include="App_Data\" />
     <Folder Include="Classes\" />
     <Folder Include="Models\" />

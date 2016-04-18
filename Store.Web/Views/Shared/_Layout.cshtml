@@ -23,8 +23,8 @@
 				<div class="col-lg-12 text-center">
 					@RenderBody()
 
-				@Scripts.Render("~/Store.Web/Base")
 					@Scripts.Render("~/Store.Web/angular")
+                    @Scripts.Render("~/Store.Web/Base")
 					@Scripts.Render("~/Store.Web/app")
 
 				@RenderSection("scripts", required: false)

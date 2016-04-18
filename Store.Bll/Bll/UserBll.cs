@@ -36,7 +36,7 @@ namespace Store.Bll.Bll
 
 		public User Add(User obj)
 		{
-			bool isExist = FactoryDal.UserDal.First(x => x.Tn == obj.Tn.Trim()) == null ? true : false;
+			bool isExist = FactoryDal.UserDal.First(x => x.Tn == obj.Tn.Trim()) != null ? true : false;
 			if (isExist) throw new DbOwnException("Работник ТН = " + obj.Tn + " уже существует в БД!");
 
 			User newObj = FactoryDal.UserDal.Add(obj);
