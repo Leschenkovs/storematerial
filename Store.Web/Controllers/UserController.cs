@@ -7,6 +7,7 @@ using Store.Bll;
 using Store.Bll.Bll;
 using Store.Model;
 using Store.Model.DTOObjects;
+using Store.Model.RequestObjects;
 
 namespace Store.Web.Controllers
 {
@@ -25,36 +26,36 @@ namespace Store.Web.Controllers
 		}
 
 		[HttpGet]
-		public List<UserDTO> GetUsers()
+		public List<UserDTO> GetUsers([FromUri]QueryRequest queryRequest)
 		{
-		  Mapper.CreateMap<User, UserDTO>();
-		  List<UserDTO> users = Mapper.Map<IQueryable<User>, List<UserDTO>>(_userBll.GetAll());
+			Mapper.CreateMap<User, UserDTO>();
+			List<UserDTO> users = Mapper.Map<IQueryable<User>, List<UserDTO>>(_userBll.GetAll());
 
-		  return users;
+			return users;
 		}
 
 		[HttpGet]
-		public User GetUser(int id)
+		public User GetUser([FromUri]QueryRequest queryRequest)
 		{
-			return _userBll.GetById(id);
+			return _userBll.GetById(queryRequest.id);
 		}
 
 		[HttpPost]
-		public User CreateUser(User entity)
+		public User CreateUser([FromBody]QueryRequest<User> queryRequest)
 		{
-			return _userBll.Add(entity);
+			return _userBll.Add(queryRequest.model);
 		}
 
 		[HttpPut]
-		public User UpdateUser(User entity)
+		public User UpdateUser([FromBody]QueryRequest<User> queryRequest)
 		{
-			return _userBll.Update(entity);
+			return _userBll.Update(queryRequest.model);
 		}
 
 		[HttpDelete]
-		public bool DeleteUser(int id)
+		public bool DeleteUser([FromBody]QueryRequest queryRequest)
 		{
-			return _userBll.Delete(id);
+			return _userBll.Delete(queryRequest.id);
 		}
 	}
 }
