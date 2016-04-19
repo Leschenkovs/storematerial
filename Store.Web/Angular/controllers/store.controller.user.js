@@ -9,7 +9,7 @@
 
             $scope.usersTable = new ngTableParams({
                 page: 1,
-                count: 5
+                count: 2
             }, {
                 total: $scope.users.length,
                 getData: function ($defer, params) {
@@ -46,7 +46,7 @@
             UserService.deleteUser(id).then(function (value) {
                 if (value) {
                     var index = -1;
-                    var userArr = eval($scope.users);
+                    var userArr = eval($scope.usersTable.data);
                     for (var i = 0; i < userArr.length; i++) {
                         if (userArr[i].id === id) {
                             index = i;
@@ -56,7 +56,7 @@
                     if (index === -1) {
                         alert("Ошибка удаления записи из таблицы.");
                     }
-                    $scope.users.splice(index, 1);
+                    $scope.usersTable.data.splice(index, 1);
                 }
             });
         };

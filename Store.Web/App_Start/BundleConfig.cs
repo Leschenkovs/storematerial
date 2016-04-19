@@ -9,7 +9,6 @@ namespace Store.Web.App_Start
 		  bundles.Add(new ScriptBundle("~/Store.Web/base").Include(
 			 "~/Scripts/jquery-1.9.1*",
 			 "~/Scripts/bootstrap.js",
-			"~/Scripts/trNgGrid.js",
 			"~/Scripts/ng-table.js"
 						));
 
@@ -30,7 +29,6 @@ namespace Store.Web.App_Start
 				"~/Content/styles/business-casual.css",
 				"~/Content/styles/component.css",
 				"~/Content/styles/default.css",
-				"~/Content/styles/trNgGrid.css",
 				"~/Content/styles/ng-table.css"
 				));
 

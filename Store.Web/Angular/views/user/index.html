@@ -5,8 +5,16 @@
             <h2 class="intro-text text-center">Список пользователей
             </h2>
             <hr>
-            
-            <table ng-table="usersTable" show-filter="true" class="table table-striped">
+
+            <table ng-table="usersTable" show-filter="true" class="table table-bordered table-hover table-striped table-condensed">
+                <colgroup>
+                    <col width="*0.5" />
+                    <col width="*3.5" />
+                    <col width="*2" />
+                    <col width="*2" />
+                    <col width="*1" />
+                    <col width="85" />
+                </colgroup>
                 <tr ng-repeat="u in data">
                     <td data-title="'Табельный'" sortable="'tn'" filter="{'tn': 'text' }">{{u.tn}}</td>
                     <td data-title="'ФИО'" sortable="'fio'" filter="{'fio': 'text' }">{{u.fio}}</td>
@@ -14,7 +22,13 @@
                     <td data-title="'Должность'" sortable="'position'">{{u.position}}</td>
                     <td data-title="'Роль'" sortable="'roleName'">{{u.roleName}}</td>
                     <td>
-                        <input type="button" value="Remove" class="btn btn-primary" ng-click="deleteUser(u.id)" />
+                        <!--<input type="button" value="Remove" class="btn btn-primary" ng-click="deleteUser(u.id)"/>
+                        <button class="btn btn-primary btn-sm" ng-click="demo.save(row, rowForm)" ng-if="row.isEditing" ng-disabled="rowForm.$pristine || rowForm.$invalid"><span class="glyphicon glyphicon-ok"></span></button>
+                        <button class="btn btn-default btn-sm" ng-click="demo.cancel(row, rowForm)" ng-if="row.isEditing"><span class="glyphicon glyphicon-remove"></span></button>
+                        <button class="btn btn-default btn-sm" ng-click="row.isEditing = true" ng-if="!row.isEditing"><span class="glyphicon glyphicon-pencil"></span></button>-->
+                        <button class="btn btn-default btn-sm" ng-click=""><span class="glyphicon glyphicon-pencil"></span></button>
+                        <button class="btn btn-danger btn-sm" ng-click="deleteUser(u.id)"><span class="glyphicon glyphicon-trash"></span></button>
+
                     </td>
                 </tr>
             </table>
