@@ -9,8 +9,9 @@ namespace Store.Web.App_Start
 		  bundles.Add(new ScriptBundle("~/Store.Web/base").Include(
 			 "~/Scripts/jquery-1.9.1*",
 			 "~/Scripts/bootstrap.js",
-			"~/Scripts/ng-table.js"
-						));
+			 "~/Scripts/ng-table.js",
+             "~/Scripts/underscore.js"
+			));
 
 			bundles.Add(new ScriptBundle("~/Store.Web/angular").Include(
 				"~/Scripts/angular/modernizr.custom.js",
@@ -24,12 +25,8 @@ namespace Store.Web.App_Start
 				));
 
 			bundles.Add(new StyleBundle("~/Store.Web/css").Include(
-			  "~/Content/styles/store.app.css",
-				"~/Content/*.css",
-				"~/Content/styles/business-casual.css",
-				"~/Content/styles/component.css",
-				"~/Content/styles/default.css",
-				"~/Content/styles/ng-table.css"
+				"~/Content/styles/*.css",
+				"~/Content/*.css"
 				));
 
 			bundles.Add(new ScriptBundle("~/Store.Web/app").Include(

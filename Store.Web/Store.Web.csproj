@@ -194,7 +194,10 @@
     <Content Include="Angular\controllers\store.controller.unitMaterial.js" />
     <Content Include="Angular\controllers\store.controller.user.js" />
     <Content Include="Angular\controllers\store.controller.index.js" />
+    <Content Include="Angular\directives\ngTableDemo\demoTrackedTable.js" />
+    <Content Include="Angular\directives\ngTableDemo\demoTrackedTableRow.js" />
     <Content Include="Angular\directives\store.directive.footer.js" />
+    <Content Include="Angular\directives\ngTableDemo\demoTrackedTableCell.js" />
     <Content Include="Angular\partials\footer.html" />
     <Content Include="Angular\partials\header.html" />
     <Content Include="Angular\services\store.service.costumer.js" />
@@ -229,6 +232,7 @@
     <Content Include="Content\styles\business-casual.css" />
     <Content Include="Content\styles\component.css" />
     <Content Include="Content\styles\default.css" />
+    <Content Include="Content\styles\ng-table-demo.css" />
     <Content Include="Content\styles\ng-table.css" />
     <Content Include="Content\styles\store.app.css" />
     <Content Include="Global.asax" />
@@ -253,6 +257,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Scripts\angular\angular-messages.min.js.map" />
     <Content Include="Angular\filters\store.filter.base.js" />
+    <Content Include="Scripts\underscore.js" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

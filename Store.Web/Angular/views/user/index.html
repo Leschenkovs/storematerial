@@ -2,11 +2,12 @@
     <div class="box">
         <div class="col-lg-12">
             <hr>
-            <h2 class="intro-text text-center">Список пользователей
+            <h2 class="intro-text text-center">
+                Список пользователей
             </h2>
             <hr>
 
-            <table ng-table="usersTable" show-filter="true" class="table table-bordered table-hover table-striped table-condensed">
+            <table ng-table="usersTable" show-filter="true" class="table table-bordered table-hover table-striped table-condensed editable-table demoTable" ng-form="tableForm" disable-filter="isAdding" demo-tracked-table="tableTracker">
                 <colgroup>
                     <col width="*0.5" />
                     <col width="*3.5" />
@@ -15,20 +16,42 @@
                     <col width="*1" />
                     <col width="85" />
                 </colgroup>
-                <tr ng-repeat="u in data">
-                    <td data-title="'Табельный'" sortable="'tn'" filter="{'tn': 'text' }">{{u.tn}}</td>
-                    <td data-title="'ФИО'" sortable="'fio'" filter="{'fio': 'text' }">{{u.fio}}</td>
-                    <td data-title="'Отдел'" sortable="'department'">{{u.department}}</td>
-                    <td data-title="'Должность'" sortable="'position'">{{u.position}}</td>
-                    <td data-title="'Роль'" sortable="'roleName'">{{u.roleName}}</td>
+                <tr ng-repeat="row in data" ng-form="rowForm" demo-tracked-table-row="row">
+                    <td data-title="'Табельный'" sortable="'tn'" filter="{'tn': 'text' }" ng-switch="row.isEditing" ng-class="tn.$dirty ? 'bg-warning' : ''" ng-form="tn" demo-tracked-table-cell>
+                        <span ng-switch-default class="editable-text">{{row.tn}}</span>
+                        <div class="controls" ng-class="tn.$invalid && tn.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                            <input type="text" name="tn" ng-model="row.tn" class="editable-input form-control input-sm" required />
+                        </div>
+                    </td>
+                    <td data-title="'ФИО'" sortable="'fio'" filter="{'fio': 'text' }" ng-switch="row.isEditing" ng-class="fio.$dirty ? 'bg-warning' : ''" ng-form="fio" demo-tracked-table-cell>
+                        <span ng-switch-default class="editable-text">{{row.fio}}</span>
+                        <div class="controls" ng-class="fio.$invalid && fio.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                            <input type="text" name="fio" ng-model="row.fio" class="editable-input form-control input-sm" required />
+                        </div>
+                    </td>
+                    <td data-title="'Отдел'" sortable="'department'" filter="{'department': 'text' }" ng-switch="row.isEditing" ng-class="department.$dirty ? 'bg-warning' : ''" ng-form="department" demo-tracked-table-cell>
+                        <span ng-switch-default class="editable-text">{{row.department}}</span>
+                        <div class="controls" ng-class="department.$invalid && department.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                            <input type="text" name="department" ng-model="row.department" class="editable-input form-control input-sm" required />
+                        </div>
+                    </td>
+                    <td data-title="'Должность'" sortable="'position'" filter="{'position': 'text' }" ng-switch="row.isEditing" ng-class="position.$dirty ? 'bg-warning' : ''" ng-form="position" demo-tracked-table-cell>
+                        <span ng-switch-default class="editable-text">{{row.position}}</span>
+                        <div class="controls" ng-class="position.$invalid && position.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                            <input type="text" name="position" ng-model="row.position" class="editable-input form-control input-sm" required />
+                        </div>
+                    </td>
+                    <td data-title="'Роль'" sortable="'roleName'" filter="{'roleName': 'text' }" ng-switch="row.isEditing" ng-class="roleName.$dirty ? 'bg-warning' : ''" ng-form="roleName" demo-tracked-table-cell>
+                        <span ng-switch-default class="editable-text">{{row.roleName}}</span>
+                        <div class="controls" ng-class="roleName.$invalid && roleName.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                            <input type="text" name="roleName" ng-model="row.roleName" class="editable-input form-control input-sm" required />
+                        </div>
+                    </td>
                     <td>
-                        <!--<input type="button" value="Remove" class="btn btn-primary" ng-click="deleteUser(u.id)"/>
-                        <button class="btn btn-primary btn-sm" ng-click="demo.save(row, rowForm)" ng-if="row.isEditing" ng-disabled="rowForm.$pristine || rowForm.$invalid"><span class="glyphicon glyphicon-ok"></span></button>
-                        <button class="btn btn-default btn-sm" ng-click="demo.cancel(row, rowForm)" ng-if="row.isEditing"><span class="glyphicon glyphicon-remove"></span></button>
-                        <button class="btn btn-default btn-sm" ng-click="row.isEditing = true" ng-if="!row.isEditing"><span class="glyphicon glyphicon-pencil"></span></button>-->
-                        <button class="btn btn-default btn-sm" ng-click=""><span class="glyphicon glyphicon-pencil"></span></button>
-                        <button class="btn btn-danger btn-sm" ng-click="deleteUser(u.id)"><span class="glyphicon glyphicon-trash"></span></button>
-
+                        <button class="btn btn-primary btn-sm" ng-click="save(row, rowForm)" ng-if="row.isEditing" ng-disabled="rowForm.$pristine || rowForm.$invalid"><span class="glyphicon glyphicon-ok"></span></button>
+                        <button class="btn btn-default btn-sm" ng-click="cancel(row, rowForm)" ng-if="row.isEditing"><span class="glyphicon glyphicon-remove"></span></button>
+                        <button class="btn btn-default btn-sm" ng-click="row.isEditing = true" ng-if="!row.isEditing"><span class="glyphicon glyphicon-pencil"></span></button>
+                        <button class="btn btn-danger btn-sm" ng-click="deleteUser(row.id)" ng-if="!row.isEditing"><span class="glyphicon glyphicon-trash"></span></button>
                     </td>
                 </tr>
             </table>
