@@ -21,9 +21,6 @@ namespace Store.Web
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
 
 			AutoMapperConfig.RegisterAllObjects();
-
-			//GlobalConfiguration.Configuration.DependencyResolver = new UnityResolver(ComponentRegistry.RegisterComponents());
-			//GlobalConfiguration.Configuration.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(ComponentRegistry.RegisterComponents());
 		}
 	}
 }

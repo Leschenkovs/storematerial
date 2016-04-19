@@ -2,8 +2,6 @@
 {
 	public class QueryRequest
 	{
-		public int id { get; set; }
-
 		// for paging
 		public string page { get; set; }
 		public string pageSize { get; set; }

@@ -31,7 +31,7 @@
         this.deleteUser = function (id) {
             var deferred = $q.defer();
 
-            $http.delete("api/user?id="+ id).
+            $http.delete("api/user?id="+id).
                 success(function (data, status, headers, config) {
                     deferred.resolve(data);
                 }).
