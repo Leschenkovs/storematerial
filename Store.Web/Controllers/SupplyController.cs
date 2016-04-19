@@ -1,7 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
+using AutoMapper;
 using Store.Bll;
 using Store.Bll.Bll;
+using Store.Model;
+using Store.Model.DTOObjects;
+using Store.Model.RequestObjects;
 
 namespace Store.Web.Controllers
 {
@@ -18,6 +24,21 @@ namespace Store.Web.Controllers
             }
             _supplyBll = factoryBll.SupplyBll;
         }
+
+		  [HttpGet]
+		  public List<SupplyDTO> GetSupplies([FromUri] QueryRequest queryRequest)
+		  {
+			 List<SupplyDTO> list = Mapper.Map<IQueryable<Supply>, List<SupplyDTO>>(_supplyBll.GetAll());
+			 return list;
+		  }
+
+		  [HttpPost]
+		  public SupplyDTO CreateSupply([FromBody] SupplyDTO model)
+		  {
+			 Supply entity = Mapper.Map<SupplyDTO, Supply>(model);
+			 model = Mapper.Map<Supply, SupplyDTO>(_supplyBll.Save(entity));
+			 return model;
+		  }
 
     }
 }

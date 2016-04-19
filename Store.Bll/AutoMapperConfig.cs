@@ -11,18 +11,18 @@ namespace Store.Bll
 	  {
 		  RegisterMappingsUser();
 		  RegisterMappingsRole();
-          RegisterMappingsProvider();
-	      RegisterMappingsCostumer();
-	      RegisterMappingsUnit();
-	      RegisterMappingsSupply();
-	      RegisterMappingsExperse();
-	      RegisterMappingsPrice();
-	      RegisterMappingsMaterialInStore();
-	      RegisterMappingsKindMaterial();
-	      RegisterMappingsUnitMaterial();
+		  RegisterMappingsProvider();
+		  RegisterMappingsCostumer();
+		  RegisterMappingsUnit();
+		  RegisterMappingsSupply();
+		  RegisterMappingsExperse();
+		  RegisterMappingsPrice();
+		  RegisterMappingsMaterialInStore();
+		  RegisterMappingsKindMaterial();
+		  RegisterMappingsUnitMaterial();
 	  }
 
-      private static void RegisterMappingsRole()
+	  private static void RegisterMappingsRole()
       {
           Mapper.CreateMap<Role, RoleDTO>();
           Mapper.CreateMap<RoleDTO, Role>();
@@ -94,7 +94,8 @@ namespace Store.Bll
               .ForMember("count", opt => opt.MapFrom(src => src.Count))
               .ForMember("ttn", opt => opt.MapFrom(src => src.Ttn))
               .ForMember("kindMaterialName", opt => opt.MapFrom(src => src.MaterialInStoreObj.KindMaterialObj.Name))
-              .ForMember("providerName", opt => opt.MapFrom(src => src.ProviderObj.Name));
+              .ForMember("providerName", opt => opt.MapFrom(src => src.ProviderObj.Name))
+				  .ForMember("data", opt => opt.MapFrom(src => src.AddedDate));
       }
 
       private static void RegisterMappingsExperse()
@@ -111,7 +112,8 @@ namespace Store.Bll
               .ForMember("count", opt => opt.MapFrom(src => src.Count))
               .ForMember("kindMaterialName", opt => opt.MapFrom(src => src.MaterialInStoreObj.KindMaterialObj.Name))
               .ForMember("costumerName", opt => opt.MapFrom(src => src.CostumerObj.Name))
-              .ForMember("userFio", opt => opt.MapFrom(src => src.UserObj.Fio));
+              .ForMember("userFio", opt => opt.MapFrom(src => src.UserObj.Fio))
+				  .ForMember("data", opt => opt.MapFrom(src => src.AddedDate));
       }
 
       private static void RegisterMappingsPrice()

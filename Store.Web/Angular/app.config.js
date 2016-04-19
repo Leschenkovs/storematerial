@@ -46,6 +46,19 @@
                 controller: "CostumerController"
             });
 
+            $stateProvider.state("materialInStore/index", {
+                url: "/materialInStore/index",
+                templateUrl: "/Angular/views/materialInStore/index.html",
+                controller: "MaterialInStoreController"
+            });
+
+            $stateProvider.state("kindMaterial/index", {
+                url: "/kindMaterial/index",
+                templateUrl: "/Angular/views/kindMaterial/index.html",
+                controller: "KindMaterialController"
+            });
+            //$filterProvider.register("phoneFilter", phoneFilter);
+
             $urlRouterProvider.otherwise("/");
         }]);
 })();

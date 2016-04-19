@@ -1,4 +1,6 @@
-﻿namespace Store.Model.DTOObjects
+﻿using System;
+
+namespace Store.Model.DTOObjects
 {
     public class SupplyDTO
     {
@@ -7,6 +9,7 @@
         public string ttn { get; set; }
         public string kindMaterialName { get; set; }
         public string providerName { get; set; }
+		  public DateTime data { get; set; }
 
 
         public int materialInStoreId {get; set; }

@@ -8,7 +8,7 @@ namespace Store.Dal
 	//DropCreateDatabaseAlways<DataContext>
 	//DropCreateDatabaseIfModelChanges<DataContext>
 
-    public class DataContextDbInitializer : DropCreateDatabaseAlways<DataContext>
+  public class DataContextDbInitializer : DropCreateDatabaseIfModelChanges<DataContext>
 	{
 		protected override void Seed(DataContext context)
 		{
@@ -50,12 +50,21 @@ namespace Store.Dal
 			});
             context.SaveChanges();
 
+				context.KindMaterials.AddRange(new List<KindMaterial>
+			{
+				new KindMaterial {Articul = "102938499999", Name = "Доски"},
+				new KindMaterial {Articul = "102953245347", Name = "Краска"},
+				new KindMaterial {Articul = "324293849944", Name = "Гвозди"},
+			});
+				context.SaveChanges();
+
+
 			//********************
 			// Test data
 			context.Users.AddRange(new List<User>
 			{
 				new User {Tn = "11", Fio = "Кууруза А.В.", RoleId = context.Roles.First(x => x.Code == "admin").Id, Position = "Оператор", Department = "Склад"},
-                new User {Tn = "12", Fio = "Новикова А.В.", RoleId = context.Roles.First(x => x.Code == "read").Id, Position = "Кладовщик", Department = "Склад 203"},
+            new User {Tn = "12", Fio = "Новикова А.В.", RoleId = context.Roles.First(x => x.Code == "read").Id, Position = "Кладовщик", Department = "Склад 203"},
 				new User {Tn = "15", Fio = "Лещенко А.В.", RoleId = context.Roles.First(x => x.Code == "read_write").Id, Position = "Кладовщик", Department = "Склад 3"}
 			});
 			context.SaveChanges();

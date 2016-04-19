@@ -9,7 +9,7 @@ using Store.Model.DTOObjects;
 
 namespace Store.Web.Controllers
 {
-    [RoutePrefix("api/unit")]
+    [RoutePrefix("api/unitMaterial")]
     public class UnitMaterialController : BaseApiController
     {
         private readonly IUnitMaterialBll _unitMaterialBll;
@@ -30,5 +30,19 @@ namespace Store.Web.Controllers
             return list;
         }
 
+		  [HttpPost]
+		  public UnitMaterialDTO CreateUnitMaterial([FromBody] UnitMaterialDTO model)
+		  {
+			 UnitMaterial entity = Mapper.Map<UnitMaterialDTO, UnitMaterial>(model);
+			 model = Mapper.Map<UnitMaterial, UnitMaterialDTO>(_unitMaterialBll.Save(entity));
+			 return model;
+		  }
+
+
+		  [HttpDelete]
+		  public bool DeleteUnitMaterial([FromUri] int id)
+		  {
+			 return _unitMaterialBll.Delete(id);
+		  }
     }
 }
