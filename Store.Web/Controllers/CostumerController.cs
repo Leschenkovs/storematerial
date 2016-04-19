@@ -43,7 +43,7 @@ namespace Store.Web.Controllers
         public CostumerDTO CreateCostumer([FromBody] CostumerDTO model)
         {
             Costumer entity = Mapper.Map<CostumerDTO, Costumer>(model);
-            model = Mapper.Map<Costumer, CostumerDTO>(_costumerBll.Add(entity));
+            model = Mapper.Map<Costumer, CostumerDTO>(_costumerBll.Save(entity));
             return model;
         }
 
@@ -51,7 +51,7 @@ namespace Store.Web.Controllers
         public CostumerDTO UpdateCostumer([FromBody] CostumerDTO model)
         {
             Costumer entity = Mapper.Map<CostumerDTO, Costumer>(model);
-            model = Mapper.Map<Costumer, CostumerDTO>(_costumerBll.Update(entity)); // AddorUpdate
+				model = Mapper.Map<Costumer, CostumerDTO>(_costumerBll.Save(entity)); // AddorUpdate
             return model;
         }
 

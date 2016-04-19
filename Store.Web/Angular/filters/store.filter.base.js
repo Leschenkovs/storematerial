@@ -2,7 +2,7 @@
     "use strict";
 
     angular
-        .module("store.WebUI.Filters")
+        .module("store.WebUI.Filters",[])
         .filter("phone", function () {
         return function(tel) {
             if (!tel) {
@@ -49,5 +49,5 @@
             return (country + " (" + city + ") " + number).trim();
         };
     });
-});
+})();
 

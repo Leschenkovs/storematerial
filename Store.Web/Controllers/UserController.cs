@@ -51,7 +51,7 @@ namespace Store.Web.Controllers
 		public UserDTO UpdateUser([FromBody]UserDTO model)
 		{
 			User entity = Mapper.Map<User>(model);
-			model = Mapper.Map<UserDTO>(_userBll.Update(entity));
+			model = Mapper.Map<UserDTO>(_userBll.Save(entity));
 			return model;
 		}
 

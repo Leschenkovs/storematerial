@@ -43,7 +43,7 @@ namespace Store.Web.Controllers
         public ProviderDTO CreateUser([FromBody]ProviderDTO model)
         {
             Provider entity = Mapper.Map<ProviderDTO, Provider>(model);
-            model = Mapper.Map<Provider, ProviderDTO>(_providerBll.Add(entity));
+            model = Mapper.Map<Provider, ProviderDTO>(_providerBll.Save(entity));
             return model;
         }
 
@@ -51,7 +51,7 @@ namespace Store.Web.Controllers
         public ProviderDTO UpdateUser([FromBody]ProviderDTO model)
         {
             Provider entity = Mapper.Map<ProviderDTO, Provider>(model);
-            model = Mapper.Map<Provider, ProviderDTO>(_providerBll.Update(entity)); // AddorUpdate
+            model = Mapper.Map<Provider, ProviderDTO>(_providerBll.Save(entity)); // AddorUpdate
             return model;
         }
 

@@ -8,8 +8,7 @@ namespace Store.Bll.Bll
 	{
 		T GetById(int id);
 		IQueryable<T> GetAll();
-		T Add(T entity);
-		T Update(T entity);
+		T Save(T entity);
 		bool Delete(int id);
 	}
 
@@ -39,14 +38,9 @@ namespace Store.Bll.Bll
 			return EntityDal.GetAll();
 		}
 
-		public T Add(T entity)
+		public T Save(T entity)
 		{
-			return EntityDal.Add(entity);
-		}
-
-		public T Update(T entity)
-		{
-			return EntityDal.Update(entity);
+			return EntityDal.Save(entity);
 		}
 
 		public bool Delete(int id)

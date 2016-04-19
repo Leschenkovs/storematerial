@@ -14,10 +14,8 @@ namespace Store.Dal
 		T First(Expression<Func<T, bool>> predicate);
 
 		T GetById(int id);
-		T Add(T entity);
 		bool Delete(T entity);
-		T Update(T entity);
-		void Save();
+		T Save(T entity);
 	}
 
 	public abstract class GenericRepository<C, T> :
@@ -60,20 +58,6 @@ namespace Store.Dal
 			return query;
 		}
 
-		public virtual T Add(T entity)
-		{
-			try
-			{
-				_entities.Set<T>().Add(entity);
-				_entities.SaveChanges();
-				return entity;
-			}
-			catch (Exception e)
-			{
-				return null;
-			}
-		}
-
 		public virtual bool Delete(T entity)
 		{
 			try
@@ -88,7 +72,7 @@ namespace Store.Dal
 			}
 		}
 
-		public virtual T Update(T entity)
+		public virtual T Save(T entity)
 		{
 			try
 			{
@@ -101,11 +85,6 @@ namespace Store.Dal
 			{
 				return null;
 			}
-		}
-
-		public virtual void Save()
-		{
-			_entities.SaveChanges();
 		}
 	}
 }

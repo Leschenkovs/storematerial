@@ -24,7 +24,7 @@ namespace Store.Bll.Bll
 			bool isExist = FactoryDal.UserDal.First(x => x.Tn == obj.Tn.Trim()) != null;
 			if (isExist) {throw new DbOwnException("Работник ТН = " + obj.Tn + " уже существует в БД!");}
 
-			User newObj = base.Add(obj);
+			User newObj = base.Save(obj);
 			return newObj;
 		}
 	}
