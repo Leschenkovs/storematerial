@@ -1,27 +1,27 @@
-﻿(function() {
+﻿(function () {
     "use strict";
 
-    var ProviderController = function ($scope, $state, ProviderService) {
+    var CostumerController = function ($scope, $state, CostumerService) {
 
-        ProviderService.getAllProviders().then(function (value) {
-            $scope.providers = value;
+        CostumerService.getAllCostumers().then(function (value) {
+            $scope.costumers = value;
         });
 
-        $scope.provider =
+        $scope.costumer =
         {
-            id: "",
+            id:"",
             name: "",
             address: "",
             telephone: "",
             description: ""
         };
 
-        $scope.save = function(provider, createProvider) {
-            if (createProvider.$valid) {
-                if (provider.id != null && provider.id != 'undefined' && provider.id != "") {
-                    ProviderService.updateProvider(provider).then(function (value) {
+        $scope.save = function (costumer, createCostumer) {
+            if (createCostumer.$valid) {
+                if (costumer.id != null && costumer.id != 'undefined' && costumer.id != "") {
+                    CostumerService.updateCostumer(costumer).then(function (value) {
                         if (value) {
-                            $scope.provider =
+                            $scope.costumer =
                             {
                                 id: "",
                                 name: "",
@@ -34,16 +34,16 @@
                         };
                     });
                 } else {
-                    ProviderService.addProvider(provider).then(function (value) {
+                    CostumerService.addCostumer(costumer).then(function (value) {
                         if (value) {
-                            $scope.providers.push({
+                            $scope.costumers.push({
                                 'id': value.id,
                                 'name': value.name,
                                 'address': value.address,
                                 'telephone': value.telephone,
                                 'description': value.description
                             });
-                            $scope.provider =
+                            $scope.costumer =
                             {
                                 id: "",
                                 name: "",
@@ -52,28 +52,30 @@
                                 description: ""
                             };
                         } else {
-                            alert("Ошибка добавления записи!");};
+                            alert("Ошибка добавления записи!");
+                        };
                     });
                 }
             }
         };
 
-        $scope.updateProvider = function (index) {
-            $scope.provider = $scope.providers[index];
+        $scope.updateCostumer = function (index) {
+            $scope.costumer = $scope.costumers[index];
         };
 
-        $scope.deleteProvider = function (index) {
-            var id = $scope.providers[index].id;
-            ProviderService.deleteProvider(id).then(function (value) {
+        $scope.deleteCostumer = function (index) {
+            var id = $scope.costumers[index].id;
+            CostumerService.deleteCostumer(id).then(function (value) {
                 if (value) {
-                    $scope.providers.splice(index, 1);
+                    $scope.costumers.splice(index, 1);
                 } else {
-                    alert("Ошибка удаления записи!");};
+                    alert("Ошибка удаления записи!");
+                };
             });
         };
     };
 
     angular
         .module("store.WebUI.Controllers")
-        .controller("ProviderController", ["$scope", "$state", "ProviderService", ProviderController]);
+        .controller("CostumerController", ["$scope", "$state", "CostumerService", CostumerController]);
 })();

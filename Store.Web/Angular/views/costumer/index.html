@@ -3,32 +3,32 @@
         <div class="col-lg-12">
             <hr>
             <h2 class="intro-text text-center">
-                Список поставщиков
+                Список потребителей
             </h2>
             <hr>
-            
-            <form role="form" name="createProvider" novalidate>
+
+            <form role="form" name="createCostumer" novalidate>
                 <div class="row">
-                    <div class="form-group col-lg-4" ng-class="{ 'has-error': createProvider.name.$touched && createProvider.name.$invalid }">
+                    <div class="form-group col-lg-4" ng-class="{ 'has-error': createCostumer.name.$touched && createCostumer.name.$invalid }">
                         <label for="name"><strong class="error-message">*</strong>Название</label>
-                        <input type="text" name="name" ng-model="provider.name" class="form-control" required maxlength="30">
+                        <input type="text" name="name" ng-model="costumer.name" class="form-control" required maxlength="30">
                     </div>
                     <div class="form-group col-lg-4">
                         <label for="address">Адрес</label>
-                        <input type="text" name="address" ng-model="provider.address" class="form-control" maxlength="30">
+                        <input type="text" name="address" ng-model="costumer.address" class="form-control" maxlength="30">
                     </div>
                     <div class="form-group col-lg-4">
                         <label for="telephone">Телефон</label>
-                        <input type="text" name="telephone" ng-model="provider.telephone" class="form-control" maxlength="10">
+                        <input type="text" name="telephone" ng-model="costumer.telephone" class="form-control" maxlength="10">
                     </div>
                     <div class="clearfix"></div>
                     <div class="form-group col-lg-12">
                         <label for="description">Описание</label>
-                        <textarea class="form-control" rows="2" name="description" ng-model="provider.description" maxlength="50"></textarea>
+                        <textarea class="form-control" rows="2" name="description" ng-model="costumer.description" maxlength="50"></textarea>
                     </div>
                     <div class="form-group col-lg-12">
                         <input type="hidden" name="save" value="contact">
-                        <button type="submit" class="btn btn-primary" ng-click="save(provider, createProvider)">Сохранить</button>
+                        <button type="submit" class="btn btn-primary" ng-click="save(costumer, createCostumer)">Сохранить</button>
                     </div>
                 </div>
             </form>
@@ -45,16 +45,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="p in providers">
+                    <tr ng-repeat="p in costumers">
                         <td>{{p.name}}</td>
                         <td>{{p.address}}</td>
                         <td>{{p.telephone}}</td>
                         <td>{{p.description}}</td>
                         <td>
-                            <input type="button" value="Remove" class="btn btn-primary" ng-click="deleteProvider($index)" />
+                            <input type="button" value="Remove" class="btn btn-primary" ng-click="deleteCostumer($index)" />
                         </td>
                         <td>
-                            <input type="button" value="Update" class="btn btn-primary" ng-click="updateProvider($index)" />
+                            <input type="button" value="Update" class="btn btn-primary" ng-click="updateCostumer($index)" />
                         </td>
                     </tr>
                 </tbody>
@@ -63,3 +63,4 @@
         </div>
     </div>
 </div>
+

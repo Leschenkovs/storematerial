@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Linq;
+using AutoMapper;
 using Store.Model;
 using Store.Model.DTOObjects;
 
@@ -11,13 +12,42 @@ namespace Store.Bll
 		  RegisterMappingsUser();
 		  RegisterMappingsRole();
           RegisterMappingsProvider();
+	      RegisterMappingsCostumer();
+	      RegisterMappingsUnit();
+	      RegisterMappingsSupply();
+	      RegisterMappingsExperse();
+	      RegisterMappingsPrice();
+	      RegisterMappingsMaterialInStore();
+	      RegisterMappingsKindMaterial();
 	  }
+
+      private static void RegisterMappingsRole()
+      {
+          Mapper.CreateMap<Role, RoleDTO>();
+          Mapper.CreateMap<RoleDTO, Role>();
+      }
+
+      private static void RegisterMappingsProvider()
+      {
+          Mapper.CreateMap<Model.Provider, ProviderDTO>();
+          Mapper.CreateMap<ProviderDTO, Model.Provider>();
+      }
+
+      private static void RegisterMappingsCostumer()
+      {
+          Mapper.CreateMap<Costumer, CostumerDTO>();
+          Mapper.CreateMap<CostumerDTO, Costumer>();
+
+      }
+
+      private static void RegisterMappingsUnit()
+      {
+          Mapper.CreateMap<Unit, UnitDTO>();
+          Mapper.CreateMap<UnitDTO, Unit>();
+      }
 
 	  private static void RegisterMappingsUser()
 	  {
-		 Mapper.CreateMap<User, UserDTO>();
-		 Mapper.CreateMap<UserDTO, User>();
-
 		 Mapper.CreateMap<UserDTO, User>()
 					.ForMember("Id", opt => opt.MapFrom(src => src.id))
 					 .ForMember("Tn", opt => opt.MapFrom(src => src.tn))
@@ -35,30 +65,83 @@ namespace Store.Bll
 			 .ForMember("roleName", opt => opt.MapFrom(src => src.RoleObj.Name));
 	  }
 
-	  private static void RegisterMappingsRole()
-	  {
-		 Mapper.CreateMap<Role, RoleDTO>();
-		 Mapper.CreateMap<RoleDTO, Role>();
-	  }
-
-      private static void RegisterMappingsProvider()
+      private static void RegisterMappingsKindMaterial()
       {
-          Mapper.CreateMap<Model.Provider, ProviderDTO>();
-          Mapper.CreateMap<ProviderDTO, Model.Provider>();
-
-          Mapper.CreateMap<ProviderDTO, Model.Provider>()
+          Mapper.CreateMap<KindMaterialDTO, KindMaterial>()
               .ForMember("Id", opt => opt.MapFrom(src => src.id))
-              .ForMember("Name", opt => opt.MapFrom(src => src.name))
-              .ForMember("Address", opt => opt.MapFrom(src => src.address))
-              .ForMember("Telephone", opt => opt.MapFrom(src => src.telephone))
-              .ForMember("Description", opt => opt.MapFrom(src => src.description));
+              .ForMember("Articul", opt => opt.MapFrom(src => src.articul))
+              .ForMember("Name", opt => opt.MapFrom(src => src.name));
 
-          Mapper.CreateMap<Model.Provider, ProviderDTO>()
+          Mapper.CreateMap<KindMaterial, KindMaterialDTO>()
               .ForMember("id", opt => opt.MapFrom(src => src.Id))
+              .ForMember("articul", opt => opt.MapFrom(src => src.Articul))
               .ForMember("name", opt => opt.MapFrom(src => src.Name))
-              .ForMember("address", opt => opt.MapFrom(src => src.Address))
-              .ForMember("telephone", opt => opt.MapFrom(src => src.Telephone))
-              .ForMember("description", opt => opt.MapFrom(src => src.Description));
+              .ForMember("units", opt => opt.MapFrom(src => src.UnitMaterials.Aggregate("/", (current, a) => current + a.UnitObj.Name)));
+      }
+
+      private static void RegisterMappingsSupply()
+      {
+          Mapper.CreateMap<SupplyDTO, Supply>()
+              .ForMember("Id", opt => opt.MapFrom(src => src.id))
+              .ForMember("Count", opt => opt.MapFrom(src => src.count))
+              .ForMember("Ttn", opt => opt.MapFrom(src => src.ttn))
+              .ForMember("MaterialInStoreId", opt => opt.MapFrom(src => src.materialInStoreId))
+              .ForMember("ProviderId", opt => opt.MapFrom(src => src.providerId));
+
+          Mapper.CreateMap<Supply, SupplyDTO>()
+              .ForMember("id", opt => opt.MapFrom(src => src.Id))
+              .ForMember("count", opt => opt.MapFrom(src => src.Count))
+              .ForMember("ttn", opt => opt.MapFrom(src => src.Ttn))
+              .ForMember("kindMaterialName", opt => opt.MapFrom(src => src.MaterialInStoreObj.KindMaterialObj.Name))
+              .ForMember("providerName", opt => opt.MapFrom(src => src.ProviderObj.Name));
+      }
+
+      private static void RegisterMappingsExperse()
+      {
+          Mapper.CreateMap<ExperseDTO, Experse>()
+              .ForMember("Id", opt => opt.MapFrom(src => src.id))
+              .ForMember("Count", opt => opt.MapFrom(src => src.count))
+              .ForMember("CostumerId", opt => opt.MapFrom(src => src.costumerId))
+              .ForMember("MaterialInStoreId", opt => opt.MapFrom(src => src.materialInStoreId))
+              .ForMember("UserId", opt => opt.MapFrom(src => src.userId));
+
+          Mapper.CreateMap<Experse, ExperseDTO>()
+              .ForMember("id", opt => opt.MapFrom(src => src.Id))
+              .ForMember("count", opt => opt.MapFrom(src => src.Count))
+              .ForMember("kindMaterialName", opt => opt.MapFrom(src => src.MaterialInStoreObj.KindMaterialObj.Name))
+              .ForMember("costumerName", opt => opt.MapFrom(src => src.CostumerObj.Name))
+              .ForMember("userFio", opt => opt.MapFrom(src => src.UserObj.Fio));
+      }
+
+      private static void RegisterMappingsPrice()
+      {
+          Mapper.CreateMap<PriceDTO, Price>()
+              .ForMember("Id", opt => opt.MapFrom(src => src.id))
+              .ForMember("PriceValue", opt => opt.MapFrom(src => src.priceValue))
+              .ForMember("DateOt", opt => opt.MapFrom(src => src.dateOt))
+              .ForMember("DateDo", opt => opt.MapFrom(src => src.dateDo))
+              .ForMember("MaterialInStoreId", opt => opt.MapFrom(src => src.materialInStoreId));
+
+          Mapper.CreateMap<Price, PriceDTO>()
+              .ForMember("id", opt => opt.MapFrom(src => src.Id))
+              .ForMember("priceValue", opt => opt.MapFrom(src => src.PriceValue))
+              .ForMember("dateOt", opt => opt.MapFrom(src => src.DateOt))
+              .ForMember("dateDo", opt => opt.MapFrom(src => src.DateDo));
+      }
+
+      private static void RegisterMappingsMaterialInStore()
+      {
+          Mapper.CreateMap<MaterialInStoreDTO, MaterialInStore>()
+              .ForMember("Id", opt => opt.MapFrom(src => src.id))
+              .ForMember("Count", opt => opt.MapFrom(src => src.count))
+              .ForMember("PriceSupply", opt => opt.MapFrom(src => src.priceSupply))
+              .ForMember("KindMaterialId", opt => opt.MapFrom(src => src.kindMaterialId));
+
+          Mapper.CreateMap<MaterialInStore, MaterialInStoreDTO>()
+              .ForMember("id", opt => opt.MapFrom(src => src.Id))
+              .ForMember("count", opt => opt.MapFrom(src => src.Count))
+              .ForMember("priceSupply", opt => opt.MapFrom(src => src.PriceSupply))
+              .ForMember("kindMaterialName", opt => opt.MapFrom(src => src.KindMaterialObj.Name));
       }
 
   }

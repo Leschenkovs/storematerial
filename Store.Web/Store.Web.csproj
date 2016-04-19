@@ -161,6 +161,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\ComponentRegistry.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
+    <Compile Include="Controllers\CostumerController.cs" />
+    <Compile Include="Controllers\ExperseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProviderController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
@@ -170,7 +172,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\UserVm.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -178,6 +179,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Angular\app.js" />
     <Content Include="Angular\app.config.js" />
+    <Content Include="Angular\controllers\store.controller.costumer.js" />
+    <Content Include="Angular\controllers\store.controller.experse.js" />
     <Content Include="Angular\controllers\store.controller.provider.js" />
     <Content Include="Angular\controllers\store.controller.supply.js" />
     <Content Include="Angular\controllers\store.controller.user.js" />
@@ -185,10 +188,14 @@
     <Content Include="Angular\directives\store.directive.footer.js" />
     <Content Include="Angular\partials\footer.html" />
     <Content Include="Angular\partials\header.html" />
+    <Content Include="Angular\services\store.service.costumer.js" />
+    <Content Include="Angular\services\store.service.experse.js" />
     <Content Include="Angular\services\store.service.provider.js" />
     <Content Include="Angular\services\store.service.role.js" />
     <Content Include="Angular\services\store.service.supply.js" />
     <Content Include="Angular\services\store.service.user.js" />
+    <Content Include="Angular\views\costumer\index.html" />
+    <Content Include="Angular\views\experse\index.html" />
     <Content Include="Angular\views\provider\index.html" />
     <Content Include="Angular\views\supply\index.html" />
     <Content Include="Angular\views\user\create.html" />

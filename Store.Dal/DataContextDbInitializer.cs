@@ -8,7 +8,7 @@ namespace Store.Dal
 	//DropCreateDatabaseAlways<DataContext>
 	//DropCreateDatabaseIfModelChanges<DataContext>
 
-    public class DataContextDbInitializer : DropCreateDatabaseIfModelChanges<DataContext>
+    public class DataContextDbInitializer : DropCreateDatabaseAlways<DataContext>
 	{
 		protected override void Seed(DataContext context)
 		{
@@ -22,7 +22,7 @@ namespace Store.Dal
 
 			context.Units.AddRange(new List<Unit>
 			{
-				new Unit {Name = "шт", ShortName = "штуки"},
+				new Unit {Name = "штука", ShortName = "шт"},
 				new Unit {Name = "тонна", ShortName = "т"},
 				new Unit {Name = "киллограм", ShortName = "кг"},
 				new Unit {Name = "грамм", ShortName = "г"},
@@ -39,6 +39,14 @@ namespace Store.Dal
 				new Provider {Name = "СтройМинск", Address = "Минск", Telephone = "0336245675", Description = "Описание"},
 				new Provider {Name = "ГвоздиМагазин", Address = "Гродно", Telephone = "0294586974", Description = ""},
 				new Provider {Name = "ОбоиЛаки", Address = "Бобруйск", Telephone = "0274512365", Description = "Описание 2"},
+			});
+            context.SaveChanges();
+
+            context.Costumers.AddRange(new List<Costumer>
+			{
+				new Costumer {Name = "ЗаводМетала", Address = "Минск", Telephone = "1265478569", Description = "Описание"},
+				new Costumer {Name = "ЗаводМосква", Address = "Минск", Telephone = "1265478569", Description = "Описание"},
+				new Costumer {Name = "ЗаводХолодильников", Address = "Минск", Telephone = "1265478569", Description = "Описание"}
 			});
             context.SaveChanges();
 

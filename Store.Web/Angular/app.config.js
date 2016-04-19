@@ -34,6 +34,18 @@
                 controller: "ProviderController"
             });
 
+            $stateProvider.state("experse/index", {
+                url: "/experse/index",
+                templateUrl: "/Angular/views/experse/index.html",
+                controller: "ExperseController"
+            });
+
+            $stateProvider.state("costumer/index", {
+                url: "/costumer/index",
+                templateUrl: "/Angular/views/costumer/index.html",
+                controller: "CostumerController"
+            });
+
             $urlRouterProvider.otherwise("/");
         }]);
 })();

@@ -1,27 +1,21 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Store.Dal;
+﻿using Store.Dal;
+using Store.Dal.Dal;
 using Store.Model;
 
 namespace Store.Bll.Bll
 {
-	public interface IMaterialInStoreBll
+    public interface IMaterialInStoreBll : IBaseBll<MaterialInStore>
 	{
-	  IList<MaterialInStore> GetAll();
 	}
 
-	public class MaterialInStoreBll : IMaterialInStoreBll
+	public class MaterialInStoreBll : BaseBll<MaterialInStore, IMaterialInStoreDal>, IMaterialInStoreBll
 	{
 		protected IFactoryDal FactoryDal;
 
-		public MaterialInStoreBll(IFactoryDal factoryDal)
+        public MaterialInStoreBll(IFactoryDal factoryDal)
+            : base(factoryDal.MaterialInStoreDal)
 		{
 			FactoryDal = factoryDal;
-		}
-
-		public IList<MaterialInStore> GetAll()
-		{
-		  return FactoryDal.MaterialInStoreDal.GetAll().OrderBy(x => x.KindMaterialObj.Name).ToList();
 		}
 
 	}

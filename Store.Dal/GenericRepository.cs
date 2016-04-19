@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -91,8 +92,8 @@ namespace Store.Dal
 		{
 			try
 			{
-                //_entities.Set<T>().Attach(entity);
-                _entities.Entry(entity).State = EntityState.Modified;
+                _entities.Set<T>().AddOrUpdate(entity);
+                //_entities.Entry(entity).State = EntityState.Modified;
 				_entities.SaveChanges();
 				return entity;
 			}

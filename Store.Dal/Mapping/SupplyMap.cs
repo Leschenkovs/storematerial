@@ -15,7 +15,6 @@ namespace Store.Dal.Mapping
             Property(t => t.Ttn).HasMaxLength(12).IsRequired();
             Property(t => t.MaterialInStoreId).IsRequired();
             Property(t => t.ProviderId).IsRequired();
-            Property(t => t.UserId);
 
             // Table & Column Mappings
             ToTable("Supply");
@@ -24,7 +23,6 @@ namespace Store.Dal.Mapping
             Property(t => t.Ttn).HasColumnName("Ttn");
             Property(t => t.MaterialInStoreId).HasColumnName("MaterialInStoreId");
             Property(t => t.ProviderId).HasColumnName("ProviderId");
-            Property(t => t.UserId).HasColumnName("UserId");
 
             // Relationships  
             HasRequired(t => t.MaterialInStoreObj).WithMany(t => t.Supplies).HasForeignKey(d => d.MaterialInStoreId).WillCascadeOnDelete(true);

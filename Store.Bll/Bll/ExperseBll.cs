@@ -1,27 +1,21 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Store.Dal;
+﻿using Store.Dal;
+using Store.Dal.Dal;
 using Store.Model;
 
 namespace Store.Bll.Bll
 {
-  public interface IExperseBll
+    public interface IExperseBll : IBaseBll<Experse>
   {
-	 IList<Experse> GetAll();
+
   }
 
-  public class ExperseBll : IExperseBll
+    public class ExperseBll : BaseBll<Experse, IExperseDal>, IExperseBll
   {
 	 protected IFactoryDal FactoryDal;
 
-	 public ExperseBll(IFactoryDal factoryDal)
+	 public ExperseBll(IFactoryDal factoryDal):base(factoryDal.ExperseDal)
 	 {
 		FactoryDal = factoryDal;
-	 }
-
-	 public IList<Experse> GetAll()
-	 {
-		return FactoryDal.ExperseDal.GetAll().OrderByDescending(x => x.AddedDate).ToList();
 	 }
 
   }

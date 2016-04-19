@@ -41,8 +41,15 @@
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
     <Compile Include="Costumer.cs" />
+    <Compile Include="DTOObjects\CostumerDTO.cs" />
+    <Compile Include="DTOObjects\ExperseDTO.cs" />
+    <Compile Include="DTOObjects\KindMaterialDTO.cs" />
+    <Compile Include="DTOObjects\MaterialInStoreDTO.cs" />
+    <Compile Include="DTOObjects\PriceDTO.cs" />
     <Compile Include="DTOObjects\ProviderDTO.cs" />
     <Compile Include="DTOObjects\RoleDTO.cs" />
+    <Compile Include="DTOObjects\SupplyDTO.cs" />
+    <Compile Include="DTOObjects\UnitDTO.cs" />
     <Compile Include="DTOObjects\UserDTO.cs" />
     <Compile Include="Experse.cs" />
     <Compile Include="KindMaterial.cs" />

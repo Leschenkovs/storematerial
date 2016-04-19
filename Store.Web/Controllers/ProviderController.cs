@@ -47,12 +47,11 @@ namespace Store.Web.Controllers
             return model;
         }
 
-        // Doesn't WORK !!! Entity conflict
         [HttpPut]
         public ProviderDTO UpdateUser([FromBody]ProviderDTO model)
         {
             Provider entity = Mapper.Map<ProviderDTO, Provider>(model);
-            model = Mapper.Map<Provider, ProviderDTO>(_providerBll.Update(entity));
+            model = Mapper.Map<Provider, ProviderDTO>(_providerBll.Update(entity)); // AddorUpdate
             return model;
         }
 

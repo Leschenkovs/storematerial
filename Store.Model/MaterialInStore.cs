@@ -30,7 +30,7 @@ namespace Store.Model
 
 
 		// Кол-во
-		public int Count { get; set; }
+		public decimal Count { get; set; }
 
 		// Цена закупочная
 		public decimal PriceSupply { get; set; }

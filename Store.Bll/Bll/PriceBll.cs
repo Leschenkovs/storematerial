@@ -1,21 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Store.Dal;
+using Store.Dal.Dal;
 using Store.Model;
 
 namespace Store.Bll.Bll
 {
-	public interface IPriceBll
+    public interface IPriceBll : IBaseBll<Price>
 	{
 		IList<Price> GetByMaterialInStoreId(int id);
-		Price Update(Price obj);
 	}
 
-	public class PriceBll : IPriceBll
+    public class PriceBll : BaseBll<Price, IPriceDal>, IPriceBll
 	{
 		protected IFactoryDal FactoryDal;
 
-		public PriceBll(IFactoryDal factoryDal)
+        public PriceBll(IFactoryDal factoryDal)
+            : base(factoryDal.PriceDal)
 		{
 			FactoryDal = factoryDal;
 		}
@@ -25,9 +26,5 @@ namespace Store.Bll.Bll
 			return FactoryDal.PriceDal.FindBy(x => x.Id == id).OrderBy(x => x.DateDo).ToList();
 		}
 
-		public Price Update(Price obj)
-		{
-		  return FactoryDal.PriceDal.Update(obj);
-		}
 	}
 }
