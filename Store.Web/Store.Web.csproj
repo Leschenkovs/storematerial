@@ -267,7 +267,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Angular\helpers\" />
-    <Folder Include="Angular\viem\" />
     <Folder Include="App_Data\" />
     <Folder Include="Classes\" />
     <Folder Include="Models\" />

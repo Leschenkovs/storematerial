@@ -2,13 +2,26 @@
     "use strict";
 
     // controller class definintion
-    var UserController = function($scope, $state, UserService, RoleService) {
+    var UserController = function ($scope, $state, $filter, UserService, RoleService, ngTableParams) {
 
-        UserService.getAllUsers().then(function(value) {
+        UserService.getAllUsers().then(function (value) {
             $scope.users = value;
+
+            $scope.usersTable = new ngTableParams({
+                page: 1,
+                count: 5
+            }, {
+                total: $scope.users.length,
+                getData: function ($defer, params) {
+                    $scope.data = params.sorting() ? $filter('orderBy')($scope.users, params.orderBy()) : $scope.users;
+                    $scope.data = params.filter() ? $filter('filter')($scope.data, params.filter()) : $scope.data;
+                    $scope.data = $scope.data.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                    $defer.resolve($scope.data);
+                }
+            });
         });
 
-        RoleService.getAllRoles().then(function(value) {
+        RoleService.getAllRoles().then(function (value) {
             $scope.roles = value;
         });
 
@@ -21,16 +34,16 @@
             roleId: ""
         };
 
-        $scope.save = function(user, createUser) {
+        $scope.save = function (user, createUser) {
             if (createUser.$valid) {
-                UserService.addUser(user).then(function(value) {
+                UserService.addUser(user).then(function (value) {
                     $state.go("user/index");
                 });
             }
         };
 
         $scope.deleteUser = function (id) {
-            UserService.deleteUser(id).then(function(value) {
+            UserService.deleteUser(id).then(function (value) {
                 if (value) {
                     var index = -1;
                     var userArr = eval($scope.users);
@@ -47,10 +60,12 @@
                 }
             });
         };
+
+        
     };
 
     // register your controller into a dependent module 
     angular
         .module("store.WebUI.Controllers")
-        .controller("UserController", ["$scope", "$state", "UserService", "RoleService", UserController]);
+        .controller("UserController", ["$scope", "$state", "$filter", "UserService", "RoleService", "ngTableParams", UserController]);
 })();

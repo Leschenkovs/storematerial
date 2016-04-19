@@ -7,7 +7,7 @@
     //angular.module("store.WebUI.Filters", []);
     //angular.module("store.WebUI.Factories", []);
     //angular.module("store.WebUI.Helpers", []);
-    angular.module("store.WebUI.Externals", ["ui.router"]);
+    angular.module("store.WebUI.Externals", ["ui.router", "ngTable"]);
 
     var app = angular.module("store.WebUI", ["store.WebUI.Externals", "store.WebUI.Controllers", "store.WebUI.Directives", "store.WebUI.Services"]);
 })();
