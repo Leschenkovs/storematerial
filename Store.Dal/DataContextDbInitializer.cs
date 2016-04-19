@@ -8,7 +8,7 @@ namespace Store.Dal
 	//DropCreateDatabaseAlways<DataContext>
 	//DropCreateDatabaseIfModelChanges<DataContext>
 
-  public class DataContextDbInitializer : DropCreateDatabaseIfModelChanges<DataContext>
+    public class DataContextDbInitializer : DropCreateDatabaseAlways<DataContext>
 	{
 		protected override void Seed(DataContext context)
 		{
@@ -34,12 +34,20 @@ namespace Store.Dal
 			});
 			context.SaveChanges();
 
+            context.Providers.AddRange(new List<Provider>
+			{
+				new Provider {Name = "СтройМинск", Address = "Минск", Telephone = "0336245675", Description = "Описание"},
+				new Provider {Name = "ГвоздиМагазин", Address = "Гродно", Telephone = "0294586974", Description = ""},
+				new Provider {Name = "ОбоиЛаки", Address = "Бобруйск", Telephone = "0274512365", Description = "Описание 2"},
+			});
+            context.SaveChanges();
+
 			//********************
 			// Test data
 			context.Users.AddRange(new List<User>
 			{
 				new User {Tn = "11", Fio = "Кууруза А.В.", RoleId = context.Roles.First(x => x.Code == "admin").Id, Position = "Оператор", Department = "Склад"},
-            new User {Tn = "12", Fio = "Новикова А.В.", RoleId = context.Roles.First(x => x.Code == "read").Id, Position = "Кладовщик", Department = "Склад 203"},
+                new User {Tn = "12", Fio = "Новикова А.В.", RoleId = context.Roles.First(x => x.Code == "read").Id, Position = "Кладовщик", Department = "Склад 203"},
 				new User {Tn = "15", Fio = "Лещенко А.В.", RoleId = context.Roles.First(x => x.Code == "read_write").Id, Position = "Кладовщик", Department = "Склад 3"}
 			});
 			context.SaveChanges();

@@ -4,6 +4,7 @@
     angular.module("store.WebUI.Services", []);
     angular.module("store.WebUI.Directives", []);
     angular.module("store.WebUI.Controllers", []);
+    //angular.module("store.WebUI.Filters", []);
     //angular.module("store.WebUI.Factories", []);
     //angular.module("store.WebUI.Helpers", []);
     angular.module("store.WebUI.Externals", ["ui.router"]);

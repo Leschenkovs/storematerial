@@ -9,70 +9,29 @@
             
             <table class="table">
                 <thead>
-                <tr>
-	                <th></th>
-	                <th>Табельный</th>
-	                <th>ФИО</th>
-	                <th>Отдел</th>
-	                <th>Должность</th>
-	                <th>Роль</th>
-	                <th></th>
-                </tr>
+                    <tr>
+                        <th>Табельный</th>
+                        <th>ФИО</th>
+                        <th>Отдел</th>
+                        <th>Должность</th>
+                        <th>Роль</th>
+                        <th></th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="u in users">
-	                <td ng-hide="true">{{u.id}}</td>
-	                <td>{{u.tn}}</td>
-	                <td>{{u.fio}}</td>
-	                <td>{{u.department}}</td>
-	                <td>{{u.position}}</td>
-	                <td>{{u.roleName}}</td>
-	                <td>
-                    <input type="button" value="Remove" class="btn btn-primary" ng-click="deleteUser(u.id)" />
-	                </td>
-                </tr>
+                    <tr ng-repeat="u in users">
+                        <td>{{u.tn}}</td>
+                        <td>{{u.fio}}</td>
+                        <td>{{u.department}}</td>
+                        <td>{{u.position}}</td>
+                        <td>{{u.roleName}}</td>
+                        <td>
+                            <input type="button" value="Remove" class="btn btn-primary" ng-click="deleteUser(u.id)" />
+                        </td>
+                    </tr>
                 </tbody>
                 <tfoot></tfoot>
             </table>
-            
-            <!--________________-->  
-            <!--<div ng-show="showProductList" style="padding-top:10px;">
-                    <table id="tblProductList" tr-ng-grid="" items="model.Users"
-                           class="table table-striped table-hover table-condensed"
-                           selected-items="mySelectedItems" selection-mode="SingleRow"
-                           enable-filtering="false" on-data-required-delay="1000" current-page="setCurrentPage"
-                           page-items="model.pPageSizeObj.selected" total-items="model.TotalCount"
-                           on-data-required="onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
-                        <thead>
-                            <tr>
-                                <th field-name="Tn" display-name="Tn" cell-width="60px" enable-filtering="false">Табельный номер
-                                </th>
-                                <th field-name="Fio" display-name="Fio" cell-width="70px" display-align="center" enable-filtering="false">ФИО
-                                </th>
-                                <th field-name="Position" display-name="Position" cell-width="70px" enable-filtering="false">Должность
-                                </th>
-                                <th field-name="Department" display-name="Department" cell-width="50px" display-align="center"  enable-filtering="false">Отдел
-                                </th>
-                                <th field-name="RoleId" display-name="RoleId" cell-width="50px" enable-filtering="false">Роль
-                                </th>
-                            </tr>
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <td align="center">
-                                    <span class="form-group pull-left page-size">
-                                        <select id="ddlPageSize" class="form-control"
-                                                ng-model="model.pPageSizeObj.selected"
-                                                ng-options="item.value as item.text for item in model.pageSizeList"
-                                                ng-change="changePageSize()"></select>
-                                        <span class="page-size-label">&#160;&#160;на странице</span>
-                                    </span>
-                                    <span tr-ng-grid-pager="" style="height:40px;"></span>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>-->
 
             <div>
                 <a href="#/user/create" class="btn btn-primary">

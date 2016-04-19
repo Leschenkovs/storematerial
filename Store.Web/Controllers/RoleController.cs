@@ -7,6 +7,7 @@ using Store.Bll;
 using Store.Bll.Bll;
 using Store.Model;
 using Store.Model.DTOObjects;
+using Store.Model.RequestObjects;
 
 namespace Store.Web.Controllers
 {
@@ -25,7 +26,7 @@ namespace Store.Web.Controllers
 		}
 
 	 [HttpGet]
-	 public List<RoleDTO> GetRoles()
+     public List<RoleDTO> GetRoles([FromUri]QueryRequest queryRequest)
 	 {
 		Mapper.CreateMap<Role, RoleDTO>();
 		List<RoleDTO> roles = Mapper.Map<IQueryable<Role>, List<RoleDTO>>(_roleBll.GetAll());

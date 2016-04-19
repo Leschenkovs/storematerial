@@ -1,27 +1,20 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Store.Dal;
+﻿using Store.Dal;
+using Store.Dal.Dal;
 using Store.Model;
 
 namespace Store.Bll.Bll
 {
-	public interface ISupplyBll
+	public interface ISupplyBll :IBaseBll<Supply>
 	{
-	  IList<Supply> GetAll();
 	}
 
-  public class SupplyBll: ISupplyBll
+  public class SupplyBll: BaseBll<Supply, ISupplyDal>, ISupplyBll
   {
 		protected IFactoryDal FactoryDal;
 
-		public SupplyBll(IFactoryDal factoryDal)
+		public SupplyBll(IFactoryDal factoryDal) : base(factoryDal.SupplyDal)
 		{
 			FactoryDal = factoryDal;
-		}
-
-		public IList<Supply> GetAll()
-		{
-		  return FactoryDal.SupplyDal.GetAll().OrderByDescending(x => x.AddedDate).ToList();
 		}
 
   }

@@ -41,7 +41,7 @@
                         }
                     }
                     if (index === -1) {
-                        alert("Something gone wrong");
+                        alert("Ошибка удаления записи из таблицы.");
                     }
                     $scope.users.splice(index, 1);
                 }

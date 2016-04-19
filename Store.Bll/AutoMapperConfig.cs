@@ -10,6 +10,7 @@ namespace Store.Bll
 	  {
 		  RegisterMappingsUser();
 		  RegisterMappingsRole();
+          RegisterMappingsProvider();
 	  }
 
 	  private static void RegisterMappingsUser()
@@ -39,5 +40,26 @@ namespace Store.Bll
 		 Mapper.CreateMap<Role, RoleDTO>();
 		 Mapper.CreateMap<RoleDTO, Role>();
 	  }
+
+      private static void RegisterMappingsProvider()
+      {
+          Mapper.CreateMap<Model.Provider, ProviderDTO>();
+          Mapper.CreateMap<ProviderDTO, Model.Provider>();
+
+          Mapper.CreateMap<ProviderDTO, Model.Provider>()
+              .ForMember("Id", opt => opt.MapFrom(src => src.id))
+              .ForMember("Name", opt => opt.MapFrom(src => src.name))
+              .ForMember("Address", opt => opt.MapFrom(src => src.address))
+              .ForMember("Telephone", opt => opt.MapFrom(src => src.telephone))
+              .ForMember("Description", opt => opt.MapFrom(src => src.description));
+
+          Mapper.CreateMap<Model.Provider, ProviderDTO>()
+              .ForMember("id", opt => opt.MapFrom(src => src.Id))
+              .ForMember("name", opt => opt.MapFrom(src => src.Name))
+              .ForMember("address", opt => opt.MapFrom(src => src.Address))
+              .ForMember("telephone", opt => opt.MapFrom(src => src.Telephone))
+              .ForMember("description", opt => opt.MapFrom(src => src.Description));
+      }
+
   }
 }

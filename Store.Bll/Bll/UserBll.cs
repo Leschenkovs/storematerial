@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using Store.Bll.Exception;
+﻿using Store.Bll.Exception;
 using Store.Dal;
 using Store.Dal.Dal;
 using Store.Model;
-using Store.Model.DTOObjects;
 
 namespace Store.Bll.Bll
 {

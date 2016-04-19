@@ -22,6 +22,18 @@
                 controller: "UserController"
             });
 
+            $stateProvider.state("supply/index", {
+                url: "/supply/index",
+                templateUrl: "/Angular/views/supply/index.html",
+                controller: "SupplyController"
+            });
+
+            $stateProvider.state("provider/index", {
+                url: "/provider/index",
+                templateUrl: "/Angular/views/provider/index.html",
+                controller: "ProviderController"
+            });
+
             $urlRouterProvider.otherwise("/");
         }]);
 })();

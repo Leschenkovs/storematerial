@@ -162,7 +162,9 @@
     <Compile Include="App_Start\ComponentRegistry.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProviderController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\SupplyController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -176,13 +178,19 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Angular\app.js" />
     <Content Include="Angular\app.config.js" />
+    <Content Include="Angular\controllers\store.controller.provider.js" />
+    <Content Include="Angular\controllers\store.controller.supply.js" />
     <Content Include="Angular\controllers\store.controller.user.js" />
     <Content Include="Angular\controllers\store.controller.index.js" />
     <Content Include="Angular\directives\store.directive.footer.js" />
     <Content Include="Angular\partials\footer.html" />
     <Content Include="Angular\partials\header.html" />
+    <Content Include="Angular\services\store.service.provider.js" />
     <Content Include="Angular\services\store.service.role.js" />
+    <Content Include="Angular\services\store.service.supply.js" />
     <Content Include="Angular\services\store.service.user.js" />
+    <Content Include="Angular\views\provider\index.html" />
+    <Content Include="Angular\views\supply\index.html" />
     <Content Include="Angular\views\user\create.html" />
     <Content Include="Angular\views\user\index.html" />
     <Content Include="Angular\views\index.html" />
@@ -194,6 +202,7 @@
     <Content Include="Content\fonts\icomoon.dev.svg" />
     <Content Include="Content\fonts\icomoon.svg" />
     <Content Include="Content\images\bcg.jpg" />
+    <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\styles\business-casual.css" />
     <Content Include="Content\styles\component.css" />
     <Content Include="Content\styles\default.css" />
@@ -221,6 +230,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Scripts\angular\angular-messages.min.js.map" />
+    <Content Include="Angular\filters\store.filte.base.js" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
