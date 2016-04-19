@@ -5,6 +5,7 @@ using System.Web.Http;
 using AutoMapper;
 using Store.Bll;
 using Store.Bll.Bll;
+using Store.Model;
 using Store.Model.DTOObjects;
 using Store.Model.RequestObjects;
 
@@ -27,30 +28,31 @@ namespace Store.Web.Controllers
         [HttpGet]
         public List<ProviderDTO> GetProviders([FromUri]QueryRequest queryRequest)
         {
-            List<ProviderDTO> providers = Mapper.Map<IQueryable<Model.Provider>, List<ProviderDTO>>(_providerBll.GetAll());
+            List<ProviderDTO> providers = Mapper.Map<IQueryable<Provider>, List<ProviderDTO>>(_providerBll.GetAll());
             return providers;
         }
 
         [HttpGet]
         public ProviderDTO GetProvider([FromUri]int id)
         {
-            ProviderDTO model = Mapper.Map<ProviderDTO>(_providerBll.GetById(id));
+            ProviderDTO model = Mapper.Map<Provider,ProviderDTO>(_providerBll.GetById(id));
             return model;
         }
 
         [HttpPost]
         public ProviderDTO CreateUser([FromBody]ProviderDTO model)
         {
-            Model.Provider entity = Mapper.Map<Model.Provider>(model);
-            model = Mapper.Map<ProviderDTO>(_providerBll.Add(entity));
+            Provider entity = Mapper.Map<ProviderDTO, Provider>(model);
+            model = Mapper.Map<Provider, ProviderDTO>(_providerBll.Add(entity));
             return model;
         }
 
+        // Doesn't WORK !!! Entity conflict
         [HttpPut]
         public ProviderDTO UpdateUser([FromBody]ProviderDTO model)
         {
-            Model.Provider entity = Mapper.Map<Model.Provider>(model);
-            model = Mapper.Map<ProviderDTO>(_providerBll.Update(entity));
+            Provider entity = Mapper.Map<ProviderDTO, Provider>(model);
+            model = Mapper.Map<Provider, ProviderDTO>(_providerBll.Update(entity));
             return model;
         }
 

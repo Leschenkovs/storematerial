@@ -37,6 +37,18 @@
                 });
             return deferred.promise;
         };
+
+        this.updateProvider = function (entity) {
+            var deferred = $q.defer();
+            $http.put("api/provider", entity).
+                success(function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).
+                error(function (data, status, headers, config) {
+                    deferred.reject(status);
+                });
+            return deferred.promise;
+        };
     };
 
     angular

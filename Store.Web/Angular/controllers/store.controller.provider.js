@@ -15,28 +15,49 @@
             description: ""
         };
 
-        $scope.save = function (provider, createProvider) {
+        $scope.save = function(provider, createProvider) {
             if (createProvider.$valid) {
-                ProviderService.addProvider(provider).then(function (value) {
-                    $state.go("provider/index");
-                });
+                if (provider.id != null && provider.id != 'undefined' && provider.id != "") {
+                    ProviderService.updateProvider(provider).then(function (value) {
+                        alert(value);
+                        $scope.provider =
+                        {
+                            name: "",
+                            address: "",
+                            telephone: "",
+                            description: ""
+                        };
+                    });
+                } else {
+                    ProviderService.addProvider(provider).then(function(value) {
+                        $scope.providers.push({
+                            'id': value.id,
+                            'name': value.name,
+                            'address': value.address,
+                            'telephone': value.telephone,
+                            'description': value.description
+                        });
+                        $scope.provider =
+                        {
+                            id: "",
+                            name: "",
+                            address: "",
+                            telephone: "",
+                            description: ""
+                        };
+                    });
+                }
             }
         };
 
-        $scope.deleteProvider = function (id) {
+        $scope.updateProvider = function (index) {
+            $scope.provider = $scope.providers[index];
+        };
+
+        $scope.deleteProvider = function (index) {
+            var id = $scope.providers[index].id;
             ProviderService.deleteProvider(id).then(function (value) {
                 if (value) {
-                    var index = -1;
-                    var providerArr = eval($scope.providers);
-                    for (var i = 0; i < providerArr.length; i++) {
-                        if (providerArr[i].id === id) {
-                            index = i;
-                            break;
-                        }
-                    }
-                    if (index === -1) {
-                        alert("Ошибка удаления записи из таблицы.");
-                    }
                     $scope.providers.splice(index, 1);
                 }
             });

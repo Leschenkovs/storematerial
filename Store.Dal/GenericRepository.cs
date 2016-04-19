@@ -91,7 +91,8 @@ namespace Store.Dal
 		{
 			try
 			{
-				_entities.Entry(entity).State = EntityState.Modified;
+                //_entities.Set<T>().Attach(entity);
+                _entities.Entry(entity).State = EntityState.Modified;
 				_entities.SaveChanges();
 				return entity;
 			}

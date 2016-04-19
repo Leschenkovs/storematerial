@@ -13,7 +13,7 @@ namespace Store.Dal.Mapping
             // Properties
             Property(t => t.Name).HasMaxLength(30).IsRequired();
             Property(t => t.Address).HasMaxLength(30);
-            Property(t => t.Telephone);
+            Property(t => t.Telephone).HasMaxLength(10);
             Property(t => t.Description).HasMaxLength(50);
 
             // Table & Column Mappings
