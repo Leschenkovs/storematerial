@@ -164,9 +164,14 @@
     <Compile Include="Controllers\CostumerController.cs" />
     <Compile Include="Controllers\ExperseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KindMaterialController.cs" />
+    <Compile Include="Controllers\MaterialInStoreController.cs" />
+    <Compile Include="Controllers\PriceController.cs" />
     <Compile Include="Controllers\ProviderController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SupplyController.cs" />
+    <Compile Include="Controllers\UnitController.cs" />
+    <Compile Include="Controllers\UnitMaterialController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -237,7 +242,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Scripts\angular\angular-messages.min.js.map" />
-    <Content Include="Angular\filters\store.filte.base.js" />
+    <Content Include="Angular\filters\store.filter.base.js" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

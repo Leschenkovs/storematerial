@@ -40,7 +40,8 @@ namespace Store.Web.App_Start
 				"~/Angular/helpers/*.js",
 				"~/Angular/services/*.js",
 				"~/Angular/directives/*.js",
-				"~/Angular/controllers/*.js"
+				"~/Angular/controllers/*.js",
+                "~/Angular/filters/*.js"
 				));
 
 			// Set EnableOptimizations to false for debugging. For more information,

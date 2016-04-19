@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
 
-    var CostumerController = function ($scope, $state, CostumerService) {
+    var CostumerController = function ($scope, $state, CostumerService, phoneFilter) {
 
         CostumerService.getAllCostumers().then(function (value) {
             $scope.costumers = value;
@@ -77,5 +77,5 @@
 
     angular
         .module("store.WebUI.Controllers")
-        .controller("CostumerController", ["$scope", "$state", "CostumerService", CostumerController]);
+        .controller("CostumerController", ["$scope", "$state", "CostumerService", "phoneFilter", CostumerController]);
 })();

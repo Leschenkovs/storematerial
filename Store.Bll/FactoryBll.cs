@@ -15,6 +15,7 @@ namespace Store.Bll
 		IExperseBll ExperseBll { get; }
 		IMaterialInStoreBll MaterialInStoreBll { get; }
 		IPriceBll PriceBll { get; }
+        IUnitBll UnitBll { get; }
 	}
 
 	public class FactoryBll : IFactoryBll
@@ -85,6 +86,12 @@ namespace Store.Bll
 		{
 		  get { return _priceBll ?? (_priceBll = new PriceBll(_factoryDal)); }
 		}
+
+        private IUnitBll _unitBll;
+        public IUnitBll UnitBll
+        {
+            get { return _unitBll ?? (_unitBll = new UnitBll(_factoryDal)); }
+        }
 
 	}
 }

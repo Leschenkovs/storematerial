@@ -50,6 +50,7 @@
     <Compile Include="DTOObjects\RoleDTO.cs" />
     <Compile Include="DTOObjects\SupplyDTO.cs" />
     <Compile Include="DTOObjects\UnitDTO.cs" />
+    <Compile Include="DTOObjects\UnitMaterialDTO.cs" />
     <Compile Include="DTOObjects\UserDTO.cs" />
     <Compile Include="Experse.cs" />
     <Compile Include="KindMaterial.cs" />

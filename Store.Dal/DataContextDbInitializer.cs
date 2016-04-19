@@ -27,7 +27,7 @@ namespace Store.Dal
 				new Unit {Name = "киллограм", ShortName = "кг"},
 				new Unit {Name = "грамм", ShortName = "г"},
 				new Unit {Name = "литр", ShortName = "л"},
-				new Unit {Name = "миллилитр", ShortName = "мл"},
+				new Unit {Name = "милилитр", ShortName = "мл"},
 				new Unit {Name = "рулон", ShortName = "рулон"},
 				new Unit {Name = "метр квадратный", ShortName = "м.кв"},
 				new Unit {Name = "метр кубический", ShortName = "м.куб"}

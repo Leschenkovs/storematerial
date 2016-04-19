@@ -62,6 +62,7 @@
     <Compile Include="Bll\ProviderBll.cs" />
     <Compile Include="Bll\RoleBll.cs" />
     <Compile Include="Bll\SupplyBll.cs" />
+    <Compile Include="Bll\UnitBll.cs" />
     <Compile Include="Bll\UnitMaterialBll.cs" />
     <Compile Include="Bll\UserBll.cs" />
     <Compile Include="Exception\DbOwnException.cs" />

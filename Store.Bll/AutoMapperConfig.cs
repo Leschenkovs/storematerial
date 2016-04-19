@@ -19,6 +19,7 @@ namespace Store.Bll
 	      RegisterMappingsPrice();
 	      RegisterMappingsMaterialInStore();
 	      RegisterMappingsKindMaterial();
+	      RegisterMappingsUnitMaterial();
 	  }
 
       private static void RegisterMappingsRole()
@@ -142,6 +143,13 @@ namespace Store.Bll
               .ForMember("count", opt => opt.MapFrom(src => src.Count))
               .ForMember("priceSupply", opt => opt.MapFrom(src => src.PriceSupply))
               .ForMember("kindMaterialName", opt => opt.MapFrom(src => src.KindMaterialObj.Name));
+      }
+
+      private static void RegisterMappingsUnitMaterial()
+      {
+          Mapper.CreateMap<UnitMaterial, UnitMaterialDTO>()
+              .ForMember("id", opt => opt.MapFrom(src => src.Id))
+              .ForMember("shortNameUnit", opt => opt.MapFrom(src => src.UnitObj.ShortName));
       }
 
   }
