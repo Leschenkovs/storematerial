@@ -28,6 +28,12 @@
                 controller: "SupplyController"
             });
 
+            $stateProvider.state("supply/create", {
+                url: "/supply/create",
+                templateUrl: "/Angular/views/supply/create.html",
+                controller: "SupplyController"
+            });
+
             $stateProvider.state("provider/index", {
                 url: "/provider/index",
                 templateUrl: "/Angular/views/provider/index.html",

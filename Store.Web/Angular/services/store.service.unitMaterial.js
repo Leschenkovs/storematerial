@@ -3,6 +3,16 @@
 
     function UnitMaterialService($rootScope, $http, $q) {
 
+        this.getAllUnitMaterials = function () {
+            var deferrred = $q.defer();
+            $http.get("api/unitMaterial").success(function (data) {
+                deferrred.resolve(data);
+            }).error(function (data, status) {
+                deferrred.reject(status);
+            });
+            return deferrred.promise;
+        };
+
         this.getByKindMaterialId = function (id) {
             var deferrred = $q.defer();
             $http.get("api/unitMaterial?id=" + id).success(function (data) {

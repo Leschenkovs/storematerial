@@ -1,42 +1,37 @@
 ﻿(function() {
     "use strict";
 
-    var SupplyController = function ($scope, $state, SupplyService) {
+    var SupplyController = function ($scope, $state, $filter, SupplyService, ProviderService, UnitMaterialService, KindMaterialService) {
 
         $scope.supply =
         {
             id: "",
-            unitId: "",
-            kindMaterialId: ""
+            count: "",
+            ttn:"",
+            unitMaterialId: "",
+            providerId: "",
+            materialInStoreId: ""
         };
 
         SupplyService.getAllSupplies().then(function (value) {
             $scope.supplies = value;
         });
 
-        $scope.save = function (unitMaterial, createUnitMaterial) {
-            if (createUnitMaterial.$valid) {
-                UnitMaterialService.addUnitMaterial(unitMaterial).then(function (value) {
-                    if (value) {
-                        $scope.unitMaterials.push({
-                            'id': value.id,
-                            'shortNameUnit': value.shortNameUnit
-                        });
-                        $scope.unitMaterial =
-                        {
-                            id: "",
-                            unitId: "",
-                            kindMaterialId: ""
-                        };
-                    } else {
-                        alert("Ошибка добавления записи!");
-                    };
-                });
-            }
-        };
+        ProviderService.getAllProviders().then(function (value) {
+            $scope.providers = value;
+        });
+
+        UnitMaterialService.getAllUnitMaterials().then(function (value) {
+            $scope.unitMaterials = value;
+        });
+
+        KindMaterialService.getAllKindMaterials().then(function (value) {
+            $scope.kindMaterials = value;
+        });
+
     };
 
     angular
         .module("store.WebUI.Controllers")
-        .controller("SupplyController", ["$scope", "$state", "SupplyService", SupplyController]);
+        .controller("SupplyController", ["$scope", "$state", "$filter", "SupplyService", "ProviderService", "UnitMaterialService", "KindMaterialService", SupplyController]);
 })();

@@ -54,14 +54,25 @@ namespace Store.Dal
 			});
             context.SaveChanges();
 
-				context.KindMaterials.AddRange(new List<KindMaterial>
+			context.KindMaterials.AddRange(new List<KindMaterial>
 			{
 				new KindMaterial {Articul = "102938499999", Name = "Доски"},
 				new KindMaterial {Articul = "102953245347", Name = "Краска"},
 				new KindMaterial {Articul = "324293849944", Name = "Гвозди"},
 			});
-				context.SaveChanges();
+			context.SaveChanges();
 
+            context.UnitMaterials.AddRange(new List<UnitMaterial>
+			{
+				new UnitMaterial {KindMaterialId = context.KindMaterials.First(x => x.Name == "Доски").Id, UnitId = context.Units.First(x => x.ShortName == "шт").Id},
+				new UnitMaterial {KindMaterialId = context.KindMaterials.First(x => x.Name == "Доски").Id, UnitId = context.Units.First(x => x.ShortName == "л").Id},
+				new UnitMaterial {KindMaterialId = context.KindMaterials.First(x => x.Name == "Краска").Id, UnitId = context.Units.First(x => x.ShortName == "рулон").Id},
+                new UnitMaterial {KindMaterialId = context.KindMaterials.First(x => x.Name == "Краска").Id, UnitId = context.Units.First(x => x.ShortName == "шт").Id},
+				new UnitMaterial {KindMaterialId = context.KindMaterials.First(x => x.Name == "Краска").Id, UnitId = context.Units.First(x => x.ShortName == "л").Id},
+				new UnitMaterial {KindMaterialId = context.KindMaterials.First(x => x.Name == "Гвозди").Id, UnitId = context.Units.First(x => x.ShortName == "рулон").Id}
+
+			});
+            context.SaveChanges();
 
 			//********************
 			// Test data

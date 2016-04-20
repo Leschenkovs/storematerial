@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using AutoMapper;
 using Store.Bll;
 using Store.Bll.Bll;
 using Store.Model;
 using Store.Model.DTOObjects;
+using Store.Model.RequestObjects;
 
 namespace Store.Web.Controllers
 {
@@ -21,6 +23,13 @@ namespace Store.Web.Controllers
                 throw new ArgumentNullException("factoryBll");
             }
             _unitMaterialBll = factoryBll.UnitMaterialBll;
+        }
+
+        [HttpGet]
+        public List<UnitMaterialDTO> GetKindMaterials([FromUri] QueryRequest queryRequest)
+        {
+            List<UnitMaterialDTO> list = Mapper.Map<IQueryable<UnitMaterial>, List<UnitMaterialDTO>>(_unitMaterialBll.GetAll());
+            return list;
         }
 
         [HttpGet]
