@@ -48,10 +48,12 @@ namespace Store.Web.Controllers
 			  return model;
 			}
 
-			[HttpDelete]
-			public bool DeleteKindMaterial([FromUri] int id)
-			{
-			  return _kindMaterialBll.Delete(id);
-			}
+        [HttpDelete]
+        public bool DeleteKindMaterial([FromUri] int id)
+        {
+            bool isExistMaterialInStore = _kindMaterialBll.IsExistMaterialInStore(id);
+            if (isExistMaterialInStore) return false; // Надо вернуть сообщение!
+            return _kindMaterialBll.Delete(id);
+        }
     }
 }

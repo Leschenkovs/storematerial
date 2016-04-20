@@ -1,9 +1,68 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title></title>
-</head>
-<body>
+﻿<div class="row">
+    <div class="box">
+        <div class="col-lg-12">
+            <hr>
+            <h2 class="intro-text text-center">
+                Список видов материалов
+            </h2>
+            <hr>
 
-</body>
-</html>
+            <form role="form" name="createKindMaterial" novalidate>
+                <div class="row">
+                    <div class="form-group col-lg-4" ng-class="{ 'has-error': createKindMaterial.articul.$touched && createKindMaterial.articul.$invalid }">
+                        <label for="articul"><strong class="error-message">*</strong>Артикул</label>
+                        <input type="text" name="articul" ng-model="kindMaterial.articul" class="form-control" required maxlength="12">
+                    </div>
+                    <div class="form-group col-lg-4" ng-class="{ 'has-error': createKindMaterial.name.$touched && createKindMaterial.name.$invalid }">
+                        <label for="name"><strong class="error-message">*</strong>Название</label>
+                        <input type="text" name="name" ng-model="kindMaterial.name" class="form-control" required maxlength="30">
+                    </div>
+                    <div class="form-group col-lg-12">
+                        <input type="hidden" name="save" value="contact">
+                        <button type="submit" class="btn btn-primary" ng-click="save(kindMaterial, createKindMaterial)">Сохранить</button>
+                    </div>
+                </div>
+            </form>
+
+            <table ng-table="tableParams" show-filter="true" class="table table-bordered table-hover table-striped table-condensed editable-table demoTable" ng-form="tableForm" disable-filter="isAdding" demo-tracked-table="tableTracker">
+                <colgroup>
+                    <col width="*0.5" />
+                    <col width="*3.5" />
+                    <col width="*2" />
+                    <col width="*2" />
+                    <col width="*1" />
+                    <col width="85" />
+                </colgroup>
+                <tr ng-repeat="row in $data" ng-form="rowForm" demo-tracked-table-row="row">
+                    <td data-title="'Артикул'" sortable="'articul'" filter="{'articul': 'text' }" ng-switch="row.isEditing" ng-class="articul.$dirty ? 'bg-warning' : ''" ng-form="articul" demo-tracked-table-cell>
+                        <span ng-switch-default class="editable-text">{{row.articul}}</span>
+                        <div class="controls" ng-class="articul.$invalid && articul.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                            <input type="text" name="articul" ng-model="row.articul" class="editable-input form-control input-sm" required />
+                        </div>
+                    </td>                    
+                    <td data-title="'Название'" sortable="'name'" filter="{'name': 'text' }" ng-switch="row.isEditing" ng-class="name.$dirty ? 'bg-warning' : ''" ng-form="name" demo-tracked-table-cell>
+                        <span ng-switch-default class="editable-text">{{row.name}}</span>
+                        <div class="controls" ng-class="name.$invalid && name.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                            <input type="text" name="name" ng-model="row.name" class="editable-input form-control input-sm" required />
+                        </div>
+                    </td>
+                    <td data-title="'Ед.изм.'" sortable="'units'" filter="{'units': 'text' }" ng-switch="row.isEditing" ng-class="units.$dirty ? 'bg-warning' : ''" ng-form="units" demo-tracked-table-cell>
+                        <span ng-switch-default class="editable-text">{{row.units}}</span>
+                        <!--<div class="controls" ng-class="units.$invalid && units.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                            <input type="text" name="units" ng-model="row.units" class="editable-input form-control input-sm" required />
+                        </div>-->
+                    </td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" ng-click="update(row, rowForm)" ng-if="row.isEditing" ng-disabled="rowForm.$pristine || rowForm.$invalid"><span class="glyphicon glyphicon-ok"></span></button>
+                        <button class="btn btn-default btn-sm" ng-click="cancel(row, rowForm)" ng-if="row.isEditing"><span class="glyphicon glyphicon-remove"></span></button>
+                        <button class="btn btn-default btn-sm" ng-click="row.isEditing = true" ng-if="!row.isEditing"><span class="glyphicon glyphicon-pencil"></span></button>
+                        <button class="btn btn-danger btn-sm" ng-click="delete(row.id)" ng-if="!row.isEditing"><span class="glyphicon glyphicon-trash"></span></button>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+

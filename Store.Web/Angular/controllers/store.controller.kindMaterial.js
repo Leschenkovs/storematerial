@@ -1,7 +1,9 @@
 ﻿(function () {
     "use strict";
 
-    var KindMaterialController = function ($scope, $state, KindMaterialService, UnitMaterialService, UnitService) {
+    var KindMaterialController = function ($scope, $state, $filter, KindMaterialService, UnitMaterialService, UnitService, ngTableParams) {
+
+        var originalData = [];
 
         $scope.kindMaterial =
         {
@@ -16,7 +18,7 @@
             kindMaterialId: ""
         };
 
-        // List Units
+///////// List Units
         UnitService.getAllUnits().then(function (value) {
             $scope.units = value;
         });
@@ -63,63 +65,85 @@
 
         KindMaterialService.getAllKindMaterials().then(function (value) {
             $scope.kindMaterials = value;
+
+            originalData = angular.copy(value);
+            $scope.tableParams = new ngTableParams({ page: 1, count: 2 }, {
+                filterDelay: 0,
+                dataset: angular.copy(value)
+            });
         });
 
-        $scope.save = function (kindMaterial, createKindMaterial) {
-            if (createKindMaterial.$valid) {
-                if (kindMaterial.id != null && kindMaterial.id != 'undefined' && kindMaterial.id != "") {
-                    KindMaterialService.updateKindMaterial(kindMaterial).then(function (value) {
-                        if (value) {
-                            $scope.kindMaterial =
-                            {
-                                id: "",
-                                articul: "",
-                                name: ""
-                            };
-                        } else {
-                            alert("Ошибка обновления записи!");
-                        };
-                    });
-                } else {
-                    KindMaterialService.addKindMaterial(kindMaterial).then(function (value) {
-                        if (value) {
-                            $scope.kindMaterials.push({
-                                'id': value.id,
-                                'articul': value.articul,
-                                'name': value.name,
-                                'units':""
-                            });
-                            $scope.kindMaterial =
-                            {
-                                id: "",
-                                articul: "",
-                                name: ""
-                            };
-                        } else {
-                            alert("Ошибка добавления записи!");
-                        };
-                    });
+        $scope.cancel = function (row, rowForm) {
+            var originalRow = resetRow(row, rowForm);
+            angular.extend(row, originalRow);
+        };
+
+        function resetRow(row, rowForm) {
+            row.isEditing = false;
+            rowForm.$setPristine();
+            for (var i in originalData) {
+                if (originalData[i].id === row.id) {
+                    return originalData[i];
                 }
             }
         };
 
-        $scope.updateKindMaterial = function (index) {
-            $scope.kindMaterial = $scope.kindMaterials[index];
+        $scope.update = function (row, rowForm) {
+            KindMaterialService.updateKindMaterial(row).then(function (value) {
+                var originalRow = resetRow(row, rowForm);
+                angular.extend(originalRow, row);
+            });
         };
 
-        $scope.deleteKindMaterial = function (index) {
-            var id = $scope.kindMaterials[index].id;
+        $scope.save = function (kindMaterial, createKindMaterial) {
+            if (createKindMaterial.$valid) {
+                KindMaterialService.addKindMaterial(kindMaterial).then(function (value) {
+                    if (value) {
+                        $scope.tableParams.settings().dataset.unshift({
+                            'id': value.id,
+                            'articul': value.articul,
+                            'name': value.name,
+                            'units': ""
+                        });
+                        $scope.tableParams.reload().then(function (data) {
+                            if (data.length === 0 && self.tableParams.total() > 0) {
+                                self.tableParams.page(self.tableParams.page() - 1);
+                                self.tableParams.reload();
+                            }
+                        });
+                        $scope.kindMaterial =
+                            {
+                                id: "",
+                                articul: "",
+                                name: ""
+                            };
+                    } else {
+                        alert("Ошибка добавления записи!");
+                    };
+                });
+            }
+        };
+
+        $scope.delete = function (id) {
             KindMaterialService.deleteKindMaterial(id).then(function (value) {
                 if (value) {
-                    $scope.kindMaterials.splice(index, 1);
+                    _.remove($scope.tableParams.settings().dataset, function(item) {
+                        return id === item.id;
+                    });
+                    $scope.tableParams.reload().then(function(data) {
+                        if (data.length === 0 && self.tableParams.total() > 0) {
+                            self.tableParams.page(self.tableParams.page() - 1);
+                            self.tableParams.reload();
+                        }
+                    });
                 } else {
-                    alert("Ошибка удаления записи!");
-                };
+                    alert("Ошибка удаления!");
+                }
             });
         };
     };
 
     angular
         .module("store.WebUI.Controllers")
-        .controller("KindMaterialController", ["$scope", "$state", "KindMaterialService","UnitMaterialService", "UnitService", KindMaterialController]);
+        .controller("KindMaterialController", ["$scope", "$state", "$filter", "KindMaterialService", "UnitMaterialService", "UnitService", "ngTableParams", KindMaterialController]);
 })();
