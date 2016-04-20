@@ -49,6 +49,13 @@
             if (createProvider.$valid) {
                     ProviderService.addProvider(provider).then(function (value) {
                         if (value) {
+                            $scope.tableParams.settings().dataset.unshift({
+                                    'id': value.id,
+                                    'name': value.name,
+                                    'address': value.address,
+                                    'telephone': value.telephone,
+                                    'description': value.description
+                            });
                             //$scope.providers.push({
                             //    'id': value.id,
                             //    'name': value.name,
@@ -63,7 +70,6 @@
                             //    'telephone': value.telephone,
                             //    'description': value.description
                             //});
-                            _.assign($scope.tableParams.settings().dataset, provider);
                             $scope.tableParams.reload().then(function (data) {
                                 if (data.length === 0 && self.tableParams.total() > 0) {
                                     self.tableParams.page(self.tableParams.page() - 1);

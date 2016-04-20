@@ -40,7 +40,7 @@ namespace Store.Dal
 				new Provider {Name = "ГвоздиМагазин", Address = "Гродно", Telephone = "0294586974", Description = ""},
 				new Provider {Name = "ОбоиhЛаки", Address = "Бобруйск", Telephone = "0274512365", Description = "Описание 2"},
                 new Provider {Name = "1Мага", Address = "Лев", Telephone = "0000", Description = "Описание"},
-				new Provider {Name = "2Мага", Address = "Питер", Telephone = "7785758", Description = ""},
+				new Provider {Name = "2Мага", Address = "Птер", Telephone = "7785758", Description = ""},
 				new Provider {Name = "3мага", Address = "Бобруйск", Telephone = "222", Description = " 2"}
 
 			});
