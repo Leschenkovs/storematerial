@@ -48,10 +48,6 @@
         function resetRow(row, rowForm) {
             row.isEditing = false;
             rowForm.$setPristine();
-            /*$scope.tableTracker.untrack(row);
-            return _.findWhere(originalData, function (r) {
-                return r.id === row.id;
-            });*/
             for (var i in originalData) {
                 if (originalData[i].id === row.id) {
                     return originalData[i];
@@ -59,9 +55,12 @@
             }
         }
 
-        function save(row, rowForm) {
-            //var originalRow = resetRow(row, rowForm);
-            //angular.extend(originalRow, row);
+        $scope.update = function (row, rowForm) {
+            UserService.updateUser(row).then(function (value) {
+                row.roleName = $filter('filter')($scope.roles, { id: row.roleId }, true)[0].name;
+                var originalRow = resetRow(row, rowForm);
+                angular.extend(originalRow, row);
+            });
         }
 
         RoleService.getAllRoles().then(function (value) {

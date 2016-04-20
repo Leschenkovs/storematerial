@@ -28,6 +28,18 @@
             return deferred.promise;
         };
 
+        this.updateUser = function (entity) {
+            var deferred = $q.defer();
+            $http.put("api/user", entity).
+                success(function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).
+                error(function (data, status, headers, config) {
+                    deferred.reject(status);
+                });
+            return deferred.promise;
+        };
+
         this.deleteUser = function (id) {
             var deferred = $q.defer();
 
