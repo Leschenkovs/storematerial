@@ -24,6 +24,7 @@
                 }).
                 error(function (data, status, headers, config) {
                     deferred.reject(status);
+                    alert(data.ExceptionMessage);
                 });
             return deferred.promise;
         };
@@ -36,6 +37,7 @@
                 }).
                 error(function (data, status, headers, config) {
                     deferred.reject(status);
+                    alert(data.ExceptionMessage);
                 });
             return deferred.promise;
         };

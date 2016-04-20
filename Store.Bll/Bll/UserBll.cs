@@ -7,7 +7,8 @@ namespace Store.Bll.Bll
 {
 	public interface IUserBll : IBaseBll<User>
 	{
-		new User Add(User obj);
+		User Add(User obj);
+		User Update(User obj);
 	}
 
 	public class UserBll : BaseBll<User, IUserDal>, IUserBll
@@ -19,13 +20,31 @@ namespace Store.Bll.Bll
 			FactoryDal = factoryDal;
 		}
 
-		public new User Add(User obj)
+		public User Add(User obj)
 		{
-			bool isExist = FactoryDal.UserDal.First(x => x.Tn == obj.Tn.Trim()) != null;
-			if (isExist) {throw new DbOwnException("Работник ТН = " + obj.Tn + " уже существует в БД!");}
-
-			User newObj = base.Save(obj);
+			bool isExist = GetByTn(obj.Tn) != null;
+			if (isExist)
+			{
+				throw new DbOwnException("Работник ТН = " + obj.Tn + " уже существует в БД!");
+			}
+			User newObj = Save(obj);
 			return newObj;
+		}
+
+		public User Update(User obj)
+		{
+			User user = GetByTn(obj.Tn);
+			if (user != null && user.Id != obj.Id)
+			{
+				throw new DbOwnException("Работник ТН = " + obj.Tn + " уже существует в БД!");
+			}
+			User objAfterUpdate = Save(obj);
+			return objAfterUpdate;
+		}
+		
+		private User GetByTn(string tn)
+		{
+			return FactoryDal.UserDal.First(x => x.Tn == tn.Trim());
 		}
 	}
 }
