@@ -28,7 +28,7 @@
             }
         };
 
-        if (rowForm.$valid) {
+        $scope.update = function (row, rowForm) {
             if (rowForm.$valid) {
             UserService.updateUser(row).then(function(value) {
                     row.roleName = $filter('filter')($scope.roles, { id: row.roleId }, true)[0].name;
