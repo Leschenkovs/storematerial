@@ -26,11 +26,9 @@
 
             <table ng-table="tableParams" show-filter="true" class="table table-bordered table-hover table-striped table-condensed editable-table demoTable" ng-form="tableForm" disable-filter="isAdding" demo-tracked-table="tableTracker">
                 <colgroup>
+                    <col width="*2" />
+                    <col width="*2"/>
                     <col width="*0.5" />
-                    <col width="*3.5" />
-                    <col width="*2" />
-                    <col width="*2" />
-                    <col width="*1" />
                     <col width="85" />
                 </colgroup>
                 <tr ng-repeat="row in $data" ng-form="rowForm" demo-tracked-table-row="row">
@@ -39,7 +37,7 @@
                         <div class="controls" ng-class="articul.$invalid && articul.$dirty ? 'has-error' : ''" ng-switch-when="true">
                             <input type="text" name="articul" ng-model="row.articul" class="editable-input form-control input-sm" required />
                         </div>
-                    </td>                    
+                    </td>
                     <td data-title="'Название'" sortable="'name'" filter="{'name': 'text' }" ng-switch="row.isEditing" ng-class="name.$dirty ? 'bg-warning' : ''" ng-form="name" demo-tracked-table-cell>
                         <span ng-switch-default class="editable-text">{{row.name}}</span>
                         <div class="controls" ng-class="name.$invalid && name.$dirty ? 'has-error' : ''" ng-switch-when="true">

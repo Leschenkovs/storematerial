@@ -23,8 +23,7 @@
                     deferred.resolve(data);
                 }).
                 error(function (data, status, headers, config) {
-                    deferred.reject(status);
-                    alert(data.ExceptionMessage);
+                    deferred.reject(data);
                 });
             return deferred.promise;
         };
@@ -36,8 +35,7 @@
                     deferred.resolve(data);
                 }).
                 error(function (data, status, headers, config) {
-                    deferred.reject(status);
-                    alert(data.ExceptionMessage);
+                    deferred.reject(data);
                 });
             return deferred.promise;
         };
@@ -50,7 +48,7 @@
                     deferred.resolve(data);
                 }).
                 error(function (data, status, headers, config) {
-                    deferred.reject(status);
+                    deferred.reject(data);
                 });
             return deferred.promise;
         };

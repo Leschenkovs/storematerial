@@ -23,6 +23,8 @@ namespace Store.Model
 		// Должность
 		public string Position { get; set; }
 
+        // Пароль
+        public string Password { get; set; }
 
 		// Список оформленных отгрузок (расходов)
 		public virtual ICollection<Experse> Experses { get; set; }

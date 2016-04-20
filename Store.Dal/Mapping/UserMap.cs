@@ -16,6 +16,7 @@ namespace Store.Dal.Mapping
 			Property(t => t.Department).HasMaxLength(25);
 			Property(t => t.Position).HasMaxLength(25).IsRequired();
 			Property(t => t.RoleId);
+            Property(t => t.Password).IsRequired();
 
 			// Table & Column Mappings
 			ToTable("User");
@@ -25,6 +26,7 @@ namespace Store.Dal.Mapping
 			Property(t => t.Department).HasColumnName("Department");
 			Property(t => t.Position).HasColumnName("Position");
 			Property(t => t.RoleId).HasColumnName("RoleId");
+            Property(t => t.Password).HasColumnName("Password");
 
 			// Relationships  
 			HasRequired(t => t.RoleObj).WithMany(t => t.Users).HasForeignKey(d => d.RoleId).WillCascadeOnDelete(false);

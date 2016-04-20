@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Store.Common;
+using Store.Common.Helper;
 using Store.Dal;
 using Store.Dal.Dal;
 using Store.Model;
@@ -6,25 +9,48 @@ using Store.Model;
 namespace Store.Bll.Bll
 {
     public interface IKindMaterialBll : IBaseBll<KindMaterial>
-	{	  
-	    bool IsExistMaterialInStore(int id);
-	}
+    {
+        new List<KindMaterial> GetAll();
+        new KindMaterial Save(KindMaterial entity);
+        new bool Delete(int id);
+    }
 
     public class KindMaterialBll : BaseBll<KindMaterial, IKindMaterialDal>, IKindMaterialBll
-	{
-		protected IFactoryDal FactoryDal;
+    {
+        protected IFactoryDal FactoryDal;
 
         public KindMaterialBll(IFactoryDal factoryDal)
             : base(factoryDal.KindMaterialDal)
-		{
-			FactoryDal = factoryDal;
-		}
+        {
+            FactoryDal = factoryDal;
+        }
 
+        public new List<KindMaterial> GetAll()
+        {
+            List<KindMaterial> result = CacheHelper.GetObjectFromCache<List<KindMaterial>>(GlobalConstants.KindMaterialsKey);
+            if (result == null)
+            {
+                result = base.GetAll().ToList();
+                CacheHelper.AddObjectToCache(GlobalConstants.KindMaterialsKey, result);
+            }
+            return result;
+        }
 
-		public bool IsExistMaterialInStore(int id)
-		{
-			return FactoryDal.KindMaterialDal.First(x => x.Id == id).UnitMaterials.Any(x=>x.MaterialInStoreObj.Count > 0);
-		}
+        public new KindMaterial Save(KindMaterial entity)
+        {
+            CacheHelper.CleanCache(GlobalConstants.KindMaterialsKey);
+            return base.Save(entity);
+        }
 
-	}
+        public new bool Delete(int id)
+        {
+            bool isExistMaterialInStore = IsExistMaterialInStore(id);
+            return !isExistMaterialInStore && base.Delete(id);
+        }
+
+        private bool IsExistMaterialInStore(int id)
+        {
+            return FactoryDal.KindMaterialDal.First(x => x.Id == id).UnitMaterials.Any(x => x.MaterialInStoreObj.Count > 0);
+        }
+    }
 }

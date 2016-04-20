@@ -30,11 +30,15 @@
 
         $scope.update = function(row, rowForm) {
             if (rowForm.$valid) {
-                UserService.updateUser(row).then(function(value) {
-                    row.roleName = $filter('filter')($scope.roles, { id: row.roleId }, true)[0].name;
-                    var originalRow = resetRow(row, rowForm);
-                    angular.extend(originalRow, row);
-                });
+                UserService.updateUser(row).then(
+                    function(response) {
+                        row.roleName = $filter('filter')($scope.roles, { id: row.roleId }, true)[0].name;
+                        var originalRow = resetRow(row, rowForm);
+                        angular.extend(originalRow, row);
+                    },
+                    function(errorObject) {
+                        alert(errorObject.ExceptionMessage);
+                    });
             };
         };
 
@@ -53,9 +57,13 @@
 
         $scope.save = function (user, createUser) {
             if (createUser.$valid) {
-                UserService.addUser(user).then(function (value) {
-                    $state.go("user/index");
-                });
+                UserService.addUser(user).then(
+                    function(value) {
+                        $state.go("user/index");
+                    },
+                    function(errorObject) {
+                        alert(errorObject.ExceptionMessage);
+                    });
             }
         };
 

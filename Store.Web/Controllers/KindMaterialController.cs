@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http;
 using AutoMapper;
 using Store.Bll;
@@ -16,7 +15,7 @@ namespace Store.Web.Controllers
     {
         private readonly IKindMaterialBll _kindMaterialBll;
 
-         public KindMaterialController(IFactoryBll factoryBll)
+        public KindMaterialController(IFactoryBll factoryBll)
         {
             if (factoryBll == null)
             {
@@ -25,35 +24,34 @@ namespace Store.Web.Controllers
             _kindMaterialBll = factoryBll.KindMaterialBll;
         }
 
-			[HttpGet]
-			public List<KindMaterialDTO> GetKindMaterials([FromUri] QueryRequest queryRequest)
-			{
-			  List<KindMaterialDTO> list = Mapper.Map<IQueryable<KindMaterial>, List<KindMaterialDTO>>(_kindMaterialBll.GetAll());
-			  return list;
-			}
+        [HttpGet]
+        public List<KindMaterialDTO> GetKindMaterials([FromUri] QueryRequest queryRequest)
+        {
+            List<KindMaterialDTO> list = Mapper.Map<List<KindMaterial>, List<KindMaterialDTO>>(_kindMaterialBll.GetAll());
+            return list;
+        }
 
-			[HttpPost]
-			public KindMaterialDTO CreateKindMaterial([FromBody] KindMaterialDTO model)
-			{
-			  KindMaterial entity = Mapper.Map<KindMaterialDTO, KindMaterial>(model);
-			  model = Mapper.Map<KindMaterial, KindMaterialDTO>(_kindMaterialBll.Save(entity));
-			  return model;
-			}
+        [HttpPost]
+        public KindMaterialDTO CreateKindMaterial([FromBody] KindMaterialDTO model)
+        {
+            KindMaterial entity = Mapper.Map<KindMaterialDTO, KindMaterial>(model);
+            model = Mapper.Map<KindMaterial, KindMaterialDTO>(_kindMaterialBll.Save(entity));
+            return model;
+        }
 
-			[HttpPut]
-			public KindMaterialDTO UpdateKindMaterial([FromBody] KindMaterialDTO model)
-			{
-			  KindMaterial entity = Mapper.Map<KindMaterialDTO, KindMaterial>(model);
-			  model = Mapper.Map<KindMaterial, KindMaterialDTO>(_kindMaterialBll.Save(entity)); // AddorUpdate
-			  return model;
-			}
+        [HttpPut]
+        public KindMaterialDTO UpdateKindMaterial([FromBody] KindMaterialDTO model)
+        {
+            KindMaterial entity = Mapper.Map<KindMaterialDTO, KindMaterial>(model);
+            model = Mapper.Map<KindMaterial, KindMaterialDTO>(_kindMaterialBll.Save(entity));
+            return model;
+        }
 
         [HttpDelete]
         public bool DeleteKindMaterial([FromUri] int id)
         {
-            bool isExistMaterialInStore = _kindMaterialBll.IsExistMaterialInStore(id);
-            if (isExistMaterialInStore) return false; // Надо вернуть сообщение!
-            return _kindMaterialBll.Delete(id);
+            bool entityReuslt = _kindMaterialBll.Delete(id);
+            return entityReuslt;
         }
     }
 }

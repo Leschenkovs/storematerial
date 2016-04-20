@@ -46,7 +46,6 @@
                             <select ng-model="row.roleId" ng-options="obj.id as obj.name for obj in roles"
                                 class="editable-input form-control input-sm" required id="roleId" name="roleName" />
                         </div>
-
                     </td>
                     <td>
                         <button class="btn btn-primary btn-sm" ng-click="update(row, rowForm)" ng-if="row.isEditing" ng-disabled="rowForm.$pristine || rowForm.$invalid"><span class="glyphicon glyphicon-ok"></span></button>

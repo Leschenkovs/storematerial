@@ -25,15 +25,13 @@ namespace Store.Web.Controllers
             _unitBll = factoryBll.UnitBll;
         }
 
-		  [HttpGet]
-		  public List<UnitDTO> GetUnits([FromUri]QueryRequest queryRequest)
-		  {
-			 Mapper.CreateMap<Unit, UnitDTO>();
-			 List<UnitDTO> units = Mapper.Map<IQueryable<Unit>, List<UnitDTO>>(_unitBll.GetAll());
+        [HttpGet]
+        public List<UnitDTO> GetUnits([FromUri]QueryRequest queryRequest)
+        {
+            Mapper.CreateMap<Unit, UnitDTO>();
+            List<UnitDTO> units = Mapper.Map<IQueryable<Unit>, List<UnitDTO>>(_unitBll.GetAll());
 
-			 return units;
-		  }
-
-
+            return units;
+        }
     }
 }

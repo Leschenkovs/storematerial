@@ -39,19 +39,18 @@ namespace Store.Web.Controllers
             return list;
         }
 
-		  [HttpPost]
-		  public UnitMaterialDTO CreateUnitMaterial([FromBody] UnitMaterialDTO model)
-		  {
-			 UnitMaterial entity = Mapper.Map<UnitMaterialDTO, UnitMaterial>(model);
-			 model = Mapper.Map<UnitMaterial, UnitMaterialDTO>(_unitMaterialBll.Save(entity));
-			 return model;
-		  }
+        [HttpPost]
+        public UnitMaterialDTO CreateUnitMaterial([FromBody] UnitMaterialDTO model)
+        {
+            UnitMaterial entity = Mapper.Map<UnitMaterialDTO, UnitMaterial>(model);
+            model = Mapper.Map<UnitMaterial, UnitMaterialDTO>(_unitMaterialBll.Save(entity));
+            return model;
+        }
 
-
-		  [HttpDelete]
-		  public bool DeleteUnitMaterial([FromUri] int id)
-		  {
-			 return _unitMaterialBll.Delete(id);
-		  }
+        [HttpDelete]
+        public bool DeleteUnitMaterial([FromUri] int id)
+        {
+            return _unitMaterialBll.Delete(id);
+        }
     }
 }

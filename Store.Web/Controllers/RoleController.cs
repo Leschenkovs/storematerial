@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http;
 using AutoMapper;
 using Store.Bll;
@@ -11,28 +10,26 @@ using Store.Model.RequestObjects;
 
 namespace Store.Web.Controllers
 {
-  [RoutePrefix("api/role")]
-  public class RoleController : BaseApiController
-  {
-	 private readonly IRoleBll _roleBll;
+    [RoutePrefix("api/role")]
+    public class RoleController : BaseApiController
+    {
+        private readonly IRoleBll _roleBll;
 
-	 public RoleController(IFactoryBll factoryBll)
-		{
-			if (factoryBll == null)
-			{
-				throw new ArgumentNullException("factoryBll");
-			}
-			_roleBll = factoryBll.RoleBll;
-		}
+        public RoleController(IFactoryBll factoryBll)
+        {
+            if (factoryBll == null)
+            {
+                throw new ArgumentNullException("factoryBll");
+            }
+            _roleBll = factoryBll.RoleBll;
+        }
 
-	 [HttpGet]
-     public List<RoleDTO> GetRoles([FromUri]QueryRequest queryRequest)
-	 {
-		Mapper.CreateMap<Role, RoleDTO>();
-		List<RoleDTO> roles = Mapper.Map<IQueryable<Role>, List<RoleDTO>>(_roleBll.GetAll());
-
-		return roles;
-	 }
-
-  }
+        [HttpGet]
+        public List<RoleDTO> GetRoles([FromUri]QueryRequest queryRequest)
+        {
+            Mapper.CreateMap<Role, RoleDTO>();
+            List<RoleDTO> roles = Mapper.Map<List<Role>, List<RoleDTO>>(_roleBll.GetAll());
+            return roles;
+        }
+    }
 }
