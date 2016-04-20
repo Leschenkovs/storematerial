@@ -7,16 +7,16 @@
 
         UserService.getAllUsers().then(function (value) {
             originalData = angular.copy(value);
-            $scope.tableParams = new ngTableParams({page: 1, count:2}, {
+            $scope.tableParams = new ngTableParams({ page: 1, count: 2 }, {
                 filterDelay: 0,
                 dataset: angular.copy(value)
             });
         });
 
-        $scope.cancel = function (row, rowForm) {
+        $scope.cancel = function(row, rowForm) {
             var originalRow = resetRow(row, rowForm);
             angular.extend(row, originalRow);
-        }
+        };
 
         function resetRow(row, rowForm) {
             row.isEditing = false;
@@ -26,16 +26,16 @@
                     return originalData[i];
                 }
             }
-        }
+        };
 
-        $scope.update = function (row, rowForm) {
+        if (rowForm.$valid) {
             if (rowForm.$valid) {
-                UserService.updateUser(row).then(function(value) {
+            UserService.updateUser(row).then(function(value) {
                     row.roleName = $filter('filter')($scope.roles, { id: row.roleId }, true)[0].name;
                     var originalRow = resetRow(row, rowForm);
                     angular.extend(originalRow, row);
                 });
-            }
+        };
         }
 
         RoleService.getAllRoles().then(function (value) {

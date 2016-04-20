@@ -23,7 +23,7 @@ namespace Store.Bll.Bll
 
 		public bool IsExistMaterialInStore(int id)
 		{
-			return FactoryDal.KindMaterialDal.First(x => x.Id == id).MaterialInStores.Any();
+			return FactoryDal.KindMaterialDal.First(x => x.Id == id).UnitMaterials.Any(x=>x.MaterialInStoreObj.Count > 0);
 		}
 
 	}

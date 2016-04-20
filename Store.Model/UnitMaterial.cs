@@ -16,5 +16,9 @@
         public virtual int UnitId { get; set; }
         public virtual Unit UnitObj { get; set; }
 
+        // Идентификатор материала на складе
+        public virtual int MaterialInStoreId { get; set; }
+        public virtual MaterialInStore MaterialInStoreObj { get; set; }
+
     }
 }

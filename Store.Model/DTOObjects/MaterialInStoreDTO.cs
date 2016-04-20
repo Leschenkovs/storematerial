@@ -8,6 +8,6 @@
         public string kindMaterialName { get; set; }
 
 
-        public int kindMaterialId { get; set; }
+        public int unitMaterialId { get; set; }
     }
 }

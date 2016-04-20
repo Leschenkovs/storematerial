@@ -13,9 +13,9 @@ namespace Store.Model
 			Experses = new Collection<Experse>();
 		}
 
-		// Идентификатор вида материала
-		public virtual int KindMaterialId { get; set; }
-		public virtual KindMaterial KindMaterialObj { get; set; }
+		// Идентификатор вязки вид материала + ед.изм
+		public virtual int UnitMaterialId { get; set; }
+        public virtual UnitMaterial UnitMaterialObj { get; set; }
 
 
 		// Список цен реализации
@@ -26,7 +26,6 @@ namespace Store.Model
 
 		// Список расходов (отгрузок)
 		public virtual ICollection<Experse> Experses { get; set; }
-
 
 
 		// Кол-во

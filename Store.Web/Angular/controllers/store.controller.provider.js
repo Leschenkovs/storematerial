@@ -1,11 +1,40 @@
 ﻿(function() {
     "use strict";
 
-    var ProviderController = function ($scope, $state, ProviderService) {
+    var ProviderController = function ($scope, $state, $filter, ProviderService, ngTableParams) {
+        var originalData = [];
 
         ProviderService.getAllProviders().then(function (value) {
             $scope.providers = value;
+
+            originalData = angular.copy(value);
+            $scope.tableParams = new ngTableParams({ page: 1, count: 2 }, {
+                filterDelay: 0,
+                dataset: angular.copy(value)
+            });
         });
+
+        $scope.cancel = function (row, rowForm) {
+            var originalRow = resetRow(row, rowForm);
+            angular.extend(row, originalRow);
+        };
+
+        function resetRow(row, rowForm) {
+            row.isEditing = false;
+            rowForm.$setPristine();
+            for (var i in originalData) {
+                if (originalData[i].id === row.id) {
+                    return originalData[i];
+                }
+            }
+        };
+
+        $scope.update = function(row, rowForm) {
+            ProviderService.updateProvider(row).then(function(value) {
+                var originalRow = resetRow(row, rowForm);
+                angular.extend(originalRow, row);
+            });
+        };
 
         $scope.provider =
         {
@@ -18,30 +47,28 @@
 
         $scope.save = function(provider, createProvider) {
             if (createProvider.$valid) {
-                if (provider.id != null && provider.id != 'undefined' && provider.id != "") {
-                    ProviderService.updateProvider(provider).then(function (value) {
-                        if (value) {
-                            $scope.provider =
-                            {
-                                id: "",
-                                name: "",
-                                address: "",
-                                telephone: "",
-                                description: ""
-                            };
-                        } else {
-                            alert("Ошибка обновления записи!");
-                        };
-                    });
-                } else {
                     ProviderService.addProvider(provider).then(function (value) {
                         if (value) {
-                            $scope.providers.push({
-                                'id': value.id,
-                                'name': value.name,
-                                'address': value.address,
-                                'telephone': value.telephone,
-                                'description': value.description
+                            //$scope.providers.push({
+                            //    'id': value.id,
+                            //    'name': value.name,
+                            //    'address': value.address,
+                            //    'telephone': value.telephone,
+                            //    'description': value.description
+                            //});
+                            //originalData.push({
+                            //    'id': value.id,
+                            //    'name': value.name,
+                            //    'address': value.address,
+                            //    'telephone': value.telephone,
+                            //    'description': value.description
+                            //});
+                            _.assign($scope.tableParams.settings().dataset, provider);
+                            $scope.tableParams.reload().then(function (data) {
+                                if (data.length === 0 && self.tableParams.total() > 0) {
+                                    self.tableParams.page(self.tableParams.page() - 1);
+                                    self.tableParams.reload();
+                                }
                             });
                             $scope.provider =
                             {
@@ -51,29 +78,31 @@
                                 telephone: "",
                                 description: ""
                             };
+                            //$scope.providersTable.reload();
                         } else {
                             alert("Ошибка добавления записи!");};
                     });
-                }
             }
         };
 
-        $scope.updateProvider = function (index) {
-            $scope.provider = $scope.providers[index];
-        };
-
-        $scope.deleteProvider = function (index) {
-            var id = $scope.providers[index].id;
+        $scope.deleteProvider = function (id) {
             ProviderService.deleteProvider(id).then(function (value) {
                 if (value) {
-                    $scope.providers.splice(index, 1);
-                } else {
-                    alert("Ошибка удаления записи!");};
+                    _.remove($scope.tableParams.settings().dataset, function (item) {
+                        return id === item.id;
+                    });
+                    $scope.tableParams.reload().then(function (data) {
+                        if (data.length === 0 && self.tableParams.total() > 0) {
+                            self.tableParams.page(self.tableParams.page() - 1);
+                            self.tableParams.reload();
+                        }
+                    });
+                }
             });
         };
     };
 
     angular
         .module("store.WebUI.Controllers")
-        .controller("ProviderController", ["$scope", "$state", "ProviderService", ProviderController]);
+        .controller("ProviderController", ["$scope", "$state", "$filter", "ProviderService", "ngTableParams", ProviderController]);
 })();

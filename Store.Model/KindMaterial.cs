@@ -9,7 +9,6 @@ namespace Store.Model
 		public KindMaterial()
 		{
 			UnitMaterials = new Collection<UnitMaterial>();
-			MaterialInStores = new Collection<MaterialInStore>();
 		}
 
 		// Артикул
@@ -20,8 +19,6 @@ namespace Store.Model
 		// Список ед. измерения
 		public virtual ICollection<UnitMaterial> UnitMaterials { get; set; }
 
-		// Список материалов на складе
-		public virtual ICollection<MaterialInStore> MaterialInStores { get; set; }
 
 	}
 }
