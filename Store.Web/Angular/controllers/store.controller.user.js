@@ -9,40 +9,16 @@
             $scope.users = value;
 
             originalData = angular.copy(value);
-            $scope.tableParams = new ngTableParams({}, {
+            $scope.tableParams = new ngTableParams({page: 1, count:2}, {
                 filterDelay: 0,
                 dataset: angular.copy(value)
-            });
 
-            $scope.usersTable = new ngTableParams({
-                page: 1,
-                count: 2
-            }, {
-                total: $scope.users.length,
-                getData: function ($defer, params) {
-                    $scope.data = params.sorting() ? $filter('orderBy')($scope.users, params.orderBy()) : $scope.users;
-                    $scope.data = params.filter() ? $filter('filter')($scope.data, params.filter()) : $scope.data;
-                    $scope.data = $scope.data.slice((params.page() - 1) * params.count(), params.page() * params.count());
-                    $defer.resolve($scope.data);
-                }
             });
         });
 
         $scope.cancel = function (row, rowForm) {
             var originalRow = resetRow(row, rowForm);
             angular.extend(row, originalRow);
-        }
-
-        $scope.del = function (row) {
-            /*_.remove(self.tableParams.settings().dataset, function (item) {
-                return row === item;
-            });
-            self.tableParams.reload().then(function (data) {
-                if (data.length === 0 && self.tableParams.total() > 0) {
-                    self.tableParams.page(self.tableParams.page() - 1);
-                    self.tableParams.reload();
-                }
-            });*/
         }
 
         function resetRow(row, rowForm) {
@@ -85,21 +61,18 @@
         };
 
         $scope.deleteUser = function (id) {
-            debugger;
             UserService.deleteUser(id).then(function (value) {
                 if (value) {
-                    var index = -1;
-                    var userArr = eval($scope.usersTable.data);
-                    for (var i = 0; i < userArr.length; i++) {
-                        if (userArr[i].id === id) {
-                            index = i;
-                            break;
+                    debugger;
+                    _.remove($scope.tableParams.settings().dataset, function (item) {
+                        return id === item.id;
+                    });
+                    $scope.tableParams.reload().then(function (data) {
+                        if (data.length === 0 && self.tableParams.total() > 0) {
+                            self.tableParams.page(self.tableParams.page() - 1);
+                            self.tableParams.reload();
                         }
-                    }
-                    if (index === -1) {
-                        alert("Ошибка удаления записи из таблицы.");
-                    }
-                    $scope.usersTable.data.splice(index, 1);
+                    });
                 }
             });
         };

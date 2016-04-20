@@ -6,7 +6,7 @@
             </h2>
             <hr>
 
-            <table ng-table="usersTable" show-filter="true" class="table table-bordered table-hover table-striped table-condensed editable-table demoTable" ng-form="tableForm" disable-filter="isAdding" demo-tracked-table="tableTracker">
+            <table ng-table="tableParams" show-filter="true" class="table table-bordered table-hover table-striped table-condensed editable-table demoTable" ng-form="tableForm" disable-filter="isAdding" demo-tracked-table="tableTracker">
                 <colgroup>
                     <col width="*0.5" />
                     <col width="*3.5" />
@@ -15,7 +15,7 @@
                     <col width="*1" />
                     <col width="85" />
                 </colgroup>
-                <tr ng-repeat="row in data" ng-form="rowForm" demo-tracked-table-row="row">
+                <tr ng-repeat="row in $data" ng-form="rowForm" demo-tracked-table-row="row">
                     <td data-title="'Табельный'" sortable="'tn'" filter="{'tn': 'text' }" ng-switch="row.isEditing" ng-class="tn.$dirty ? 'bg-warning' : ''" ng-form="tn" demo-tracked-table-cell>
                         <span ng-switch-default class="editable-text">{{row.tn}}</span>
                         <div class="controls" ng-class="tn.$invalid && tn.$dirty ? 'has-error' : ''" ng-switch-when="true">

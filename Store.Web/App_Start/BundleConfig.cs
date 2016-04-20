@@ -10,7 +10,8 @@ namespace Store.Web.App_Start
 			 "~/Scripts/jquery-1.9.1*",
 			 "~/Scripts/bootstrap.js",
 			 "~/Scripts/ng-table.js",
-             "~/Scripts/underscore.js"
+			 "~/Scripts/underscore.js",
+			 "~/Scripts/lodash.js"
 			));
 
 			bundles.Add(new ScriptBundle("~/Store.Web/angular").Include(
