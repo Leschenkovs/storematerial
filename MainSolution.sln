@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Dal", "Store.Dal\Store.Dal.csproj", "{BFC27FEC-D617-4324-B49A-47C123FB82CA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Bll", "Store.Bll\Store.Bll.csproj", "{E1F3E1C1-7220-4E25-9FC2-A685C8A28BB5}"
@@ -10,6 +8,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Web", "Store.Web\Store.Web.csproj", "{1923025B-D7B0-47D2-A091-70ACF1A79E19}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Model", "Store.Model\Store.Model.csproj", "{3493323B-AF05-4928-BF34-C195C582ACE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Common", "Store.Common\Store.Common.csproj", "{5961F2FF-409E-4646-8DE6-FCD262DA6173}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +33,10 @@ Global
 		{3493323B-AF05-4928-BF34-C195C582ACE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3493323B-AF05-4928-BF34-C195C582ACE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3493323B-AF05-4928-BF34-C195C582ACE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5961F2FF-409E-4646-8DE6-FCD262DA6173}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5961F2FF-409E-4646-8DE6-FCD262DA6173}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5961F2FF-409E-4646-8DE6-FCD262DA6173}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5961F2FF-409E-4646-8DE6-FCD262DA6173}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

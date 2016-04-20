@@ -71,6 +71,10 @@
     <Compile Include="Provider\PrimaryMembershipProvider.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Store.Common\Store.Common.csproj">
+      <Project>{5961f2ff-409e-4646-8de6-fcd262da6173}</Project>
+      <Name>Store.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Store.Dal\Store.Dal.csproj">
       <Project>{bfc27fec-d617-4324-b49a-47c123fb82ca}</Project>
       <Name>Store.Dal</Name>
