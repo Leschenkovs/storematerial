@@ -1,10 +1,11 @@
 ﻿(function() {
     "use strict";
 
-    var ProviderController = function ($scope, $state, $filter, ProviderService, ngTableParams) {
+    var ProviderController = function($scope, $state, $filter, ProviderService, ngTableParams) {
+
         var originalData = [];
 
-        ProviderService.getAllProviders().then(function (value) {
+        ProviderService.getAllProviders().then(function(value) {
             $scope.providers = value;
 
             originalData = angular.copy(value);
@@ -14,7 +15,16 @@
             });
         });
 
-        $scope.cancel = function (row, rowForm) {
+        $scope.provider =
+        {
+            id: "",
+            name: "",
+            address: "",
+            telephone: "",
+            description: ""
+        };
+
+        $scope.cancel = function(row, rowForm) {
             var originalRow = resetRow(row, rowForm);
             angular.extend(row, originalRow);
         };
@@ -36,68 +46,46 @@
             });
         };
 
-        $scope.provider =
-        {
-            id: "",
-            name: "",
-            address: "",
-            telephone: "",
-            description: ""
-        };
 
         $scope.save = function(provider, createProvider) {
             if (createProvider.$valid) {
-                    ProviderService.addProvider(provider).then(function (value) {
-                        if (value) {
-                            $scope.tableParams.settings().dataset.unshift({
-                                    'id': value.id,
-                                    'name': value.name,
-                                    'address': value.address,
-                                    'telephone': value.telephone,
-                                    'description': value.description
-                            });
-                            //$scope.providers.push({
-                            //    'id': value.id,
-                            //    'name': value.name,
-                            //    'address': value.address,
-                            //    'telephone': value.telephone,
-                            //    'description': value.description
-                            //});
-                            //originalData.push({
-                            //    'id': value.id,
-                            //    'name': value.name,
-                            //    'address': value.address,
-                            //    'telephone': value.telephone,
-                            //    'description': value.description
-                            //});
-                            $scope.tableParams.reload().then(function (data) {
-                                if (data.length === 0 && self.tableParams.total() > 0) {
-                                    self.tableParams.page(self.tableParams.page() - 1);
-                                    self.tableParams.reload();
-                                }
-                            });
-                            $scope.provider =
-                            {
-                                id: "",
-                                name: "",
-                                address: "",
-                                telephone: "",
-                                description: ""
-                            };
-                            //$scope.providersTable.reload();
-                        } else {
-                            alert("Ошибка добавления записи!");};
-                    });
+                ProviderService.addProvider(provider).then(function(value) {
+                    if (value) {
+                        $scope.tableParams.settings().dataset.unshift({
+                            'id': value.id,
+                            'name': value.name,
+                            'address': value.address,
+                            'telephone': value.telephone,
+                            'description': value.description
+                        });
+                        $scope.tableParams.reload().then(function(data) {
+                            if (data.length === 0 && self.tableParams.total() > 0) {
+                                self.tableParams.page(self.tableParams.page() - 1);
+                                self.tableParams.reload();
+                            }
+                        });
+                        $scope.provider =
+                        {
+                            id: "",
+                            name: "",
+                            address: "",
+                            telephone: "",
+                            description: ""
+                        };
+                    } else {
+                        alert("Ошибка добавления записи!");
+                    };
+                });
             }
         };
 
-        $scope.deleteProvider = function (id) {
-            ProviderService.deleteProvider(id).then(function (value) {
+        $scope.delete = function(id) {
+            ProviderService.deleteProvider(id).then(function(value) {
                 if (value) {
-                    _.remove($scope.tableParams.settings().dataset, function (item) {
+                    _.remove($scope.tableParams.settings().dataset, function(item) {
                         return id === item.id;
                     });
-                    $scope.tableParams.reload().then(function (data) {
+                    $scope.tableParams.reload().then(function(data) {
                         if (data.length === 0 && self.tableParams.total() > 0) {
                             self.tableParams.page(self.tableParams.page() - 1);
                             self.tableParams.reload();

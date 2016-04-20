@@ -1,10 +1,18 @@
 ﻿(function () {
     "use strict";
 
-    var CostumerController = function ($scope, $state, CostumerService) {
+    var CostumerController = function ($scope, $state, $filter, CostumerService, ngTableParams) {
+
+        var originalData = [];
 
         CostumerService.getAllCostumers().then(function (value) {
             $scope.costumers = value;
+
+            originalData = angular.copy(value);
+            $scope.tableParams = new ngTableParams({ page: 1, count: 2 }, {
+                filterDelay: 0,
+                dataset: angular.copy(value)
+            });
         });
 
         $scope.costumer =
@@ -16,66 +24,80 @@
             description: ""
         };
 
-        $scope.save = function (costumer, createCostumer) {
-            if (createCostumer.$valid) {
-                if (costumer.id != null && costumer.id != 'undefined' && costumer.id != "") {
-                    CostumerService.updateCostumer(costumer).then(function (value) {
-                        if (value) {
-                            $scope.costumer =
-                            {
-                                id: "",
-                                name: "",
-                                address: "",
-                                telephone: "",
-                                description: ""
-                            };
-                        } else {
-                            alert("Ошибка обновления записи!");
-                        };
-                    });
-                } else {
-                    CostumerService.addCostumer(costumer).then(function (value) {
-                        if (value) {
-                            $scope.costumers.push({
-                                'id': value.id,
-                                'name': value.name,
-                                'address': value.address,
-                                'telephone': value.telephone,
-                                'description': value.description
-                            });
-                            $scope.costumer =
-                            {
-                                id: "",
-                                name: "",
-                                address: "",
-                                telephone: "",
-                                description: ""
-                            };
-                        } else {
-                            alert("Ошибка добавления записи!");
-                        };
-                    });
+        $scope.cancel = function (row, rowForm) {
+            var originalRow = resetRow(row, rowForm);
+            angular.extend(row, originalRow);
+        };
+
+        function resetRow(row, rowForm) {
+            row.isEditing = false;
+            rowForm.$setPristine();
+            for (var i in originalData) {
+                if (originalData[i].id === row.id) {
+                    return originalData[i];
                 }
             }
         };
 
-        $scope.updateCostumer = function (index) {
-            $scope.costumer = $scope.costumers[index];
-        };
-
-        $scope.deleteCostumer = function (index) {
-            var id = $scope.costumers[index].id;
-            CostumerService.deleteCostumer(id).then(function (value) {
-                if (value) {
-                    $scope.costumers.splice(index, 1);
-                } else {
-                    alert("Ошибка удаления записи!");
-                };
+        $scope.update = function (row, rowForm) {
+            CostumerService.updateCostumer(row).then(function (value) {
+                var originalRow = resetRow(row, rowForm);
+                angular.extend(originalRow, row);
             });
         };
+
+        $scope.save = function(costumer, createCostumer) {
+            if (createCostumer.$valid) {
+                CostumerService.addCostumer(costumer).then(function(value) {
+                    if (value) {
+                        $scope.tableParams.settings().dataset.unshift({
+                            'id': value.id,
+                            'name': value.name,
+                            'address': value.address,
+                            'telephone': value.telephone,
+                            'description': value.description
+                        });
+                        $scope.tableParams.reload().then(function(data) {
+                            if (data.length === 0 && self.tableParams.total() > 0) {
+                                self.tableParams.page(self.tableParams.page() - 1);
+                                self.tableParams.reload();
+                            }
+                        });
+                        $scope.costumer =
+                        {
+                            id: "",
+                            name: "",
+                            address: "",
+                            telephone: "",
+                            description: ""
+                        };
+                    } else {
+                        alert("Ошибка добавления записи!");
+                    };
+                });
+            }
+        };
+
+        
+        $scope.delete = function (id) {
+            CostumerService.deleteCostumer(id).then(function (value) {
+                if (value) {
+                    _.remove($scope.tableParams.settings().dataset, function (item) {
+                        return id === item.id;
+                    });
+                    $scope.tableParams.reload().then(function (data) {
+                        if (data.length === 0 && self.tableParams.total() > 0) {
+                            self.tableParams.page(self.tableParams.page() - 1);
+                            self.tableParams.reload();
+                        }
+                    });
+                }
+            });
+        };
+
     };
 
     angular
         .module("store.WebUI.Controllers")
-        .controller("CostumerController", ["$scope", "$state", "CostumerService", CostumerController]);
+        .controller("CostumerController", ["$scope", "$state", "$filter", "CostumerService", "ngTableParams", CostumerController]);
 })();

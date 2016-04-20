@@ -28,15 +28,15 @@
             }
         };
 
-        $scope.update = function (row, rowForm) {
+        $scope.update = function(row, rowForm) {
             if (rowForm.$valid) {
-            UserService.updateUser(row).then(function(value) {
+                UserService.updateUser(row).then(function(value) {
                     row.roleName = $filter('filter')($scope.roles, { id: row.roleId }, true)[0].name;
                     var originalRow = resetRow(row, rowForm);
                     angular.extend(originalRow, row);
                 });
+            };
         };
-        }
 
         RoleService.getAllRoles().then(function (value) {
             $scope.roles = value;
