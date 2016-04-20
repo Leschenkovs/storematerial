@@ -19,32 +19,32 @@
                     <td data-title="'Табельный'" sortable="'tn'" filter="{'tn': 'text' }" ng-switch="row.isEditing" ng-class="tn.$dirty ? 'bg-warning' : ''" ng-form="tn" demo-tracked-table-cell>
                         <span ng-switch-default class="editable-text">{{row.tn}}</span>
                         <div class="controls" ng-class="tn.$invalid && tn.$dirty ? 'has-error' : ''" ng-switch-when="true">
-                            <input type="text" name="tn" ng-model="row.tn" class="editable-input form-control input-sm" required />
+                            <input type="text" name="tn" ng-model="row.tn" class="editable-input form-control input-sm" ng-minlength="6" maxlength="6" required />
                         </div>
                     </td>
                     <td data-title="'ФИО'" sortable="'fio'" filter="{'fio': 'text' }" ng-switch="row.isEditing" ng-class="fio.$dirty ? 'bg-warning' : ''" ng-form="fio" demo-tracked-table-cell>
                         <span ng-switch-default class="editable-text">{{row.fio}}</span>
                         <div class="controls" ng-class="fio.$invalid && fio.$dirty ? 'has-error' : ''" ng-switch-when="true">
-                            <input type="text" name="fio" ng-model="row.fio" class="editable-input form-control input-sm" required />
+                            <input type="text" name="fio" ng-model="row.fio" class="editable-input form-control input-sm" maxlength="30" required />
                         </div>
                     </td>
                     <td data-title="'Отдел'" sortable="'department'" filter="{'department': 'text' }" ng-switch="row.isEditing" ng-class="department.$dirty ? 'bg-warning' : ''" ng-form="department" demo-tracked-table-cell>
                         <span ng-switch-default class="editable-text">{{row.department}}</span>
                         <div class="controls" ng-class="department.$invalid && department.$dirty ? 'has-error' : ''" ng-switch-when="true">
-                            <input type="text" name="department" ng-model="row.department" class="editable-input form-control input-sm" required />
+                            <input type="text" name="department" ng-model="row.department" class="editable-input form-control input-sm" maxlength="25" required />
                         </div>
                     </td>
                     <td data-title="'Должность'" sortable="'position'" filter="{'position': 'text' }" ng-switch="row.isEditing" ng-class="position.$dirty ? 'bg-warning' : ''" ng-form="position" demo-tracked-table-cell>
                         <span ng-switch-default class="editable-text">{{row.position}}</span>
                         <div class="controls" ng-class="position.$invalid && position.$dirty ? 'has-error' : ''" ng-switch-when="true">
-                            <input type="text" name="position" ng-model="row.position" class="editable-input form-control input-sm" required />
+                            <input type="text" name="position" ng-model="row.position" class="editable-input form-control input-sm" maxlength="25" required />
                         </div>
                     </td>
                     <td data-title="'Роль'" sortable="'roleName'" filter="{'roleName': 'text' }" ng-switch="row.isEditing" ng-class="roleName.$dirty ? 'bg-warning' : ''" ng-form="roleName" demo-tracked-table-cell>
                         <span ng-switch-default class="editable-text">{{row.roleName}}</span>
                         <div class="controls" ng-class="roleName.$invalid && roleName.$dirty ? 'has-error' : ''" ng-switch-when="true">
-                            <select ng-model="row.roleId" ng-options="obj.id as obj.name for obj in roles" 
-                                    class="editable-input form-control input-sm" required id="roleId" name="roleName" />
+                            <select ng-model="row.roleId" ng-options="obj.id as obj.name for obj in roles"
+                                class="editable-input form-control input-sm" required id="roleId" name="roleName" />
                         </div>
 
                     </td>

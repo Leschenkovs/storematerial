@@ -6,13 +6,10 @@
         var originalData = [];
 
         UserService.getAllUsers().then(function (value) {
-            $scope.users = value;
-
             originalData = angular.copy(value);
             $scope.tableParams = new ngTableParams({page: 1, count:2}, {
                 filterDelay: 0,
                 dataset: angular.copy(value)
-
             });
         });
 
@@ -32,11 +29,13 @@
         }
 
         $scope.update = function (row, rowForm) {
-            UserService.updateUser(row).then(function (value) {
-                row.roleName = $filter('filter')($scope.roles, { id: row.roleId }, true)[0].name;
-                var originalRow = resetRow(row, rowForm);
-                angular.extend(originalRow, row);
-            });
+            if (rowForm.$valid) {
+                UserService.updateUser(row).then(function(value) {
+                    row.roleName = $filter('filter')($scope.roles, { id: row.roleId }, true)[0].name;
+                    var originalRow = resetRow(row, rowForm);
+                    angular.extend(originalRow, row);
+                });
+            }
         }
 
         RoleService.getAllRoles().then(function (value) {
@@ -63,7 +62,6 @@
         $scope.deleteUser = function (id) {
             UserService.deleteUser(id).then(function (value) {
                 if (value) {
-                    debugger;
                     _.remove($scope.tableParams.settings().dataset, function (item) {
                         return id === item.id;
                     });
@@ -76,7 +74,6 @@
                 }
             });
         };
-
     };
 
     // register your controller into a dependent module 
