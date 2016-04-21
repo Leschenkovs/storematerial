@@ -24,7 +24,7 @@ namespace Store.Dal
 			{
 				new Unit {Name = "штука", ShortName = "шт"},
 				new Unit {Name = "тонна", ShortName = "т"},
-				new Unit {Name = "килогамм", ShortName = "кг"},
+				new Unit {Name = "килоамм", ShortName = "кг"},
 				new Unit {Name = "грамм", ShortName = "г"},
 				new Unit {Name = "литр", ShortName = "л"},
 				new Unit {Name = "миллилитр", ShortName = "мл"},
@@ -37,10 +37,10 @@ namespace Store.Dal
             context.Providers.AddRange(new List<Provider>
 			{
 				new Provider {Name = "СтроМинск", Address = "Минск", Telephone = "0336245675", Description = "Описание"},
-				new Provider {Name = "ГвоздиМагазин", Address = "Гродно", Telephone = "0294586974", Description = ""},
+				new Provider {Name = "ГводиМагазин", Address = "Гродно", Telephone = "0294586974", Description = ""},
 				new Provider {Name = "ОбоЛаки", Address = "Бобруйск", Telephone = "0274512365", Description = "Описание 2"},
                 new Provider {Name = "1Мага", Address = "Лев", Telephone = "0000", Description = "Описание"},
-				new Provider {Name = "2Мага", Address = "Птер", Telephone = "7785758", Description = ""},
+				new Provider {Name = "2Маг", Address = "Птер", Telephone = "7785758", Description = ""},
 				new Provider {Name = "3мага", Address = "Бобруйск", Telephone = "222", Description = " 2"}
 
 			});

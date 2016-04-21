@@ -5,6 +5,7 @@
         //public int id { get; set; }
         public decimal count { get; set; }
         public string kindMaterialName { get; set; }
+        public string unitName { get; set; }
 
 
         public int unitMaterialId { get; set; }

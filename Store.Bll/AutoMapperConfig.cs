@@ -77,7 +77,7 @@ namespace Store.Bll
               .ForMember("id", opt => opt.MapFrom(src => src.Id))
               .ForMember("articul", opt => opt.MapFrom(src => src.Articul))
               .ForMember("name", opt => opt.MapFrom(src => src.Name))
-              .ForMember("units", opt => opt.MapFrom(src => src.UnitMaterials.Aggregate("/", (current, a) => current + a.UnitObj.Name)));
+              .ForMember("units", opt => opt.MapFrom(src => src.UnitMaterials.Select(x=>x.UnitObj.ShortName).Aggregate((current, a) => (current + " / " +a))));
       }
 
       private static void RegisterMappingsSupply()
@@ -150,7 +150,8 @@ namespace Store.Bll
           Mapper.CreateMap<MaterialInStore, MaterialInStoreDTO>()
               .ForMember("unitMaterialId", opt => opt.MapFrom(src => src.UnitMaterialId))
               .ForMember("count", opt => opt.MapFrom(src => src.Count))
-              .ForMember("kindMaterialName", opt => opt.MapFrom(src => src.UnitMaterialObj.KindMaterialObj.Name));
+              .ForMember("kindMaterialName", opt => opt.MapFrom(src => src.UnitMaterialObj.KindMaterialObj.Name))
+              .ForMember("unitName", opt => opt.MapFrom(src => src.UnitMaterialObj.UnitObj.ShortName));
 
           Mapper.CreateMap<CreateSupplyDTO, MaterialInStore>()
               .ForMember("Count", opt => opt.MapFrom(src => src.count))

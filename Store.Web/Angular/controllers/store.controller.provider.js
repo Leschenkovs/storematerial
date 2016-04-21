@@ -9,7 +9,7 @@
             $scope.providers = value;
 
             originalData = angular.copy(value);
-            $scope.tableParams = new ngTableParams({ page: 1, count: 2 }, {
+            $scope.tableParams = new ngTableParams({ page: 1, count: 5 }, {
                 filterDelay: 0,
                 dataset: angular.copy(value)
             });

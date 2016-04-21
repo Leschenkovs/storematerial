@@ -5,12 +5,36 @@
       <h2 class="intro-text text-center">
         Склад
       </h2>
-      <hr>
-      <div>
-        <a href="#/kindMaterial/index" class="btn btn-primary">
-          <span>Справочник видов материалов</span>
-        </a>
-      </div>
+        <hr>
+        
+        <table ng-table="tableParams" show-filter="true" class="table table-bordered table-hover table-striped table-condensed editable-table demoTable" ng-form="tableForm" disable-filter="isAdding" demo-tracked-table="tableTracker">
+            <colgroup>
+                <col width="*0.5" />
+                <col width="*3.5" />
+                <col width="*2" />
+                <col width="*2" />
+                <col width="*1" />
+                <col width="85" />
+            </colgroup>
+            <tr ng-repeat="row in $data" ng-form="rowForm" demo-tracked-table-row="row">
+                <td data-title="'Вид материала'" sortable="'kindMaterialName'" filter="{'kindMaterialName': 'text' }" ng-switch="row.isEditing" ng-form="kindMaterialName" demo-tracked-table-cell>
+                    <span ng-switch-default class="editable-text">{{row.kindMaterialName}}</span>
+                </td>
+                <td data-title="'Ед.изм'" sortable="'unitName'" filter="{'unitName': 'text' }" ng-switch="row.isEditing" ng-form="unitName" demo-tracked-table-cell>
+                    <span ng-switch-default class="editable-text">{{row.unitName}}</span>
+                </td>
+                <td data-title="'Кол-во'" sortable="'count'" filter="{'count': 'text' }" ng-switch="row.isEditing" ng-form="count" demo-tracked-table-cell>
+                    <span ng-switch-default class="editable-text">{{row.count}}</span>
+                </td>
+            </tr>
+        </table>
+
+        <div>
+            <a href="#/kindMaterial/index" class="btn btn-primary">
+                <span>Справочник видов материалов</span>
+            </a>
+        </div>
+
     </div>
   </div>
 </div>

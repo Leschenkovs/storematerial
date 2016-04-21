@@ -9,6 +9,7 @@ namespace Store.Bll.Bll
     public interface ISupplyBll : IBaseBll<Supply>
     {
         new bool Delete(int id);
+        new bool Save(Supply model);
     }
 
     public class SupplyBll : BaseBll<Supply, ISupplyDal>, ISupplyBll
@@ -22,15 +23,15 @@ namespace Store.Bll.Bll
 
         public new bool Delete(int id)
         {
-            bool isIncreaseCountMaterialInStore = IncreaseCountMaterialInStore(id);
-            if (isIncreaseCountMaterialInStore)
+            bool isDecreaseCountMaterialInStore = DecreaseCountMaterialInStore(id);
+            if (isDecreaseCountMaterialInStore)
             {
                 return base.Delete(id);
             }
             return false;
         }
 
-        private bool IncreaseCountMaterialInStore(int id)
+        private bool DecreaseCountMaterialInStore(int id)
         {
             Supply obj = FactoryDal.SupplyDal.First(x => x.Id == id);
             MaterialInStore objMaterialInStore = obj.MaterialInStoreObj;
@@ -47,5 +48,38 @@ namespace Store.Bll.Bll
 
             return false;
         }
+
+        public new bool Save(Supply model)
+        {
+            bool isIncreaseCountMaterialInStore = IncreaseCountMaterialInStore(model);
+            if (isIncreaseCountMaterialInStore)
+            {
+                return base.Save(model) != null;
+            }
+            return false;
+        }
+
+        private bool IncreaseCountMaterialInStore(Supply model)
+        {
+            MaterialInStore objMaterialInStore =
+                FactoryDal.MaterialInStoreDal.First(x => x.UnitMaterialId == model.MaterialInStoreId);
+            if (objMaterialInStore == null)
+            {
+                objMaterialInStore = new MaterialInStore
+                {
+                    UnitMaterialId = model.MaterialInStoreId,
+                    Count = model.Count
+                };
+            }
+            else
+            {
+                objMaterialInStore.Count = objMaterialInStore.Count + model.Count;
+            }
+
+            if (FactoryDal.MaterialInStoreDal.Save(objMaterialInStore) != null) return true;
+
+            return false;
+        }
+
     }
 }

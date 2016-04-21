@@ -16,7 +16,6 @@ namespace Store.Web.Controllers
     public class SupplyController : BaseApiController
     {
         private readonly ISupplyBll _supplyBll;
-        private readonly IMaterialInStoreBll _materialInStoreBll;
 
         public SupplyController(IFactoryBll factoryBll)
         {
@@ -25,7 +24,6 @@ namespace Store.Web.Controllers
                 throw new ArgumentNullException("factoryBll");
             }
             _supplyBll = factoryBll.SupplyBll;
-            _materialInStoreBll = factoryBll.MaterialInStoreBll;
         }
 
 		  [HttpGet]
@@ -36,14 +34,10 @@ namespace Store.Web.Controllers
 		  }
 
 		  [HttpPost]
-          public Supply CreateSupply([FromBody] CreateSupplyDTO model)
+          public bool CreateSupply([FromBody] CreateSupplyDTO model)
 		  {
-		      MaterialInStore objMaterial = Mapper.Map<CreateSupplyDTO, MaterialInStore>(model);
-              objMaterial = _materialInStoreBll.Save(objMaterial);
-              if (objMaterial == null) { throw new DbOwnException("Ошибка добавления записи о материале на склад!"); }
-              Supply objSupply = _supplyBll.Save(Mapper.Map<CreateSupplyDTO, Supply>(model));
-
-              return objSupply;
+              bool entityReuslt = _supplyBll.Save(Mapper.Map<CreateSupplyDTO, Supply>(model));
+              return entityReuslt;
 		  }
 
           [HttpDelete]
