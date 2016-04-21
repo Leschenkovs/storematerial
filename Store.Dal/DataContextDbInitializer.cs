@@ -8,7 +8,7 @@ namespace Store.Dal
 	//DropCreateDatabaseAlways<DataContext>
 	//DropCreateDatabaseIfModelChanges<DataContext>
 
-    public class DataContextDbInitializer : DropCreateDatabaseIfModelChanges<DataContext>
+    public class DataContextDbInitializer : DropCreateDatabaseAlways<DataContext>
 	{
 		protected override void Seed(DataContext context)
 		{
@@ -78,11 +78,11 @@ namespace Store.Dal
 			// Test data
 			context.Users.AddRange(new List<User>
 			{
-				new User {Tn = "11", Fio = "Кууруза А.В.", RoleId = context.Roles.First(x => x.Code == "admin").Id, Position = "Оператор", Department = "Склад"},
-                new User {Tn = "12", Fio = "Новикова А.В.", RoleId = context.Roles.First(x => x.Code == "read").Id, Position = "Кладовщик", Department = "Склад 203"},
-				new User {Tn = "15", Fio = "Лещенко А.В.", RoleId = context.Roles.First(x => x.Code == "read_write").Id, Position = "Кладовщик", Department = "Склад 3"},
-                new User {Tn = "18", Fio = "Петров А.В.", RoleId = context.Roles.First(x => x.Code == "read").Id, Position = "Грузчик", Department = "Склад 203"},
-				new User {Tn = "20", Fio = "Вадим А.В.", RoleId = context.Roles.First(x => x.Code == "read_write").Id, Position = "Бухгалетр", Department = "Склад 3"}
+				new User {Tn = "111111", Password = "1", Fio = "Кууруза А.В.", RoleId = context.Roles.First(x => x.Code == "admin").Id, Position = "Оператор", Department = "Склад"},
+                new User {Tn = "122222", Password = "1", Fio = "Новикова А.В.", RoleId = context.Roles.First(x => x.Code == "read").Id, Position = "Кладовщик", Department = "Склад 203"},
+				new User {Tn = "155555", Password = "1", Fio = "Лещенко А.В.", RoleId = context.Roles.First(x => x.Code == "read_write").Id, Position = "Кладовщик", Department = "Склад 3"},
+                new User {Tn = "188888", Password = "1", Fio = "Петров А.В.", RoleId = context.Roles.First(x => x.Code == "read").Id, Position = "Грузчик", Department = "Склад 203"},
+				new User {Tn = "200000", Password = "1", Fio = "Вадим А.В.", RoleId = context.Roles.First(x => x.Code == "read_write").Id, Position = "Бухгалетр", Department = "Склад 3"}
 
 			});
 			context.SaveChanges();
