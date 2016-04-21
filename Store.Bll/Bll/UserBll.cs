@@ -9,7 +9,7 @@ namespace Store.Bll.Bll
     {
         User Add(User obj);
         User Update(User obj);
-        User GetByTnAndPassword(string tn, string psw);
+        User GetByLoginAndPassword(string login, string psw);
     }
 
     public class UserBll : BaseBll<User, IUserDal>, IUserBll
@@ -24,10 +24,10 @@ namespace Store.Bll.Bll
 
         public User Add(User obj)
         {
-            bool isExist = GetByTn(obj.Tn) != null;
+            bool isExist = GetByTn(obj.Login) != null;
             if (isExist)
             {
-                throw new DbOwnException("Работник ТН = " + obj.Tn + " уже существует в БД!");
+                throw new DbOwnException("Работник ТН = " + obj.Login + " уже существует в БД!");
             }
             User newObj = Save(obj);
             return newObj;
@@ -35,24 +35,24 @@ namespace Store.Bll.Bll
 
         public User Update(User obj)
         {
-            User user = GetByTn(obj.Tn);
+            User user = GetByTn(obj.Login);
             if (user != null && user.Id != obj.Id)
             {
-                throw new DbOwnException("Работник ТН = " + obj.Tn + " уже существует в БД!");
+                throw new DbOwnException("Работник ТН = " + obj.Login + " уже существует в БД!");
             }
             User objAfterUpdate = Save(obj);
             return objAfterUpdate;
         }
 
-        public User GetByTnAndPassword(string tn, string psw)
+        public User GetByLoginAndPassword(string login, string psw)
         {
-            User user = FactoryDal.UserDal.First(x => x.Tn == tn.Trim() && x.Password == psw);
+            User user = FactoryDal.UserDal.First(x => x.Login == login.Trim() && x.Password == psw);
             return user;
         }
 
         private User GetByTn(string tn)
         {
-            return FactoryDal.UserDal.First(x => x.Tn == tn.Trim());
+            return FactoryDal.UserDal.First(x => x.Login == tn.Trim());
         }
     }
 }

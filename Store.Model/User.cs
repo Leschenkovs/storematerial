@@ -11,8 +11,11 @@ namespace Store.Model
 			Experses = new Collection<Experse>();
 		}
 
-		// Табельный
-		public string Tn { get;set; }
+		// UserName
+		public string Login { get;set; }
+
+        // Пароль
+        public string Password { get; set; }
 
 		// ФИО
 		public string Fio { get; set; }
@@ -22,9 +25,6 @@ namespace Store.Model
 
 		// Должность
 		public string Position { get; set; }
-
-        // Пароль
-        public string Password { get; set; }
 
 		// Список оформленных отгрузок (расходов)
 		public virtual ICollection<Experse> Experses { get; set; }

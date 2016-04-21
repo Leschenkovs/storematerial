@@ -26,7 +26,7 @@ namespace Store.Web.Controllers
         [HttpPost]
         public IHttpActionResult Authenticate([FromBody]AuthenticateRequest request)
         {
-            User user = _userBll.GetByTnAndPassword(request.username, request.password);
+            User user = _userBll.GetByLoginAndPassword(request.username, request.password);
             if (user == null)
             {
                 return Ok(new { success = false, message = "User code or password is incorrect" });

@@ -68,7 +68,6 @@
     <Compile Include="Exception\DbOwnException.cs" />
     <Compile Include="FactoryBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Provider\PrimaryMembershipProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Store.Common\Store.Common.csproj">
@@ -85,7 +84,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

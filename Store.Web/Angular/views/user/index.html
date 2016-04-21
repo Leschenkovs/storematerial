@@ -8,18 +8,25 @@
 
             <table ng-table="tableParams" show-filter="true" class="table table-bordered table-hover table-striped table-condensed editable-table demoTable" ng-form="tableForm" disable-filter="isAdding" demo-tracked-table="tableTracker">
                 <colgroup>
-                    <col width="*0.5" />
-                    <col width="*3.5" />
+                    <col width="*0.7" />
+                    <col width="*0.7" />
+                    <col width="*2" />
                     <col width="*2" />
                     <col width="*2" />
                     <col width="*1" />
                     <col width="85" />
                 </colgroup>
                 <tr ng-repeat="row in $data" ng-form="rowForm" demo-tracked-table-row="row">
-                    <td data-title="'Табельный'" sortable="'tn'" filter="{'tn': 'text' }" ng-switch="row.isEditing" ng-class="tn.$dirty ? 'bg-warning' : ''" ng-form="tn" demo-tracked-table-cell>
-                        <span ng-switch-default class="editable-text">{{row.tn}}</span>
-                        <div class="controls" ng-class="tn.$invalid && tn.$dirty ? 'has-error' : ''" ng-switch-when="true">
-                            <input type="text" name="tn" ng-model="row.tn" class="editable-input form-control input-sm" ng-minlength="6" maxlength="6" required />
+                    <td data-title="'Логин'" sortable="'login'" filter="{'login': 'text' }" ng-switch="row.isEditing" ng-class="login.$dirty ? 'bg-warning' : ''" ng-form="login" demo-tracked-table-cell>
+                        <span ng-switch-default class="editable-text">{{row.login}}</span>
+                        <div class="controls" ng-class="login.$invalid && login.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                            <input type="text" name="login" ng-model="row.login" class="editable-input form-control input-sm" maxlength="15" required/>
+                        </div>
+                    </td>
+                    <td data-title="'Пароль'" sortable="'password'" filter="{'password': 'text' }" ng-switch="row.isEditing" ng-class="password.$dirty ? 'bg-warning' : ''" ng-form="password" demo-tracked-table-cell>
+                        <span ng-switch-default class="editable-text">{{row.password}}</span>
+                        <div class="controls" ng-class="password.$invalid && password.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                            <input type="text" name="password" ng-model="row.password" class="editable-input form-control input-sm" maxlength="15" required />
                         </div>
                     </td>
                     <td data-title="'ФИО'" sortable="'fio'" filter="{'fio': 'text' }" ng-switch="row.isEditing" ng-class="fio.$dirty ? 'bg-warning' : ''" ng-form="fio" demo-tracked-table-cell>

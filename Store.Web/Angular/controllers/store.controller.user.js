@@ -6,15 +6,19 @@
 
         var originalData = [];
 
-        UserService.getAllUsers().then(function (value) {
-            originalData = angular.copy(value);
-            $scope.tableParams = new ngTableParams({ page: 1, count: 5 }, {
-                filterDelay: 0,
-                dataset: angular.copy(value)
+        UserService.getAllUsers().then(
+            function (value) {
+                originalData = angular.copy(value);
+                $scope.tableParams = new ngTableParams({ page: 1, count: 5 }, {
+                    filterDelay: 0,
+                    dataset: angular.copy(value)
+                });
+            },
+            function (errorObject) {
+                alert(errorObject.ExceptionMessage);
             });
-        });
 
-        $scope.cancel = function(row, rowForm) {
+        $scope.cancel = function (row, rowForm) {
             var originalRow = resetRow(row, rowForm);
             angular.extend(row, originalRow);
         };
@@ -29,15 +33,15 @@
             }
         };
 
-        $scope.update = function(row, rowForm) {
+        $scope.update = function (row, rowForm) {
             if (rowForm.$valid) {
                 UserService.updateUser(row).then(
-                    function(response) {
+                    function (response) {
                         row.roleName = $filter('filter')($scope.roles, { id: row.roleId }, true)[0].name;
                         var originalRow = resetRow(row, rowForm);
                         angular.extend(originalRow, row);
                     },
-                    function(errorObject) {
+                    function (errorObject) {
                         alert(errorObject.ExceptionMessage);
                     });
             };
@@ -59,10 +63,10 @@
         $scope.save = function (user, createUser) {
             if (createUser.$valid) {
                 UserService.addUser(user).then(
-                    function(value) {
+                    function (value) {
                         $state.go("user/index");
                     },
-                    function(errorObject) {
+                    function (errorObject) {
                         alert(errorObject.ExceptionMessage);
                     });
             }

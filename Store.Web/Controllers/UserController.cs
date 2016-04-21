@@ -8,9 +8,11 @@ using Store.Bll.Bll;
 using Store.Model;
 using Store.Model.DTOObjects;
 using Store.Model.RequestObjects;
+using Store.Web.Attributes;
 
 namespace Store.Web.Controllers
 {
+    [StoreAuthorize(Roles = "admin")]
     [RoutePrefix("api/user")]
     public class UserController : BaseApiController
     {
@@ -38,13 +40,6 @@ namespace Store.Web.Controllers
             UserDTO model = Mapper.Map<UserDTO>(_userBll.GetById(id));
             return model;
         }
-
-        //[Authorize, ActionName("login")]
-        //public UserDTO Login([FromUri]string tn, string psw)
-        //{
-        //    UserDTO model = Mapper.Map<UserDTO>(_userBll.GetByTnAndPassword(tn, psw));
-        //    return model;
-        //}
 
         [HttpPost]
         public UserDTO CreateUser([FromBody]UserDTO model)

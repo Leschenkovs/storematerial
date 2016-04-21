@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading;
 using System.Web;
 using Store.Bll;
-using Store.Bll.Bll;
 using Store.Model;
 
 namespace Store.Web.Modules
@@ -13,16 +12,6 @@ namespace Store.Web.Modules
     public class BasicAuthHttpModule : IHttpModule
     {
         private const string Realm = "AngularWebAPI";
-        private readonly IUserBll _userBll;
-
-        public BasicAuthHttpModule(IFactoryBll factoryBll)
-        {
-            if (factoryBll == null)
-            {
-                throw new ArgumentNullException("factoryBll");
-            }
-            _userBll = factoryBll.UserBll;
-        }
 
         public void Init(HttpApplication context)
         {
@@ -40,7 +29,7 @@ namespace Store.Web.Modules
             }
         }
 
-        private bool AuthenticateUser(string credentials)
+        private static bool AuthenticateUser(string credentials)
         {
             Encoding encoding = Encoding.GetEncoding("iso-8859-1");
             credentials = encoding.GetString(Convert.FromBase64String(credentials));
@@ -49,19 +38,19 @@ namespace Store.Web.Modules
             string username = credentialsArray[0];
             string password = credentialsArray[1];
 
-            User user = _userBll.GetByTnAndPassword(username, password);
+            User user = GetUser(username, password);
             if (user == null)
             {
                 return false;
             }
 
             GenericIdentity identity = new GenericIdentity(username);
-            SetPrincipal(new GenericPrincipal(identity, null));
+            SetPrincipal(new GenericPrincipal(identity, new string[] {user.RoleObj.Code} ));
 
             return true;
         }
 
-        private void OnApplicationAuthenticateRequest(object sender, EventArgs e)
+        private static void OnApplicationAuthenticateRequest(object sender, EventArgs e)
         {
             var request = HttpContext.Current.Request;
             var authHeader = request.Headers["Authorization"];
@@ -85,6 +74,13 @@ namespace Store.Web.Modules
             {
                 response.Headers.Add("WWW-Authenticate", string.Format("Basic realm=\"{0}\"", Realm));
             }
+        }
+
+        private static User GetUser(string username, string password)
+        {
+            IFactoryBll factoryBll = new FactoryBll();
+            User user = factoryBll.UserBll.GetByLoginAndPassword(username, password);
+            return user;
         }
 
         public void Dispose()
