@@ -160,6 +160,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\ComponentRegistry.cs" />
+    <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\CostumerController.cs" />
     <Compile Include="Controllers\ExperseController.cs" />
@@ -176,6 +177,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Modules\BasicAuthHttpModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +186,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Angular\app.js" />
     <Content Include="Angular\app.config.js" />
+    <Content Include="Angular\controllers\store.controller.authentication.js" />
     <Content Include="Angular\controllers\store.controller.costumer.js" />
     <Content Include="Angular\controllers\store.controller.experse.js" />
     <Content Include="Angular\controllers\store.controller.kindMaterial.js" />
@@ -200,6 +203,7 @@
     <Content Include="Angular\directives\ngTableDemo\demoTrackedTableCell.js" />
     <Content Include="Angular\partials\footer.html" />
     <Content Include="Angular\partials\header.html" />
+    <Content Include="Angular\services\store.service.authentication.js" />
     <Content Include="Angular\services\store.service.costumer.js" />
     <Content Include="Angular\services\store.service.experse.js" />
     <Content Include="Angular\services\store.service.kindMaterial.js" />
@@ -211,6 +215,7 @@
     <Content Include="Angular\services\store.service.unit.js" />
     <Content Include="Angular\services\store.service.unitMaterial.js" />
     <Content Include="Angular\services\store.service.user.js" />
+    <Content Include="Angular\views\authentication\login.html" />
     <Content Include="Angular\views\costumer\index.html" />
     <Content Include="Angular\views\experse\index.html" />
     <Content Include="Angular\views\kindMaterial\index.html" />
@@ -237,12 +242,12 @@
     <Content Include="Content\styles\ng-table.css" />
     <Content Include="Content\styles\store.app.css" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\angular\angular-messages.js" />
-    <Content Include="Scripts\angular\angular-messages.min.js" />
+    <Content Include="Scripts\angular\angular-cookies.js" />
     <Content Include="Scripts\angular\angular-mocks.js" />
+    <Content Include="Scripts\angular\angular.js" />
+    <Content Include="Scripts\angular\angular-messages.js" />
     <Content Include="Scripts\angular\angular-sanitize.js" />
     <Content Include="Scripts\angular\angular-ui-router.js" />
-    <Content Include="Scripts\angular\angular.js" />
     <Content Include="Scripts\angular\date.js" />
     <Content Include="Scripts\angular\ui-bootstrap-tpls.js" />
     <Content Include="Scripts\angular\ui-bootstrap.js" />
@@ -256,7 +261,6 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Scripts\angular\angular-messages.min.js.map" />
     <Content Include="Angular\filters\store.filter.base.js" />
     <Content Include="Scripts\lodash.js" />
     <Content Include="Scripts\underscore.js" />
@@ -297,7 +301,6 @@
     <Folder Include="Angular\helpers\" />
     <Folder Include="App_Data\" />
     <Folder Include="Classes\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

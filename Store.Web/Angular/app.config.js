@@ -4,6 +4,12 @@
     angular
         .module("store.WebUI")
         .config(["$stateProvider", "$urlRouterProvider", "$locationProvider", function ($stateProvider, $urlRouterProvider, $locationProvider) {
+            $stateProvider.state("login", {
+                url: "/login",
+                templateUrl: "/Angular/views/authentication/login.html",
+                controller: "AuthenticationController"
+            });
+
             $stateProvider.state("index", {
                 url: "/",
                 templateUrl: "/Angular/views/index.html",
