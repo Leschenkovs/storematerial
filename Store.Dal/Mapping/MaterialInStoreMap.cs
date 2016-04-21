@@ -8,18 +8,16 @@ namespace Store.Dal.Mapping
         public MaterialInStoreMap()
         {
             // Primary Key
-            HasKey(t => t.Id);
+            HasKey(t => t.UnitMaterialId);
 
             // Properties
             Property(t => t.Count).IsRequired();
-            Property(t => t.PriceSupply).IsRequired();
             Property(t => t.UnitMaterialId).IsRequired();
 
             // Table & Column Mappings
             ToTable("MaterialInStore");
-            Property(t => t.Id).HasColumnName("Id");
+            //Property(t => t.Id).HasColumnName("Id");
             Property(t => t.Count).HasColumnName("Count");
-            Property(t => t.PriceSupply).HasColumnName("PriceSupply");
             Property(t => t.UnitMaterialId).HasColumnName("UnitMaterialId");
 
             // Relationships  

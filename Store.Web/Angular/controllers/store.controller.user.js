@@ -3,6 +3,7 @@
 
     // controller class definintion
     var UserController = function ($scope, $state, $filter, UserService, RoleService, ngTableParams) {
+
         var originalData = [];
 
         UserService.getAllUsers().then(function (value) {

@@ -2,9 +2,8 @@
 {
     public class MaterialInStoreDTO
     {
-        public int id { get; set; }
+        //public int id { get; set; }
         public decimal count { get; set; }
-        public decimal priceSupply { get; set; }
         public string kindMaterialName { get; set; }
 
 

@@ -1,20 +1,27 @@
 ﻿(function() {
     "use strict";
 
-    var SupplyController = function ($scope, $state, $filter, SupplyService, ProviderService, UnitMaterialService, KindMaterialService) {
+    var SupplyController = function ($scope, $state, $filter, SupplyService, ProviderService, UnitMaterialService, KindMaterialService, ngTableParams) {
+
+        var originalData = [];
 
         $scope.supply =
         {
             id: "",
             count: "",
-            ttn:"",
+            ttn: "",
+            priceSupply:"",
             unitMaterialId: "",
             providerId: "",
             materialInStoreId: ""
         };
 
         SupplyService.getAllSupplies().then(function (value) {
-            $scope.supplies = value;
+            originalData = angular.copy(value);
+            $scope.tableParams = new ngTableParams({ page: 1, count: 2 }, {
+                filterDelay: 0,
+                dataset: angular.copy(value)
+            });
         });
 
         ProviderService.getAllProviders().then(function (value) {
@@ -29,9 +36,36 @@
             $scope.kindMaterials = value;
         });
 
+        $scope.save = function (supply, createSupply) {
+            if (createSupply.$valid) {
+                SupplyService.addSupply(supply).then(
+                    function (value) {
+                        $state.go("supply/index");
+                    },
+                    function (errorObject) {
+                        alert(errorObject.ExceptionMessage);
+                    });
+            }
+        };
+
+        $scope.deleteSupply = function (id) {
+            SupplyService.deleteSupply(id).then(function (value) {
+                if (value) {
+                    _.remove($scope.tableParams.settings().dataset, function (item) {
+                        return id === item.id;
+                    });
+                    $scope.tableParams.reload().then(function (data) {
+                        if (data.length === 0 && $scope.tableParams.total() > 0) {
+                            $scope.tableParams.page($scope.tableParams.page() - 1);
+                            $scope.tableParams.reload();
+                        }
+                    });
+                }
+            });
+        };
     };
 
     angular
         .module("store.WebUI.Controllers")
-        .controller("SupplyController", ["$scope", "$state", "$filter", "SupplyService", "ProviderService", "UnitMaterialService", "KindMaterialService", SupplyController]);
+        .controller("SupplyController", ["$scope", "$state", "$filter", "SupplyService", "ProviderService", "UnitMaterialService", "KindMaterialService", "ngTableParams", SupplyController]);
 })();

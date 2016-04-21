@@ -20,7 +20,20 @@
                     deferred.resolve(data);
                 }).
                 error(function (data, status, headers, config) {
-                    deferred.reject(status);
+                    deferred.reject(data);
+                });
+            return deferred.promise;
+        };
+
+        this.deleteSupply = function (id) {
+            var deferred = $q.defer();
+
+            $http.delete("api/supply?id=" + id).
+                success(function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).
+                error(function (data, status, headers, config) {
+                    deferred.reject(data);
                 });
             return deferred.promise;
         };

@@ -30,15 +30,20 @@
                             <option value="">-- Выберите ед. изм. --</option>
                         </select>
                     </div>
+                    
+                    <div class="form-group col-lg-4" ng-class="{ 'has-error': supply.ttn.$touched && supply.ttn.$invalid }">
+                        <label for="ttn"><strong class="error-message">*</strong>№ ТТН</label>
+                        <input type="text" name="ttn" ng-model="supply.ttn" class="form-control" required maxlength="30">
+                    </div>                    
 
                     <div class="form-group col-lg-4" ng-class="{ 'has-error': createSupply.count.$touched && createSupply.count.$invalid }">
                         <label for="count"><strong class="error-message">*</strong>Количество</label>
                         <input type="text" name="count" ng-model="supply.count" class="form-control" required>
                     </div>
-
-                    <div class="form-group col-lg-4" ng-class="{ 'has-error': supply.ttn.$touched && supply.ttn.$invalid }">
-                        <label for="ttn"><strong class="error-message">*</strong>№ ТТН</label>
-                        <input type="text" name="ttn" ng-model="supply.ttn" class="form-control" required maxlength="30">
+                    
+                    <div class="form-group col-lg-4" ng-class="{ 'has-error': createSupply.priceSupply.$touched && createSupply.priceSupply.$invalid }">
+                        <label for="priceSupply"><strong class="error-message">*</strong>Закупочная цена</label>
+                        <input type="text" name="priceSupply" ng-model="supply.priceSupply" class="form-control" required>
                     </div>
 
                     <div class="form-group col-lg-4">
@@ -53,7 +58,7 @@
                     </div>
                     <div class="clearfix"></div>
                     <div class="form-group col-lg-12">
-                        <button type="submit" class="btn btn-success" ng-click="save(user, createUser)">Сохранить</button>
+                        <button type="submit" class="btn btn-success" ng-click="save(supply, createSupply)">Сохранить</button>
                         <a href="#/supply/index" class="btn btn-primary" id="Cancel">
                             <span>Отмена</span>
                         </a>

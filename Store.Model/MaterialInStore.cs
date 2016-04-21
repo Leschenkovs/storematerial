@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 namespace Store.Model
 {
 	// Модель описывает материалы на складе
-	public class MaterialInStore : BaseModel<int>
+	public class MaterialInStore 
 	{
 		public MaterialInStore()
 		{
@@ -31,8 +31,6 @@ namespace Store.Model
 		// Кол-во
 		public decimal Count { get; set; }
 
-		// Цена закупочная
-		public decimal PriceSupply { get; set; }
 
 	}
 }

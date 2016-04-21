@@ -13,6 +13,7 @@ namespace Store.Dal.Mapping
             // Properties
             Property(t => t.Count).IsRequired();
             Property(t => t.Ttn).HasMaxLength(12).IsRequired();
+            Property(t => t.PriceSupply).IsRequired();
             Property(t => t.MaterialInStoreId).IsRequired();
             Property(t => t.ProviderId).IsRequired();
 
@@ -21,6 +22,7 @@ namespace Store.Dal.Mapping
             Property(t => t.Id).HasColumnName("Id");
             Property(t => t.Count).HasColumnName("Count");
             Property(t => t.Ttn).HasColumnName("Ttn");
+            Property(t => t.PriceSupply).HasColumnName("PriceSupply");
             Property(t => t.MaterialInStoreId).HasColumnName("MaterialInStoreId");
             Property(t => t.ProviderId).HasColumnName("ProviderId");
 

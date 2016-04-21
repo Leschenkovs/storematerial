@@ -21,7 +21,10 @@
         public decimal Count { get; set; }
 
         // Номер ТТН
-        public string Ttn { get; set; } 
+        public string Ttn { get; set; }
+
+        // Цена закупочная
+        public decimal PriceSupply { get; set; }
 
     }
 }

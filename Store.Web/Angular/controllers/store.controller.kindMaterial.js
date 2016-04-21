@@ -89,9 +89,12 @@
         };
 
         $scope.update = function (row, rowForm) {
-            KindMaterialService.updateKindMaterial(row).then(function (value) {
+            KindMaterialService.updateKindMaterial(row).then(function (response) {
                 var originalRow = resetRow(row, rowForm);
                 angular.extend(originalRow, row);
+            },
+            function(errorObject) {
+                alert(errorObject.ExceptionMessage);
             });
         };
 

@@ -5,6 +5,7 @@ using System.Web.Http;
 using AutoMapper;
 using Store.Bll;
 using Store.Bll.Bll;
+using Store.Bll.Exception;
 using Store.Model;
 using Store.Model.DTOObjects;
 using Store.Model.RequestObjects;
@@ -15,6 +16,7 @@ namespace Store.Web.Controllers
     public class SupplyController : BaseApiController
     {
         private readonly ISupplyBll _supplyBll;
+        private readonly IMaterialInStoreBll _materialInStoreBll;
 
         public SupplyController(IFactoryBll factoryBll)
         {
@@ -23,6 +25,7 @@ namespace Store.Web.Controllers
                 throw new ArgumentNullException("factoryBll");
             }
             _supplyBll = factoryBll.SupplyBll;
+            _materialInStoreBll = factoryBll.MaterialInStoreBll;
         }
 
 		  [HttpGet]
@@ -33,12 +36,21 @@ namespace Store.Web.Controllers
 		  }
 
 		  [HttpPost]
-		  public SupplyDTO CreateSupply([FromBody] SupplyDTO model)
+          public Supply CreateSupply([FromBody] CreateSupplyDTO model)
 		  {
-			 Supply entity = Mapper.Map<SupplyDTO, Supply>(model);
-			 model = Mapper.Map<Supply, SupplyDTO>(_supplyBll.Save(entity));
-			 return model;
+		      MaterialInStore objMaterial = Mapper.Map<CreateSupplyDTO, MaterialInStore>(model);
+              objMaterial = _materialInStoreBll.Save(objMaterial);
+              if (objMaterial == null) { throw new DbOwnException("Ошибка добавления записи о материале на склад!"); }
+              Supply objSupply = _supplyBll.Save(Mapper.Map<CreateSupplyDTO, Supply>(model));
+
+              return objSupply;
 		  }
 
+          [HttpDelete]
+          public bool DeleteSupply([FromUri] int id)
+          {
+              bool entityReuslt = _supplyBll.Delete(id);
+              return entityReuslt;
+          }
     }
 }

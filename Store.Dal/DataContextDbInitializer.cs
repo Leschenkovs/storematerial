@@ -8,7 +8,7 @@ namespace Store.Dal
 	//DropCreateDatabaseAlways<DataContext>
 	//DropCreateDatabaseIfModelChanges<DataContext>
 
-    public class DataContextDbInitializer : DropCreateDatabaseAlways<DataContext>
+    public class DataContextDbInitializer : DropCreateDatabaseIfModelChanges<DataContext>
 	{
 		protected override void Seed(DataContext context)
 		{
@@ -23,11 +23,11 @@ namespace Store.Dal
 			context.Units.AddRange(new List<Unit>
 			{
 				new Unit {Name = "штука", ShortName = "шт"},
-				new Unit {Name = "топнна", ShortName = "т"},
-				new Unit {Name = "к5иtллграм", ShortName = "кг"},
-				new Unit {Name = "гр2мfм", ShortName = "г"},
+				new Unit {Name = "тонна", ShortName = "т"},
+				new Unit {Name = "килогамм", ShortName = "кг"},
+				new Unit {Name = "грамм", ShortName = "г"},
 				new Unit {Name = "литр", ShortName = "л"},
-				new Unit {Name = "милиитр", ShortName = "мл"},
+				new Unit {Name = "миллилитр", ShortName = "мл"},
 				new Unit {Name = "рулон", ShortName = "рулон"},
 				new Unit {Name = "метр квадратный", ShortName = "м.кв"},
 				new Unit {Name = "метр кубический", ShortName = "м.куб"}
@@ -38,7 +38,7 @@ namespace Store.Dal
 			{
 				new Provider {Name = "СтроМинск", Address = "Минск", Telephone = "0336245675", Description = "Описание"},
 				new Provider {Name = "ГвоздиМагазин", Address = "Гродно", Telephone = "0294586974", Description = ""},
-				new Provider {Name = "ОбоиhЛаки", Address = "Бобруйск", Telephone = "0274512365", Description = "Описание 2"},
+				new Provider {Name = "ОбоЛаки", Address = "Бобруйск", Telephone = "0274512365", Description = "Описание 2"},
                 new Provider {Name = "1Мага", Address = "Лев", Telephone = "0000", Description = "Описание"},
 				new Provider {Name = "2Мага", Address = "Птер", Telephone = "7785758", Description = ""},
 				new Provider {Name = "3мага", Address = "Бобруйск", Telephone = "222", Description = " 2"}
@@ -64,12 +64,12 @@ namespace Store.Dal
 
             context.UnitMaterials.AddRange(new List<UnitMaterial>
 			{
-				new UnitMaterial {KindMaterialId = context.KindMaterials.First(x => x.Name == "Доски").Id, UnitId = context.Units.First(x => x.ShortName == "шт").Id},
-				new UnitMaterial {KindMaterialId = context.KindMaterials.First(x => x.Name == "Доски").Id, UnitId = context.Units.First(x => x.ShortName == "л").Id},
-				new UnitMaterial {KindMaterialId = context.KindMaterials.First(x => x.Name == "Краска").Id, UnitId = context.Units.First(x => x.ShortName == "рулон").Id},
-                new UnitMaterial {KindMaterialId = context.KindMaterials.First(x => x.Name == "Краска").Id, UnitId = context.Units.First(x => x.ShortName == "шт").Id},
-				new UnitMaterial {KindMaterialId = context.KindMaterials.First(x => x.Name == "Краска").Id, UnitId = context.Units.First(x => x.ShortName == "л").Id},
-				new UnitMaterial {KindMaterialId = context.KindMaterials.First(x => x.Name == "Гвозди").Id, UnitId = context.Units.First(x => x.ShortName == "рулон").Id}
+				new UnitMaterial {Id=1,KindMaterialId = context.KindMaterials.First(x => x.Name == "Доски").Id, UnitId = context.Units.First(x => x.ShortName == "шт").Id},
+				new UnitMaterial {Id=2,KindMaterialId = context.KindMaterials.First(x => x.Name == "Доски").Id, UnitId = context.Units.First(x => x.ShortName == "л").Id},
+				new UnitMaterial {Id=3,KindMaterialId = context.KindMaterials.First(x => x.Name == "Краска").Id, UnitId = context.Units.First(x => x.ShortName == "рулон").Id},
+                new UnitMaterial {Id=4,KindMaterialId = context.KindMaterials.First(x => x.Name == "Краска").Id, UnitId = context.Units.First(x => x.ShortName == "шт").Id},
+				new UnitMaterial {Id=5,KindMaterialId = context.KindMaterials.First(x => x.Name == "Краска").Id, UnitId = context.Units.First(x => x.ShortName == "л").Id},
+				new UnitMaterial {Id=6,KindMaterialId = context.KindMaterials.First(x => x.Name == "Гвозди").Id, UnitId = context.Units.First(x => x.ShortName == "рулон").Id}
 
 			});
             context.SaveChanges();

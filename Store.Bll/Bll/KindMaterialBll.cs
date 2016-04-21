@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Store.Bll.Exception;
 using Store.Common;
 using Store.Common.Helper;
 using Store.Dal;
@@ -45,7 +46,8 @@ namespace Store.Bll.Bll
         public new bool Delete(int id)
         {
             bool isExistMaterialInStore = IsExistMaterialInStore(id);
-            return !isExistMaterialInStore && base.Delete(id);
+            if (isExistMaterialInStore) { throw new DbOwnException("На складе имеются остатки этого материала, удаление не возможно!"); }
+            return base.Delete(id);
         }
 
         private bool IsExistMaterialInStore(int id)

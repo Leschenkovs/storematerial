@@ -8,7 +8,7 @@
             $http.get("api/kindMaterial").success(function (data) {
                 deferrred.resolve(data);
             }).error(function (data, status) {
-                deferrred.reject(status);
+                deferrred.reject(data);
             });
             return deferrred.promise;
         };
@@ -20,7 +20,7 @@
                     deferred.resolve(data);
                 }).
                 error(function (data, status, headers, config) {
-                    deferred.reject(status);
+                    deferred.reject(data);
                 });
             return deferred.promise;
         };
@@ -32,7 +32,7 @@
                     deferred.resolve(data);
                 }).
                 error(function (data, status, headers, config) {
-                    deferred.reject(status);
+                    deferred.reject(data);
                 });
             return deferred.promise;
         };
@@ -44,7 +44,7 @@
                     deferred.resolve(data);
                 }).
                 error(function (data, status, headers, config) {
-                    deferred.reject(status);
+                    deferred.reject(data);
                 });
             return deferred.promise;
         };

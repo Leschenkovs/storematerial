@@ -4,6 +4,7 @@ using System.Web.Http;
 using AutoMapper;
 using Store.Bll;
 using Store.Bll.Bll;
+using Store.Bll.Exception;
 using Store.Model;
 using Store.Model.DTOObjects;
 using Store.Model.RequestObjects;

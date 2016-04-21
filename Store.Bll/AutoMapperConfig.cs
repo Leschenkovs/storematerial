@@ -86,25 +86,28 @@ namespace Store.Bll
               .ForMember("Id", opt => opt.MapFrom(src => src.id))
               .ForMember("Count", opt => opt.MapFrom(src => src.count))
               .ForMember("Ttn", opt => opt.MapFrom(src => src.ttn))
+              .ForMember("PriceSupply", opt => opt.MapFrom(src => src.priceSupply))
               .ForMember("ProviderId", opt => opt.MapFrom(src => src.providerId))
-              .ForMember("MaterialInStoreId", opt => opt.MapFrom(src => src.materialInStoreId));
+              .ForMember("MaterialInStoreId", opt => opt.MapFrom(src => src.unitMaterialId));
 
           Mapper.CreateMap<Supply, SupplyDTO>()
               .ForMember("id", opt => opt.MapFrom(src => src.Id))
               .ForMember("count", opt => opt.MapFrom(src => src.Count))
               .ForMember("ttn", opt => opt.MapFrom(src => src.Ttn))
               .ForMember("kindMaterialName", opt => opt.MapFrom(src => src.MaterialInStoreObj.UnitMaterialObj.KindMaterialObj.Name))
+              .ForMember("unitName", opt => opt.MapFrom(src => src.MaterialInStoreObj.UnitMaterialObj.UnitObj.ShortName))
               .ForMember("providerName", opt => opt.MapFrom(src => src.ProviderObj.Name))
+              .ForMember("priceSupply", opt => opt.MapFrom(src => src.PriceSupply))
 			  .ForMember("data", opt => opt.MapFrom(src => src.AddedDate));
       }
 
       private static void RegisterMappingsExperse()
       {
           Mapper.CreateMap<MaterialInStore, CreateExperseDTO>()
-              .ForMember("materialInStoreId", opt => opt.MapFrom(src => src.Id))
+              .ForMember("materialInStoreId", opt => opt.MapFrom(src => src.UnitMaterialId))
               .ForMember("kindMaterialName", opt => opt.MapFrom(src => src.UnitMaterialObj.KindMaterialObj.Name))
-              .ForMember("unitShortName", opt => opt.MapFrom(src => src.UnitMaterialObj.UnitObj.ShortName));   
-       
+              .ForMember("unitShortName", opt => opt.MapFrom(src => src.UnitMaterialObj.UnitObj.ShortName));
+
           Mapper.CreateMap<CreateExperseDTO, Experse>()
               .ForMember("Id", opt => opt.MapFrom(src => src.id))
               .ForMember("Count", opt => opt.MapFrom(src => src.count))
@@ -141,16 +144,17 @@ namespace Store.Bll
       private static void RegisterMappingsMaterialInStore()
       {
           Mapper.CreateMap<MaterialInStoreDTO, MaterialInStore>()
-              .ForMember("Id", opt => opt.MapFrom(src => src.id))
               .ForMember("Count", opt => opt.MapFrom(src => src.count))
-              .ForMember("PriceSupply", opt => opt.MapFrom(src => src.priceSupply))
               .ForMember("UnitMaterialId", opt => opt.MapFrom(src => src.unitMaterialId));
 
           Mapper.CreateMap<MaterialInStore, MaterialInStoreDTO>()
-              .ForMember("id", opt => opt.MapFrom(src => src.Id))
+              .ForMember("unitMaterialId", opt => opt.MapFrom(src => src.UnitMaterialId))
               .ForMember("count", opt => opt.MapFrom(src => src.Count))
-              .ForMember("priceSupply", opt => opt.MapFrom(src => src.PriceSupply))
               .ForMember("kindMaterialName", opt => opt.MapFrom(src => src.UnitMaterialObj.KindMaterialObj.Name));
+
+          Mapper.CreateMap<CreateSupplyDTO, MaterialInStore>()
+              .ForMember("Count", opt => opt.MapFrom(src => src.count))
+              .ForMember("UnitMaterialId", opt => opt.MapFrom(src => src.unitMaterialId));
       }
 
       private static void RegisterMappingsUnitMaterial()
