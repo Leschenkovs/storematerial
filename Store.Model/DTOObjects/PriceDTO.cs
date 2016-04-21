@@ -7,7 +7,6 @@ namespace Store.Model.DTOObjects
         public int id { get; set; }
         public decimal priceValue { get; set; }
         public DateTime dateOt { get; set; }
-        public DateTime? dateDo { get; set; }
         public int materialInStoreId { get; set; }
 
     }

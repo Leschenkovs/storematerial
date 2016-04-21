@@ -131,14 +131,12 @@ namespace Store.Bll
               .ForMember("Id", opt => opt.MapFrom(src => src.id))
               .ForMember("PriceValue", opt => opt.MapFrom(src => src.priceValue))
               .ForMember("DateOt", opt => opt.MapFrom(src => src.dateOt))
-              .ForMember("DateDo", opt => opt.MapFrom(src => src.dateDo))
               .ForMember("MaterialInStoreId", opt => opt.MapFrom(src => src.materialInStoreId));
 
           Mapper.CreateMap<Price, PriceDTO>()
               .ForMember("id", opt => opt.MapFrom(src => src.Id))
               .ForMember("priceValue", opt => opt.MapFrom(src => src.PriceValue))
-              .ForMember("dateOt", opt => opt.MapFrom(src => src.DateOt))
-              .ForMember("dateDo", opt => opt.MapFrom(src => src.DateDo));
+              .ForMember("dateOt", opt => opt.MapFrom(src => src.DateOt));
       }
 
       private static void RegisterMappingsMaterialInStore()

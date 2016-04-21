@@ -13,6 +13,7 @@
 
     app.run(['$rootScope', '$location', '$cookieStore', '$http',
         function($rootScope, $location, $cookieStore, $http) {
+            return;
             // keep user logged in after page refresh
             $rootScope.globals = $cookieStore.get('globals') || {};
             if ($rootScope.globals.currentUser) {

@@ -23,7 +23,7 @@ namespace Store.Bll.Bll
 
 		public IList<Price> GetByMaterialInStoreId(int id)
 		{
-			return FactoryDal.PriceDal.FindBy(x => x.Id == id).OrderBy(x => x.DateDo).ToList();
+			return FactoryDal.PriceDal.FindBy(x => x.Id == id).OrderBy(x => x.DateOt).ToList();
 		}
 
 	}

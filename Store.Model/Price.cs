@@ -15,10 +15,8 @@ namespace Store.Model
         // Цена реализации
         public decimal PriceValue { get; set; }
 
-        // Дата действия ОТ
+        // Дата действия 
         public DateTime DateOt { get; set; }
 
-        // Дата действия ДО
-        public DateTime? DateDo { get; set; }
     }
 }

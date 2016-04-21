@@ -14,7 +14,6 @@ namespace Store.Dal.Mapping
             Property(t => t.MaterialInStoreId).IsRequired();
             Property(t => t.PriceValue).IsRequired();
             Property(t => t.DateOt).IsRequired();
-            Property(t => t.DateDo).IsRequired();
 
             // Table & Column Mappings
             ToTable("Price");
@@ -22,7 +21,6 @@ namespace Store.Dal.Mapping
             Property(t => t.MaterialInStoreId).HasColumnName("MaterialInStoreId");
             Property(t => t.PriceValue).HasColumnName("PriceValue");
             Property(t => t.DateOt).HasColumnName("DateOt");
-            Property(t => t.DateDo).HasColumnName("DateDo");
 
             // Relationships  
             HasRequired(t => t.MaterialInStoreObj).WithMany(t => t.Prices).HasForeignKey(d => d.MaterialInStoreId).WillCascadeOnDelete(true);

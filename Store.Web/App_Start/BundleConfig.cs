@@ -9,9 +9,10 @@ namespace Store.Web.App_Start
             bundles.Add(new ScriptBundle("~/Store.Web/base").Include(
                "~/Scripts/jquery-1.9.1*",
                "~/Scripts/bootstrap.js",
+					"~/Scripts/ui-bootstrap-tpls-1.3.2.min.js",
                "~/Scripts/ng-table.js",
                "~/Scripts/underscore.js",
-               "~/Scripts/modernizr.custom.js",
+					//"~/Scripts/modernizr.custom.js",
                "~/Scripts/lodash.js"
               ));
 

@@ -1,40 +1,85 @@
 ﻿<div class="row">
-  <div class="box">
-    <div class="col-lg-12">
-      <hr>
-      <h2 class="intro-text text-center">
-        Склад
-      </h2>
-        <hr>
-        
-        <table ng-table="tableParams" show-filter="true" class="table table-bordered table-hover table-striped table-condensed editable-table demoTable" ng-form="tableForm" disable-filter="isAdding" demo-tracked-table="tableTracker">
-            <colgroup>
-                <col width="*0.5" />
-                <col width="*3.5" />
-                <col width="*2" />
-                <col width="*2" />
-                <col width="*1" />
-                <col width="85" />
-            </colgroup>
-            <tr ng-repeat="row in $data" ng-form="rowForm" demo-tracked-table-row="row">
-                <td data-title="'Вид материала'" sortable="'kindMaterialName'" filter="{'kindMaterialName': 'text' }" ng-switch="row.isEditing" ng-form="kindMaterialName" demo-tracked-table-cell>
-                    <span ng-switch-default class="editable-text">{{row.kindMaterialName}}</span>
+	<div class="box">
+		<div class="col-lg-12">
+			<hr>
+			<h2 class="intro-text text-center">
+				Склад
+			</h2>
+			<hr>
+			<div style="width: 50%; float: left;">
+				<table ng-table="tableParams" show-filter="true" class="table table-bordered table-hover table-striped table-condensed editable-table demoTable" ng-form="tableForm" disable-filter="isAdding" demo-tracked-table="tableTracker">
+					<colgroup>
+						<col width="*1"/>
+						<col width="*1"/>
+						<col width="50"/>
+					</colgroup>
+              <tr ng-repeat="row in $data" ng-form="rowForm" demo-tracked-table-row="row" ng-click="choiceMaterial=row.unitMaterialId">
+                <td data-title="'Вид материала'" sortable="'kindMaterialName'" filter="{'kindMaterialName': 'text' }" ng-form="kindMaterialName">
+                  <span ng-switch-default class="editable-text">{{row.kindMaterialName}}</span>
                 </td>
-                <td data-title="'Ед.изм'" sortable="'unitName'" filter="{'unitName': 'text' }" ng-switch="row.isEditing" ng-form="unitName" demo-tracked-table-cell>
-                    <span ng-switch-default class="editable-text">{{row.unitName}}</span>
+                <!--<td data-title="'Ед.изм'" sortable="'unitName'" ng-form="unitName">
+                  <span ng-switch-default class="editable-text">{{row.unitName}}</span>
+                </td>-->
+                <td data-title="'Кол-во'" sortable="'count'" filter="{'count': 'text' }" ng-form="count">
+                  <span ng-switch-default class="editable-text">{{row.count}}</span>
                 </td>
-                <td data-title="'Кол-во'" sortable="'count'" filter="{'count': 'text' }" ng-switch="row.isEditing" ng-form="count" demo-tracked-table-cell>
-                    <span ng-switch-default class="editable-text">{{row.count}}</span>
-                </td>
-            </tr>
-        </table>
+              </tr>
+				</table>
+			</div>
+			<div style="width: 48%; float: right;">
+           <form role="form" name="createPriceForm" novalidate>
+             <div class="row">
+               <div class="form-group col-lg-4" ng-class="{ 'has-error': createPrice.priceValue.$touched && createPrice.priceValue.$invalid }">
+                 <label for="priceValue"><strong class="error-message">*</strong>Цена</label>
+                 <input type="text" name="priceValue" ng-model="createPrice.priceValue" class="form-control" required maxlength="30">
+               </div>
+               <div class="form-group col-lg-4">
+                 <label for="dateOt">Период</label>
+	               <input type="text" name="dateOt" ng-model="createPrice.dateOt" class="form-control">
+               </div>
+               <div class="form-group col-lg-12">
+                 <input type="hidden" name="save" value="contact">
+                 <button type="submit" class="btn btn-primary" ng-click="save(createPrice, createPriceForm)">Сохранить</button>
+               </div>
+             </div>
+           </form>
 
-        <div>
-            <a href="#/kindMaterial/index" class="btn btn-primary">
-                <span>Справочник видов материалов</span>
-            </a>
-        </div>
+				<!--<table ng-table="tableParamsPrice" show-filter="true" class="table table-bordered table-hover table-striped table-condensed editable-table demoTable" ng-form="tableFormPrice" disable-filter="isAdding" demo-tracked-table="tableTracker">
+					<colgroup>
+						<col width="*1"/>
+						<col width="85"/>
+						<col width="*0.5"/>
+					</colgroup>
+              <tr ng-repeat="rowPrice in $data | filter: {materialInStoreId: choiceMaterial}" ng-form="rowFormPrice" demo-tracked-table-row="rowPrice">
+                <td data-title="'Цена реализации'" ng-switch="rowPrice.isEditing" ng-class="priceValue.$dirty ? 'bg-warning' : ''" ng-form="priceValue" demo-tracked-table-cell>
+                  <span ng-switch-default class="editable-text">{{rowPrice.priceValue | currency}}</span>
+                  <div class="controls" ng-class="priceValue.$invalid && priceValue.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                    <input type="text" name="priceValue" ng-model="rowPrice.priceValue" class="editable-input form-control input-sm" required />
+                  </div>
+                </td>
+                <td data-title="'Период'" sortable="'dateOt'" ng-switch="rowPrice.isEditing" ng-class="dateOt.$dirty ? 'bg-warning' : ''" ng-form="dateOt" demo-tracked-table-cell>
+                  <span ng-switch-default class="editable-text">{{rowPrice.dateOt | date:'MM/yyyy}}</span>
+                  <div class="controls" ng-class="dateOt.$invalid && dateOt.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                    <input type="text" name="dateOt" ng-model="rowPrice.dateOt" class="editable-input form-control input-sm" required />
+                  </div>
+                </td>
+                <td>
+                  <button class="btn btn-primary btn-sm" ng-click="update(rowPrice, rowFormPrice)" ng-if="rowPrice.isEditing" ng-disabled="rowFormPrice.$pristine || rowFormPrice.$invalid"><span class="glyphicon glyphicon-ok"></span></button>
+                  <button class="btn btn-default btn-sm" ng-click="cancel(rowPrice, rowFormPrice)" ng-if="rowPrice.isEditing"><span class="glyphicon glyphicon-remove"></span></button>
+                  <button class="btn btn-default btn-sm" ng-click="rowPrice.isEditing = true" ng-if="!rowPrice.isEditing"><span class="glyphicon glyphicon-pencil"></span></button>
+                  <button class="btn btn-danger btn-sm" ng-click="delete(rowPrice.id)" ng-if="!rowPrice.isEditing"><span class="glyphicon glyphicon-trash"></span></button>
+                </td>
+              </tr>
+				</table>-->
 
-    </div>
-  </div>
+			</div>
+
+			<div>
+				<a href="#/kindMaterial/index" class="btn btn-primary">
+					<span>Справочник видов материалов</span>
+				</a>
+			</div>
+
+		</div>
+	</div>
 </div>
