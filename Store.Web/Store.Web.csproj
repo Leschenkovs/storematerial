@@ -282,7 +282,9 @@
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\modernizr.custom.js" />
     <Content Include="Scripts\ng-table.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -341,7 +343,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>8062</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
