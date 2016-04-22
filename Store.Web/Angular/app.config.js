@@ -69,7 +69,6 @@
                 templateUrl: "/Angular/views/kindMaterial/index.html",
                 controller: "KindMaterialController"
             });
-            //$filterProvider.register("phoneFilter", phoneFilter);
 
             $urlRouterProvider.otherwise("/");
         }]);

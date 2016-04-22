@@ -1,7 +1,14 @@
 ﻿.error-message {
     color: red;
 }
+.selected {
+    background-color: red;
+}
 
+.mouseEnter {
+    background-color: greenyellow;
+    cursor: pointer;
+}
 /*Overwrite trNgGrid pagination */
 .tr-ng-grid .tr-ng-grid-footer .pagination {
   display: inline-block;
@@ -150,11 +157,11 @@ fieldset {
     padding:0px 8px 8px 8px;
 }
 legend {
-    margin-top: -10px;
+    /*margin-top: -10px;
     margin-bottom: 4px;
     border-bottom: 0;
-    width: auto;
-    font-weight:bold;
+    width: auto;*/
+    /*font-weight:bold;*/
 }
 .form-control {
     height:28px;

@@ -36,6 +36,19 @@
                 });
             return deferred.promise;
         };
+
+        this.deletePrice = function (id) {
+            var deferred = $q.defer();
+
+            $http.delete("api/price?id=" + id).
+                success(function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).
+                error(function (data, status, headers, config) {
+                    deferred.reject(data);
+                });
+            return deferred.promise;
+        };
     };
 
     angular

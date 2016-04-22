@@ -12,7 +12,7 @@ using Store.Model.RequestObjects;
 namespace Store.Web.Controllers
 {
     [RoutePrefix("api/price")]
-    public class PriceController
+    public class PriceController : BaseApiController
     {
         private readonly IPriceBll _priceBll;
 
@@ -43,8 +43,14 @@ namespace Store.Web.Controllers
 		  public PriceDTO CreatePrice([FromBody] PriceDTO model)
 		  {
 			 Price entity = Mapper.Map<PriceDTO, Price>(model);
-			 model = Mapper.Map<Price, PriceDTO>(_priceBll.Save(entity));
+			 model = Mapper.Map<Price, PriceDTO>(_priceBll.Add(entity));
 			 return model;
 		  }
+
+          [HttpDelete]
+          public bool DeletePrice([FromUri] int id)
+          {
+              return _priceBll.Delete(id);
+          }
     }
 }
