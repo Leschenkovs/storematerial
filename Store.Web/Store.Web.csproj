@@ -218,6 +218,7 @@
     <Content Include="Angular\services\store.service.unit.js" />
     <Content Include="Angular\services\store.service.unitMaterial.js" />
     <Content Include="Angular\services\store.service.user.js" />
+    <Content Include="Angular\views\contact.html" />
     <Content Include="Angular\views\authentication\login.html" />
     <Content Include="Angular\views\costumer\index.html" />
     <Content Include="Angular\views\experse\index.html" />

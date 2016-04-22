@@ -16,6 +16,12 @@
                 controller: "IndexController"
             });
 
+            $stateProvider.state("contact", {
+                url: "/contact",
+                templateUrl: "/Angular/views/contact.html",
+                controller: "IndexController"
+            });
+
             $stateProvider.state("user/index", {
                 url: "/user/index",
                 templateUrl: "/Angular/views/user/index.html",

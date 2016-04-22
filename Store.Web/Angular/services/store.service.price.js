@@ -49,6 +49,18 @@
                 });
             return deferred.promise;
         };
+
+        this.updatePrice = function (entity) {
+            var deferred = $q.defer();
+            $http.put("api/price", entity).
+                success(function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).
+                error(function (data, status, headers, config) {
+                    deferred.reject(data);
+                });
+            return deferred.promise;
+        };
     };
 
     angular

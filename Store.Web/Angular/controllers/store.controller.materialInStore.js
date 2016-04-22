@@ -8,7 +8,7 @@
 
         var originalData = [];
         var originalDataPrice = [];
-
+        $scope.isCollapsed = false;
 
         $scope.createPrice =
         {
@@ -28,14 +28,15 @@
 // Materials
         MaterialInStoreService.getMaterialInStores().then(function (value) {
             originalData = angular.copy(value);
-            $scope.tableParams = new ngTableParams({ page: 1, count: 5 }, {
+            $scope.tableParams = new ngTableParams({ page: 1, count: 12 }, {
                 filterDelay: 0,
                 dataset: angular.copy(value)
             });
         });
 
         $scope.setSelected = function (unitMaterialId) {
-            var a = _.find(originalData, function (rw) { return rw.unitMaterialId == unitMaterialId; });
+            $scope.isCollapsed = !$scope.isCollapsed;
+            var a = _.find(originalData, function (rw) { return rw.unitMaterialId === unitMaterialId; });
             $scope.selectedMaterial.name = a.kindMaterialName;
             $scope.selectedMaterial.unit = a.unitName;
             $scope.selectedMaterial.materialInStoreId = a.unitMaterialId;
@@ -46,7 +47,7 @@
 // Prices
         PriceService.getAllPrices().then(function (value) {
             originalDataPrice = angular.copy(value);
-            $scope.tableParamsPrice = new ngTableParams({ page: 1, count: 5 }, {
+            $scope.tableParamsPrice = new ngTableParams({ page: 1, count: 12 }, {
                 filterDelay: 0,
                 dataset: angular.copy(value)
             });
@@ -67,9 +68,16 @@
             }
         };
 
+        $scope.update = function (rowPrice, rowFormPrice) {
+            PriceService.updatePrice(rowPrice).then(function (value) {
+                var originalRow = resetRow(rowPrice, rowFormPrice);
+                angular.extend(originalRow, rowPrice);
+            });
+        };
+
         $scope.save = function(createPrice, createPriceForm) {
             if (createPriceForm.$valid) {
-                PriceService.addPrice(createPrice).then(function(value) {
+                PriceService.addPrice(createPrice).then(function (value) {
                     $scope.createPrice.id = "";
                     $scope.createPrice.priceValue = "";
                     $scope.createPrice.dateOt = new Date();
@@ -77,8 +85,8 @@
                     $scope.tableParamsPrice.settings().dataset.unshift({
                         id: value.id,
                         priceValue: value.priceValue,
-                        dateOt: value.priceValue,
-                        materialInStoreId: value.priceValue
+                        dateOt: value.dateOt,
+                        materialInStoreId: value.materialInStoreId
                     });
                     $scope.tableParamsPrice.reload().then(function(data) {
                         if (data.length === 0 && self.tableParamsPrice.total() > 0) {
