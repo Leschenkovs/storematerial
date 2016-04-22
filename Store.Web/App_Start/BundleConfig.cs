@@ -9,7 +9,8 @@ namespace Store.Web.App_Start
             bundles.Add(new ScriptBundle("~/Store.Web/base").Include(
                "~/Scripts/jquery-1.9.1*",
                "~/Scripts/bootstrap.js",
-					"~/Scripts/ui-bootstrap-tpls-1.3.2.min.js",
+			    "~/Scripts/ui-bootstrap-custom-1.3.2.js",
+                "~/Scripts/ui-bootstrap-custom-tpls-1.3.2.js",
                "~/Scripts/ng-table.js",
                "~/Scripts/underscore.js",
 					//"~/Scripts/modernizr.custom.js",
@@ -19,6 +20,7 @@ namespace Store.Web.App_Start
             bundles.Add(new ScriptBundle("~/Store.Web/angular").Include(
 
                 "~/Scripts/angular/angular.js",
+                "~/Scripts/angular/angular-locale_ru-ru.js",
                 "~/Scripts/angular/angular-cookies.js",
                 "~/Scripts/angular/angular-messages.js",
                 "~/Scripts/angular/angular-sanitize.js",

@@ -8,7 +8,7 @@ namespace Store.Dal
 	//DropCreateDatabaseAlways<DataContext>
 	//DropCreateDatabaseIfModelChanges<DataContext>
 
-    public class DataContextDbInitializer : DropCreateDatabaseIfModelChanges<DataContext>
+    public class DataContextDbInitializer : DropCreateDatabaseAlways<DataContext>
 	{
 		protected override void Seed(DataContext context)
 		{
@@ -70,6 +70,18 @@ namespace Store.Dal
                 new UnitMaterial {Id=4,KindMaterialId = context.KindMaterials.First(x => x.Name == "Краска").Id, UnitId = context.Units.First(x => x.ShortName == "шт").Id},
 				new UnitMaterial {Id=5,KindMaterialId = context.KindMaterials.First(x => x.Name == "Краска").Id, UnitId = context.Units.First(x => x.ShortName == "л").Id},
 				new UnitMaterial {Id=6,KindMaterialId = context.KindMaterials.First(x => x.Name == "Гвозди").Id, UnitId = context.Units.First(x => x.ShortName == "рулон").Id}
+
+			});
+            context.SaveChanges();
+
+            context.MaterialInStores.AddRange(new List<MaterialInStore>
+			{
+				new MaterialInStore {UnitMaterialId= 1,Count = 100},
+				new MaterialInStore {UnitMaterialId= 2,Count = 555},
+				new MaterialInStore {UnitMaterialId= 3,Count = 1000},
+				new MaterialInStore {UnitMaterialId= 4,Count = 10340},
+				new MaterialInStore {UnitMaterialId= 5,Count = 20},
+				new MaterialInStore {UnitMaterialId= 6,Count = 50},
 
 			});
             context.SaveChanges();
