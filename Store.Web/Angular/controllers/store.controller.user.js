@@ -2,7 +2,7 @@
     "use strict";
 
     // controller class definintion
-    var UserController = function ($scope, $state, $filter, UserService, RoleService, ngTableParams) {
+    var UserController = function ($scope, $state, $filter, $location, UserService, RoleService, ngTableParams) {
 
         var originalData = [];
 
@@ -33,6 +33,12 @@
             }
         };
 
+        function udateOrDeleteCurrentUser(userid) {
+            if ($scope.$root.globals.currentUser.userid === userid) {
+                $location.path('/login');
+            }
+        }
+
         $scope.update = function (row, rowForm) {
             if (rowForm.$valid) {
                 UserService.updateUser(row).then(
@@ -40,6 +46,7 @@
                         row.roleName = $filter('filter')($scope.roles, { id: row.roleId }, true)[0].name;
                         var originalRow = resetRow(row, rowForm);
                         angular.extend(originalRow, row);
+                        udateOrDeleteCurrentUser(row.id);
                     },
                     function (errorObject) {
                         alert(errorObject.ExceptionMessage);
@@ -84,13 +91,14 @@
                             $scope.tableParams.reload();
                         }
                     });
+                    udateOrDeleteCurrentUser(id);
                 }
             });
-        };
+        };;
     };
 
     // register your controller into a dependent module 
     angular
         .module("store.WebUI.Controllers")
-        .controller("UserController", ["$scope", "$state", "$filter", "UserService", "RoleService", "ngTableParams", UserController]);
+        .controller("UserController", ["$scope", "$state", "$filter", "$location", "UserService", "RoleService", "ngTableParams", UserController]);
 })();

@@ -1,40 +1,41 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="~/Content/images/favicon.ico" />
-	<!-- Fonts -->
-	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-	<link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
-	<title>Store of materials - @ViewBag.Title</title>
-	@Styles.Render("~/Store.Web/css")
+    <!-- Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+    <title>Store of materials - @ViewBag.Title</title>
+    @Styles.Render("~/Store.Web/css")
 </head>
 <body ng-app="store.WebUI">
-<div class="container">
-	<div class="brand">Склад СтройМатериалов</div>
-	<div class="address-bar">203 Победителей | Минск</div>
-</div>
+    <div class="container">
+        <div class="brand">Склад СтройМатериалов</div>
+        <div class="address-bar">203 Победителей | Минск</div>
+    </div>
 
-	<store-header></store-header>
-	<div class="container">
-		<div class="row">
-			<div class="box">
-				<div class="col-lg-12 text-center">
-					@RenderBody()
+    <user-info></user-info>
+    <store-header></store-header>
 
-					@Scripts.Render("~/Store.Web/angular")
+    <div class="container">
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12 text-center">
+                    @RenderBody()
+
+                    @Scripts.Render("~/Store.Web/angular")
                     @Scripts.Render("~/Store.Web/Base")
-					@Scripts.Render("~/Store.Web/app")
+                    @Scripts.Render("~/Store.Web/app")
 
-				@RenderSection("scripts", required: false)
-			</div>
-		</div>
-	</div>
-
-</div>
-<store-footer></store-footer>
+                    @RenderSection("scripts", required: false)
+                </div>
+            </div>
+        </div>
+    </div>
+    <store-footer></store-footer>
 
 </body>
 </html>

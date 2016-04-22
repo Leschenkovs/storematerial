@@ -11,6 +11,7 @@ namespace Store.Model.DTOObjects
         public string position { get; set; }
         public int roleId { get; set; }
         public string roleName { get; set; }
+        public string roleCode { get; set; }
         public string password { get; set; }
     }
 }

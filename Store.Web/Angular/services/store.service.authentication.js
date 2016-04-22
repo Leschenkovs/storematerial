@@ -14,14 +14,16 @@
                 });;
         };
 
-        service.SetCredentials = function (username, password) {
+        service.SetCredentials = function (username, password, userinfo) {
             var authdata = Base64.encode(username + ':' + password);
-
             $rootScope.globals = {
                 currentUser: {
                     username: username,
-                    authdata: authdata
-                }
+                    authdata: authdata,
+                    fullname: userinfo.fio,
+                    role: userinfo.roleCode,
+                    userid: userinfo.id
+        }
             };
 
             $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line

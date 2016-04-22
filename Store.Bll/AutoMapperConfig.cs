@@ -65,6 +65,7 @@ namespace Store.Bll
                 .ForMember("fio", opt => opt.MapFrom(src => src.Fio))
                 .ForMember("department", opt => opt.MapFrom(src => src.Department))
                 .ForMember("position", opt => opt.MapFrom(src => src.Position))
+                .ForMember("roleCode", opt => opt.MapFrom(src => src.RoleObj.Code))
                 .ForMember("roleName", opt => opt.MapFrom(src => src.RoleObj.Name));
         }
 

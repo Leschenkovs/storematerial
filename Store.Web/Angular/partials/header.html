@@ -1,13 +1,13 @@
 ﻿<header style="padding-bottom: 10px;">
-    <nav id="menu" class="nav">
+    <nav id="menu" class="nav" ng-show="$root.globals.currentUser">
         <ul>
             <li>
-              <a href="#/materialInStore/index">
-                <span class="icon">
+                <a href="#/materialInStore/index">
+                    <span class="icon">
                   <i aria-hidden="true" class="icon-home"></i>
                 </span>
-                <span>Склад</span>
-              </a>
+                    <span>Склад</span>
+                </a>
             </li>
             <li>
                 <a href="#/supply/index">
@@ -25,7 +25,7 @@
                     <span>Отгрузка</span>
                 </a>
             </li>
-            <li>
+            <li ng-show="$root.globals.currentUser.role == 'admin'">
                 <a href="#/user/index">
                     <span class="icon">
                         <i aria-hidden="true" class="icon-users"></i>

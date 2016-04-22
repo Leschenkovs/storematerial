@@ -8,7 +8,8 @@
         return {
             restrict: 'AE',
             replace: true,
-            templateUrl: 'Angular/partials/header.html'
+            templateUrl: 'Angular/partials/header.html',
+            controller: function ($scope) { }
         }
     };
 

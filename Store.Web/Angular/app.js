@@ -10,10 +10,9 @@
     angular.module("store.WebUI.Externals", ["ui.router", "ngTable", "ngCookies", 'ui.bootstrap']);
 
     var app = angular.module("store.WebUI", ["store.WebUI.Externals", "store.WebUI.Controllers", "store.WebUI.Directives", "store.WebUI.Services"]);
-
+    app.value('userinfo', { fio: 'a12345654321x' });
     app.run(['$rootScope', '$location', '$cookieStore', '$http',
         function($rootScope, $location, $cookieStore, $http) {
-            return;
             // keep user logged in after page refresh
             $rootScope.globals = $cookieStore.get('globals') || {};
             if ($rootScope.globals.currentUser) {
