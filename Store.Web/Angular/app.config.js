@@ -58,6 +58,12 @@
                 controller: "ExperseController"
             });
 
+            $stateProvider.state("experse/create", {
+                url: "/experse/create/:id",
+                templateUrl: "/Angular/views/experse/create.html",
+                controller: "ExperseController"
+            });
+
             $stateProvider.state("costumer/index", {
                 url: "/costumer/index",
                 templateUrl: "/Angular/views/costumer/index.html",

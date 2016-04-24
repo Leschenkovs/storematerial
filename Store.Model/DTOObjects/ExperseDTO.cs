@@ -9,7 +9,7 @@ namespace Store.Model.DTOObjects
         public string kindMaterialName { get; set; }
         public string costumerName { get; set; }
         public string userFio { get; set; }
-		public DateTime data { get; set; }
+		  public DateTime data { get; set; }
 
 
         public int materialInStoreId { get; set; }
@@ -19,8 +19,9 @@ namespace Store.Model.DTOObjects
     {
         public int id { get; set; }
         public decimal count { get; set; }
+		  public decimal lostCount { get; set; }
 
-        public int materialInStoreId { get; set; }
+		  public int materialInStoreId { get; set; }
         public int costumerId { get; set; }
         public int userId { get; set; }
 

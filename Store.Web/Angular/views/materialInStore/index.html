@@ -34,22 +34,30 @@
 
             <div style="width: 50%; float: left;">
                 <table ng-table="tableParams" show-filter="true" class="table table-bordered table-hover table-striped table-condensed editable-table demoTable" ng-form="tableForm" disable-filter="isAdding" demo-tracked-table="tableTracker">
-                    <colgroup>
-                        <col width="*1"/>
-                        <col width="*1"/>
-                        <col width="50"/>
-                    </colgroup>
-                  <tr ng-repeat="row in $data" ng-form="rowForm" demo-tracked-table-row="row" ng-click="setSelected(row.unitMaterialId)" ng-class="{'selected': row.unitMaterialId === createPrice.materialInStoreId, 'mouseEnter': mouseOn==true }" ng-mouseenter="mouseOn=true" ng-mouseleave="mouseOn=false">
-                    <td data-title="'Вид материала'" sortable="'kindMaterialName'" filter="{'kindMaterialName': 'text' }" ng-form="kindMaterialName">
-                      <span class="editable-text">{{row.kindMaterialName}}</span>
-                    </td>
-                    <td data-title="'Ед.изм'" sortable="'unitName'" ng-form="unitName">
-                      <span class="editable-text">{{row.unitName}}</span>
-                    </td>
-                    <td data-title="'Кол-во'" sortable="'count'" filter="{'count': 'text' }" ng-form="count">
-                      <span class="editable-text">{{row.count}}</span>
-                    </td>
-                  </tr>
+	                <colgroup>
+		                <col width="*1"/>
+		                <col width="*1"/>
+		                <col width="*1"/>
+		                <col width="50"/>
+	                </colgroup>
+	                <tr ng-repeat="row in $data" ng-form="rowForm" demo-tracked-table-row="row" ng-click="setSelected(row.unitMaterialId)" ng-class="{'selected': row.unitMaterialId === createPrice.materialInStoreId, 'mouseEnter': mouseOn==true }" ng-mouseenter="mouseOn=true" ng-mouseleave="mouseOn=false">
+		                <td>
+                      <a href="#/experse/create/{{row.unitMaterialId}}">
+                        <span class="icon">
+                          <i aria-hidden="true" class="icon-truck"></i>
+                        </span>
+                      </a>
+		                </td>
+		                <td data-title="'Вид материала'" sortable="'kindMaterialName'" filter="{'kindMaterialName': 'text' }" ng-form="kindMaterialName">
+			                <span class="editable-text">{{row.kindMaterialName}}</span>
+		                </td>
+		                <td data-title="'Ед.изм'" sortable="'unitName'" ng-form="unitName">
+			                <span class="editable-text">{{row.unitName}}</span>
+		                </td>
+		                <td data-title="'Кол-во'" sortable="'count'" filter="{'count': 'text' }" ng-form="count">
+			                <span class="editable-text">{{row.count}}</span>
+		                </td>
+	                </tr>
                 </table>
             </div>
 

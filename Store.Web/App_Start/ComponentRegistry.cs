@@ -12,7 +12,8 @@ namespace Store.Web.App_Start
 		{
 			IUnityContainer container = new UnityContainer();
 			//container.RegisterType<IFactoryBll, FactoryBll>(new ContainerControlledLifetimeManager()); // singleton
-            container.RegisterType<IFactoryBll, FactoryBll>(); // singleton
+			container.RegisterType<IFactoryBll, FactoryBll>(); // singleton
+
 
 			return container;
 		}

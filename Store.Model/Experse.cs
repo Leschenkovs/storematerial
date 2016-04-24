@@ -19,5 +19,8 @@
 
         // Кол-во
         public decimal Count { get; set; }
+
+		  // Стоимость
+		  public decimal FullCost { get; set; }
     }
 }

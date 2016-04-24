@@ -12,6 +12,7 @@ namespace Store.Dal.Mapping
 
             // Properties
             Property(t => t.Count).IsRequired();
+				Property(t => t.FullCost).IsRequired();
             Property(t => t.MaterialInStoreId).IsRequired();
             Property(t => t.CostumerId).IsRequired();
             Property(t => t.UserId);
