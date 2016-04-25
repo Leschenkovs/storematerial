@@ -9,7 +9,8 @@
         {
             id: "",
             articul: "",
-            name: ""
+            name: "",
+            units: []
         };
         $scope.unitMaterial =
         {
@@ -28,6 +29,11 @@
             UnitMaterialService.getByKindMaterialId(id).then(function (value) {
                 $scope.unitMaterials = value;
             });
+        };
+
+        $scope.addUnit = function () {
+            var unit = _.find($scope.units, function (rw) { return rw.id === $scope.unitId; });
+            $scope.kindMaterial.units = $scope.kindMaterial.units.push(unit);
         };
 
         $scope.deleteUnitMaterial = function (index) {
