@@ -4,9 +4,7 @@
     public class UnitMaterial: BaseModel<int>
     {
         public UnitMaterial()
-        {
-            
-        }
+        {}
 
         // Идентификатор вида материала
         public virtual int KindMaterialId { get; set; }

@@ -18,7 +18,5 @@ namespace Store.Model
 
 		// Список ед. измерения
 		public virtual ICollection<UnitMaterial> UnitMaterials { get; set; }
-
-
 	}
 }

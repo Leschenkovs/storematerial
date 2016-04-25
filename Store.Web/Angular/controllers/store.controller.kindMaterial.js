@@ -19,12 +19,15 @@
             kindMaterialId: ""
         };
 
-///////// List Units
+        ///////////// Work with checkbox
+        //https://long2know.com/2015/07/angular-multiselect-dropdown/
+
+        ///////// List Units
         UnitService.getAllUnits().then(function (value) {
             $scope.units = value;
         });
 
-//////// For UnitMaterial
+        //////// For UnitMaterial
         $scope.getUnitMaterial = function (id) {
             UnitMaterialService.getByKindMaterialId(id).then(function (value) {
                 $scope.unitMaterials = value;
@@ -47,9 +50,10 @@
             });
         };
 
-        $scope.saveUnitMaterial = function(unitMaterial, createUnitMaterial) {
-            if (createUnitMaterial.$valid) {
-                UnitMaterialService.addUnitMaterial(unitMaterial).then(function(value) {
+        $scope.saveUnitMaterial = function (unitMaterial, unitMaterialForm) {
+            //debugger;
+            if (unitMaterialForm.$valid) {
+                UnitMaterialService.addUnitMaterial(unitMaterial).then(function (value) {
                     if (value) {
                         $scope.unitMaterials.push({
                             'id': value.id,
@@ -67,7 +71,7 @@
                 });
             }
         };
-/////////////////////
+        /////////////////////
 
         KindMaterialService.getAllKindMaterials().then(function (value) {
             $scope.kindMaterials = value;
@@ -99,7 +103,7 @@
                 var originalRow = resetRow(row, rowForm);
                 angular.extend(originalRow, row);
             },
-            function(errorObject) {
+            function (errorObject) {
                 alert(errorObject.ExceptionMessage);
             });
         };
@@ -136,10 +140,10 @@
         $scope.delete = function (id) {
             KindMaterialService.deleteKindMaterial(id).then(function (value) {
                 if (value) {
-                    _.remove($scope.tableParams.settings().dataset, function(item) {
+                    _.remove($scope.tableParams.settings().dataset, function (item) {
                         return id === item.id;
                     });
-                    $scope.tableParams.reload().then(function(data) {
+                    $scope.tableParams.reload().then(function (data) {
                         if (data.length === 0 && self.tableParams.total() > 0) {
                             self.tableParams.page(self.tableParams.page() - 1);
                             self.tableParams.reload();

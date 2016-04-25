@@ -8,9 +8,11 @@ using Store.Bll.Bll;
 using Store.Model;
 using Store.Model.DTOObjects;
 using Store.Model.RequestObjects;
+using Store.Web.Attributes;
 
 namespace Store.Web.Controllers
 {
+    [StoreAuthorize(Roles = "admin,read_write,read")]
     [RoutePrefix("api/unitMaterial")]
     public class UnitMaterialController : BaseApiController
     {

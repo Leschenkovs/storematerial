@@ -7,26 +7,31 @@ namespace Store.Web.App_Start
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/Store.Web/base").Include(
-               "~/Scripts/jquery-1.9.1*",
-               "~/Scripts/bootstrap.js",
-			    "~/Scripts/ui-bootstrap-custom-1.3.2.js",
-                "~/Scripts/ui-bootstrap-custom-tpls-1.3.2.js",
+               "~/Scripts/jquery-1.9.1.min.js",
+               "~/Scripts/jquery-1.9.1.intellisense.js*",
+               "~/Scripts/bootstrap.min.js",
                "~/Scripts/ng-table.js",
-               "~/Scripts/underscore.js",
-					//"~/Scripts/modernizr.custom.js",
-               "~/Scripts/lodash.js"
+               "~/Scripts/underscore.min.js",
+                //"~/Scripts/modernizr.custom.js",
+               "~/Scripts/lodash.min.js",
+               "~/Scripts/multiselect.js"
               ));
 
             bundles.Add(new ScriptBundle("~/Store.Web/angular").Include(
-
-                "~/Scripts/angular/angular.js",
+                "~/Scripts/angular/angular.min.js",
+                "~/Scripts/angular/angular-animate.min.js",
+                "~/Scripts/angular/angular-loader.min.js",
+                "~/Scripts/angular/angular-sanitize.min.js",
                 "~/Scripts/angular/angular-locale_ru-ru.js",
-                "~/Scripts/angular/angular-cookies.js",
-                "~/Scripts/angular/angular-messages.js",
-                "~/Scripts/angular/angular-sanitize.js",
-                "~/Scripts/angular/ui-bootstrap.js",
-                "~/Scripts/angular/ui-bootstrap-tpls.js",
-                "~/Scripts/angular/angular-ui-router.js",
+                "~/Scripts/angular/angular-cookies.min.js",
+                "~/Scripts/angular/angular-messages.min.js",
+                "~/Scripts/angular/angular-touch.min.js",
+                "~/Scripts/angular/angular-resource.min.js",
+                "~/Scripts/angular/ui-bootstrap.min.js",
+                "~/Scripts/angular/ui-bootstrap-tpls.min.js",
+                "~/Scripts/angular/angular-ui-router.min.js",
+                "~/Scripts/angular/angular-ui-ieshiv.min.js",
+                "~/Scripts/angular/angular-ui.min.js",
                 "~/Scripts/angular/date.js"
                 ));
 
