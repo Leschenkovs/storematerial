@@ -6,6 +6,42 @@
                 Список отгрузок
             </h2>
             <hr>
+            <table ng-table="tableParams" show-filter="true" class="table table-bordered table-hover table-striped table-condensed editable-table demoTable" ng-form="tableForm" disable-filter="isAdding" demo-tracked-table="tableTracker">
+                <colgroup>
+                    <col width="*0.5" />
+                    <col width="*3.5" />
+                    <col width="*2" />
+                    <col width="*2" />
+                    <col width="*1" />
+                    <col width="*1.5" />
+                    <col width="85" />
+                </colgroup>
+                <tr ng-repeat="row in $data" ng-form="rowForm" demo-tracked-table-row="row">
+                    <td data-title="'Вид материала'" sortable="'kindMaterialName'" filter="{'kindMaterialName': 'text' }" ng-switch="row.isEditing" ng-form="kindMaterialName" demo-tracked-table-cell>
+                        <span ng-switch-default class="editable-text">{{row.kindMaterialName}}</span>
+                    </td>
+                    <td data-title="'Ед.изм'" sortable="'unitName'" filter="{'unitName': 'text' }" ng-switch="row.isEditing" ng-form="unitName" demo-tracked-table-cell>
+                        <span ng-switch-default class="editable-text">{{row.unitName}}</span>
+                    </td>
+                    <td data-title="'Кол-во'" sortable="'count'" filter="{'count': 'text' }" ng-switch="row.isEditing" ng-form="count" demo-tracked-table-cell>
+                        <span ng-switch-default class="editable-text">{{row.count}}</span>
+                    </td>
+                    <td data-title="'Стоимость'" sortable="'fullCost'" filter="{'fullCost': 'text' }" ng-switch="row.isEditing" ng-form="fullCost" demo-tracked-table-cell>
+                        <span ng-switch-default class="editable-text">{{row.fullCost | currency}}</span>
+                    </td>
+                    <td data-title="'Работник'" sortable="'userFio'" filter="{'userFio': 'text' }" ng-switch="row.isEditing" ng-form="userFio" demo-tracked-table-cell>
+                        <span ng-switch-default class="editable-text">{{row.userFio}}</span>
+                    </td>
+                    <td data-title="'Дата'" sortable="'data'" ng-switch="row.isEditing" ng-form="data" demo-tracked-table-cell>
+                        <span ng-switch-default class="editable-text">{{row.data | date}}</span>
+                    </td>
+                    <td data-title="'Потребитель'" sortable="'costumerName'" filter="{'costumerName': 'text' }" ng-switch="row.isEditing" ng-form="costumerName" demo-tracked-table-cell>
+                        <span ng-switch-default class="editable-text">{{row.costumerName}}</span>
+                    </td>
+                </tr>
+            </table>
+
+
             <div>
                 <a href="#/costumer/index" class="btn btn-primary">
                     <span>Справочник потребителей</span>

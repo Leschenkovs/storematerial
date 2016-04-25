@@ -35,7 +35,7 @@
         });
 
         $scope.setSelected = function (unitMaterialId) {
-            $scope.isCollapsed = !$scope.isCollapsed;
+            //$scope.isCollapsed = !$scope.isCollapsed;
             var a = _.find(originalData, function (rw) { return rw.unitMaterialId === unitMaterialId; });
             $scope.selectedMaterial.name = a.kindMaterialName;
             $scope.selectedMaterial.unit = a.unitName;

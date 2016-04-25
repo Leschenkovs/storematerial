@@ -10,20 +10,20 @@
         <div class="row">
           <div class="form-group col-lg-4">
             <label>Вид материала</label>
-            <span ng-model="experse.kindMaterialName">{{experse.kindMaterialName}}</span>
+            <span ng-model="experse.kindMaterialName"><strong class="error-message">{{experse.kindMaterialName}}</strong></span>
           </div>
 
           <div class="form-group col-lg-4">
             <label>Ед. изм.</label>
-            <span ng-model="experse.unitShortName">{{experse.unitShortName}}</span>
+            <span ng-model="experse.unitShortName"><strong class="error-message">{{experse.unitShortName}}</strong></span>
           </div>
 
-          <div class="form-group col-lg-4">
-            <label>Остаток на складе</label>
-            <span ng-model="experse.lostCount"><strong class="error-message">{{experse.lostCount}}</strong></span>
-          </div>
+            <div class="form-group col-lg-4">
+                <label>Остаток на складе</label>
+                <span ng-model="experse.lostCount"><strong class="error-message">{{experse.lostCount}}</strong></span>
+            </div>
 
-	        <div class="form-group col-lg-4" ng-class="{ 'has-error': createExperse.count.$touched && createExperse.count.$invalid }">
+            <div class="form-group col-lg-4" ng-class="{ 'has-error': createExperse.count.$touched && createExperse.count.$invalid }">
             <label><strong class="error-message">*</strong>Количество</label>
            <input type="text" name="count" ng-model="experse.count" class="form-control" required>
           </div>

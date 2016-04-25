@@ -8,7 +8,7 @@
             $http.get("api/supply").success(function (data) {
                 deferrred.resolve(data);
             }).error(function (data, status) {
-                deferrred.reject(status);
+                deferrred.reject(data);
             });
             return deferrred.promise;
         };

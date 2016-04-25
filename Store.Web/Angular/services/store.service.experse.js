@@ -3,6 +3,16 @@
 
     function ExperseService($rootScope, $http, $q) {
 
+        this.getAllExperses = function () {
+            var deferrred = $q.defer();
+            $http.get("api/experse").success(function (data) {
+                deferrred.resolve(data);
+            }).error(function (data, status) {
+                deferrred.reject(data);
+            });
+            return deferrred.promise;
+        };
+
         this.getCreateExperseByMaterialInSoreId = function (id) {
             var deferred = $q.defer();
 
