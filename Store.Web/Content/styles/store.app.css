@@ -1,4 +1,15 @@
-﻿.error-message {
+﻿.autorized {
+    display: block;
+    background: rgba(255,255,255,0.9);
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    position: absolute;
+    right: 10px;
+    top: 70px;
+}
+
+.error-message {
     color: red;
 }
 .selected {
