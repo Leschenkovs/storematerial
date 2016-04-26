@@ -4,6 +4,7 @@ using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
+using Store.Dal.Extensions;
 
 namespace Store.Dal
 {

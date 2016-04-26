@@ -4,7 +4,7 @@ using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 
-namespace Store.Dal
+namespace Store.Dal.Extensions
 {
     public static class DbContextExtensions
     {

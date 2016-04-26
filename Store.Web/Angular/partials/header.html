@@ -1,7 +1,7 @@
 ﻿<header style="padding-bottom: 10px;">
     <nav id="menu" class="nav" ng-show="$root.globals.currentUser">
         <ul>
-            <li ng-class="forUser">
+            <li ng-style="forUser">
                 <a href="#/materialInStore/index">
                     <span class="icon">
                   <i aria-hidden="true" class="icon-home"></i>
@@ -9,7 +9,7 @@
                     <span>Склад</span>
                 </a>
             </li>
-            <li ng-class="forUser">
+            <li ng-style="forUser">
                 <a href="#/supply/index">
                     <span class="icon">
                         <i aria-hidden="true" class="icon-download3"></i>
@@ -17,7 +17,7 @@
                     <span>Поставка</span>
                 </a>
             </li>
-            <li ng-class="forUser">
+            <li ng-style="forUser">
                 <a href="#/experse/index">
                     <span class="icon">
                         <i aria-hidden="true" class="icon-truck"></i>
@@ -25,7 +25,7 @@
                     <span>Отгрузка</span>
                 </a>
             </li>
-            <li ng-show="$root.globals.currentUser.role == 'admin'">
+            <li ng-style="forUser" ng-show="$root.globals.currentUser.role == 'admin'">
                 <a href="#/user/index">
                     <span class="icon">
                         <i aria-hidden="true" class="icon-users"></i>
@@ -33,7 +33,7 @@
                     <span>Пользователи</span>
                 </a>
             </li>
-            <li ng-class="forUser">
+            <li ng-style="forUser">
                 <a href="#/contact">
                     <span class="icon">
                         <i aria-hidden="true" class="icon-phone"></i>
@@ -41,7 +41,7 @@
                     <span>Контакты</span>
                 </a>
             </li>
-            <li ng-class="forUser">
+            <li ng-style="forUser">
                 <a href="#/login">
                     <span class="icon">
                         <i aria-hidden="true" class="icon-exit"></i>
