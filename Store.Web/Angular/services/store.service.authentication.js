@@ -22,6 +22,7 @@
                     authdata: authdata,
                     fullname: userinfo.fio,
                     role: userinfo.roleCode,
+                    roleName: userinfo.roleName,
                     position: userinfo.position,
                     userid: userinfo.id
         }

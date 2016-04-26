@@ -12,7 +12,7 @@ using Store.Web.Attributes;
 
 namespace Store.Web.Controllers
 {
-    [StoreAuthorize(Roles = "admin,read_write,read")]
+    //[StoreAuthorize(Roles = "admin,read_write,read")]
     [RoutePrefix("api/experse")]
     public class ExperseController : BaseApiController
     {
@@ -30,7 +30,7 @@ namespace Store.Web.Controllers
         }
 
         [HttpGet]
-        public List<ExperseDTO> GetSupplies([FromUri] QueryRequest queryRequest)
+        public List<ExperseDTO> GetExperses([FromUri] QueryRequest queryRequest)
         {
             List<ExperseDTO> list = Mapper.Map<IQueryable<Experse>, List<ExperseDTO>>(_experseBll.GetAll());
             return list;

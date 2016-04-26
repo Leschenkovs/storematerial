@@ -1,10 +1,11 @@
 ﻿(function () {
     "use strict";
 
-    var ExperseController = function ($scope,$rootScope, $state, $filter, CostumerService, ExperseService, ngTableParams) {
+    var ExperseController = function($scope, $rootScope, $state, $filter, CostumerService, ExperseService, ngTableParams) {
 
         var originalData = [];
         var passMaterialInStoreId = $state.params.id;
+        var stateName = $state.current.name;
 
         $scope.experse =
         {
@@ -15,11 +16,11 @@
             costumerId: "",
             userId: "",
             kindMaterialName: "",
-            unitShortName:""
+            unitShortName: ""
         };
 
 
-        if (passMaterialInStoreId === "undefined" || passMaterialInStoreId === null) {
+        if (stateName === "experse/index") {
             ExperseService.getAllExperses().then(function(value) {
                 originalData = angular.copy(value);
                 $scope.tableParams = new ngTableParams({ page: 1, count: 5 }, {
@@ -30,8 +31,8 @@
         }
 
 
-        if (passMaterialInStoreId != "undefined" && passMaterialInStoreId != null) {
-            ExperseService.getCreateExperseByMaterialInSoreId(passMaterialInStoreId).then(function (response) {
+        if (stateName === "experse/create") {
+            ExperseService.getCreateExperseByMaterialInSoreId(passMaterialInStoreId).then(function(response) {
                     $scope.experse.lostCount = response.lostCount;
                     $scope.experse.unitShortName = response.unitShortName;
                     $scope.experse.kindMaterialName = response.kindMaterialName;
@@ -45,19 +46,21 @@
             CostumerService.getAllCostumers().then(function(value) {
                 $scope.costumers = value;
             });
-        }
 
-        $scope.save = function (experse, createExperse) {
-            if (createExperse.$valid) {
-                ExperseService.addExperse(experse).then(
-                    function (response) {
-                        $state.go("materialInStore/index");
-                    },
-                    function (errorObject) {
-                        alert(errorObject.ExceptionMessage);
-                    });
-            }
-        };
+            $scope.save = function(experse, createExperse) {
+                if (createExperse.$valid) {
+                    ExperseService.addExperse(experse).then(
+                        function(response) {
+                            passMaterialInStoreId = "";
+                            $state.go("materialInStore/index");
+                        },
+                        function(errorObject) {
+                            passMaterialInStoreId = "";
+                            alert(errorObject.ExceptionMessage);
+                        });
+                }
+            };
+        }
 
     };
 

@@ -38,35 +38,44 @@
 .icon-home:before {
     content: "\e902";
 }
-.icon-paint-format:before {
-    content: "\e905";
+.icon-book:before {
+    content: "\e903";
 }
-.icon-phone:before {
-    content: "\e901";
-}
-.icon-address-book:before {
-    content: "\e906";
-}
-.icon-envelop:before {
-    content: "\e907";
-}
-.icon-users:before {
-    content: "\e908";
-}
-.icon-truck:before {
-    content: "\e909";
-}
-.icon-download3:before {
-    content: "\e90a";
-}
-.icon-upload3:before {
-    content: "\e90b";
-}
-.icon-exit:before {
+.icon-folder-open:before {
     content: "\e900";
 }
-.icon-mail4:before {
+.icon-phone:before {
+    content: "\e904";
+}
+.icon-printer:before {
+    content: "\e905";
+}
+.icon-drawer:before {
+    content: "\e901";
+}
+.icon-users:before {
+    content: "\e906";
+}
+.icon-pie-chart:before {
+    content: "\e907";
+}
+.icon-stats-dots:before {
+    content: "\e908";
+}
+.icon-stats-bars:before {
+    content: "\e909";
+}
+.icon-truck:before {
+    content: "\e90a";
+}
+.icon-clipboard:before {
+    content: "\e90b";
+}
+.icon-download3:before {
     content: "\e90c";
+}
+.icon-exit:before {
+    content: "\e90d";
 }
 
 

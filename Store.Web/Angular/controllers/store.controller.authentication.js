@@ -1,13 +1,13 @@
 ﻿(function () {
     "use strict";
 
-    var AuthenticationController = function ($scope, $rootScope, $location, AuthenticationService) {
+    var AuthenticationController = function($scope, $rootScope, $location, AuthenticationService) {
         // reset login status
         AuthenticationService.ClearCredentials();
 
-        $scope.login = function () {
+        $scope.login = function() {
             $scope.dataLoading = true;
-            AuthenticationService.Login($scope.username, $scope.password, function (response) {
+            AuthenticationService.Login($scope.username, $scope.password, function(response) {
                 if (response.success) {
                     AuthenticationService.SetCredentials($scope.username, $scope.password, response.user);
                     $location.path('/');
@@ -17,7 +17,7 @@
                 }
             });
         };
-    }
+    };
 
     angular
         .module("store.WebUI.Controllers")

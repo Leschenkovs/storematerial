@@ -7,33 +7,35 @@
             </h2>
             <hr>
 
-            <fieldset style="border: solid 1px #e6e3dc; border-radius: 8px; padding-bottom: 10px;     margin-bottom: 30px;">
+            <fieldset style="border: solid 2px #337AB7;border-radius: 8px;padding: 10px;margin-bottom: 30px;">
                 <legend>Приписание цен реализации на материал <i style="color: #FD8B83">{{selectedMaterial.name}} ({{selectedMaterial.unit}})</i></legend>
                 <form name="createPriceForm" novalidate>
-                    <div class="row">
-                        <div class="form-group col-lg-4" ng-class="{ 'has-error': createPrice.priceValue.$touched && createPrice.priceValue.$invalid }">
-                            <label for="priceValue"><strong class="error-message">*</strong>Цена</label>
-                            <input type="number" name="priceValue" ng-model="createPrice.priceValue" class="form-control" required>
+                    <div class='row'>
+                        <div class="form-group">
+                            <label class="col-md-1 control-label" for="priceValue"><strong class="error-message">*</strong>Цена</label>
+                            <div class="col-md-4">
+                                <input type="number" name="priceValue" ng-model="createPrice.priceValue" class="form-control input-md" required>
+                            </div>
+                            <label class="col-md-1 control-label" for="dateOt"><strong class="error-message">*</strong>Период</label>
+                            <div class="col-md-4">
+                                <p class="input-group">
+                                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="createPrice.dateOt" datepicker-mode="'month'" is-open="popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" show-button-bar="false" alt-input-formats="altInputFormats" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary" ng-click="save(createPrice, createPriceForm)">Добавить</button>
+                            </div>
                         </div>
-                        <div class="form-group col-lg-4">
-                            <label><strong class="error-message">*</strong>Период</label>
-                            <p class="input-group">
-                              <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="createPrice.dateOt" datepicker-mode="'month'" is-open="popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" show-button-bar="false" alt-input-formats="altInputFormats" />
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
-                                </span>
-                            </p>
-                        </div>
-                        <div class="form-group col-lg-4">
-                            <input type="hidden" name="save" value="contact">
-                            <button type="submit" class="btn btn-primary" ng-click="save(createPrice, createPriceForm)">Добавить</button>
-                        </div>
-                    </div>
+
+                    </div>           
                 </form>
             </fieldset>
 
             <div style="width: 50%; float: left;">
-                <table ng-table="tableParams" show-filter="true" class="table table-bordered table-hover table-striped table-condensed editable-table demoTable" ng-form="tableForm" disable-filter="isAdding" demo-tracked-table="tableTracker">
+                <table ng-table="tableParams" show-filter="true" class="table table-bordered table-hover  table-condensed editable-table demoTable" ng-form="tableForm" disable-filter="isAdding" demo-tracked-table="tableTracker">
 	                <colgroup>
 		                <col width="*1"/>
 		                <col width="*1"/>
@@ -64,9 +66,9 @@
           <div style="width: 48%; float: right;">
             <table ng-table="tableParamsPrice" class="table table-bordered table-hover table-striped table-condensed editable-table demoTable" ng-form="tableFormPrice" demo-tracked-table="tableTracker">
               <colgroup>
-                <col width="*1" />
-                <col width="85" />
-                <col width="*0.5" />
+                <col width="*1.5" />
+                <col width="*2" />
+                <col width="100" />
               </colgroup>
               <tr ng-repeat="rowPrice in $data | filter:{materialInStoreId:createPrice.materialInStoreId}" ng-form="rowFormPrice" demo-tracked-table-row="rowPrice">
                 <td data-title="'Цена реализации'" ng-switch="rowPrice.isEditing" ng-class="priceValue.$dirty ? 'bg-warning' : ''" ng-form="priceValue" demo-tracked-table-cell>
@@ -89,12 +91,6 @@
             </table>
 
           </div>
-
-            <div>
-                <a href="#/kindMaterial/index" class="btn btn-primary">
-                    <span>Справочник видов материалов</span>
-                </a>
-            </div>
 
         </div>
     </div>
