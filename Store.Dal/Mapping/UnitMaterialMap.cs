@@ -21,7 +21,7 @@ namespace Store.Dal.Mapping
             Property(t => t.UnitId).HasColumnName("UnitId").IsRequired();
 
             // Relationships
-            HasRequired(t => t.KindMaterialObj).WithMany(t => t.UnitMaterials).HasForeignKey(d => d.KindMaterialId).WillCascadeOnDelete(false);
+            HasRequired(t => t.KindMaterialObj).WithMany(t => t.UnitMaterials).HasForeignKey(d => d.KindMaterialId).WillCascadeOnDelete(true);
             HasRequired(t => t.UnitObj).WithMany(t => t.UnitMaterials).HasForeignKey(d => d.UnitId).WillCascadeOnDelete(false);
         }
     }

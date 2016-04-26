@@ -27,6 +27,5 @@ namespace Store.Bll.Bll
                 FactoryDal.UnitMaterialDal.FindBy(x => x.KindMaterialId == id).OrderBy(x => x.UnitObj.ShortName).ToList();
             return list;
         }
-
     }
 }

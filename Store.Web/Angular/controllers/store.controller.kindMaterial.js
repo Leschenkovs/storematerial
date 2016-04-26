@@ -1,6 +1,9 @@
 ﻿(function () {
     "use strict";
 
+    ///////////// Work with checkbox
+    //https://long2know.com/2015/07/angular-multiselect-dropdown/
+
     var KindMaterialController = function ($scope, $state, $filter, KindMaterialService, UnitMaterialService, UnitService, ngTableParams) {
 
         var originalData = [];
@@ -18,9 +21,6 @@
             unitId: "",
             kindMaterialId: ""
         };
-
-        ///////////// Work with checkbox
-        //https://long2know.com/2015/07/angular-multiselect-dropdown/
 
         ///////// List Units
         UnitService.getAllUnits().then(function (value) {
@@ -82,7 +82,7 @@
             });
         });
 
-        $scope.cancel = function (row, rowForm) {
+        $scope.cancelKindMaterial = function (row, rowForm) {
             var originalRow = resetRow(row, rowForm);
             angular.extend(row, originalRow);
         };
@@ -97,28 +97,33 @@
             }
         };
 
-        $scope.update = function (row, rowForm) {
+        $scope.updateKindMaterial = function (row, rowForm) {
             KindMaterialService.updateKindMaterial(row).then(function (response) {
                 var originalRow = resetRow(row, rowForm);
-                angular.extend(originalRow, row);
+                angular.extend(row, response);
+                angular.extend(originalRow, response);
             },
             function (errorObject) {
                 alert(errorObject.ExceptionMessage);
             });
         };
 
+        function reloadTableParams() {
+            $scope.tableParams.reload().then(function (data) {
+                if (data.length === 0 && $scope.tableParams.total() > 0) {
+                    $scope.tableParams.page($scope.tableParams.page() - 1);
+                    $scope.tableParams.reload();
+                }
+            });
+        }
+
         $scope.saveKindMaterial = function (kindMaterial, kindMaterialForm) {
             if (kindMaterialForm.$valid) {
                 KindMaterialService.addKindMaterial(kindMaterial).then(function (value) {
                     if (value) {
                         $scope.tableParams.settings().dataset.unshift(value);
-                        $scope.tableParams.reload().then(function (data) {
-                            if (data.length === 0 && self.tableParams.total() > 0) {
-                                self.tableParams.page(self.tableParams.page() - 1);
-                                self.tableParams.reload();
-                            }
-                        });
                         $scope.kindMaterial = null;
+                        reloadTableParams();
                     } else {
                         alert("Ошибка добавления записи!");
                     };
@@ -126,18 +131,13 @@
             }
         };
 
-        $scope.delete = function (id) {
+        $scope.deleteKindMaterial = function (id) {
             KindMaterialService.deleteKindMaterial(id).then(function (value) {
                 if (value) {
                     _.remove($scope.tableParams.settings().dataset, function (item) {
                         return id === item.id;
                     });
-                    $scope.tableParams.reload().then(function (data) {
-                        if (data.length === 0 && self.tableParams.total() > 0) {
-                            self.tableParams.page(self.tableParams.page() - 1);
-                            self.tableParams.reload();
-                        }
-                    });
+                    reloadTableParams();
                 } else {
                     alert("Ошибка удаления!");
                 }

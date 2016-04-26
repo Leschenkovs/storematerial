@@ -16,38 +16,31 @@
                         <label for="name"><strong class="error-message">*</strong>Название</label>
                         <input type="text" name="name" ng-model="kindMaterial.name" class="form-control" required maxlength="30">
                     </div>
-                    <div class="form-group col-lg-4">
+                    <div class="form-group col-lg-2" ng-class="{ 'has-error': kindMaterial.unitIds.$touched && kindMaterial.unitIds.$invalid }">
                         <multiselect class="input-xlarge multiselect" style="margin-top: 24px; float: left;"
-                                     ng-class="{ 'has-error': kindMaterial.unitIds.$touched && kindMaterial.unitIds.$invalid }"
-                                     ng-model="kindMaterial.unitIds"
-                                     options="p.id as p.name for p in units" 
-                                     select-limit="50"
-                                     header="Выберите ед.изм."
-                                     selected-header="единиц изм."
-                                     enable-filter="false"
-                                     multiple="true" >
-                        </multiselect>
+                            ng-model="kindMaterial.unitIds"
+                            options="p.id as p.name for p in units"
+                            select-limit="50"
+                            header="Выберите ед.изм."
+                            selected-header="единиц изм."
+                            enable-filter="false"
+                            multiple="true">
+                            </multiselect>
                     </div>
-                    <div class="form-group col-lg-5">
-                        <label for="name">Ед.изм.</label>
-                        <div ng-repeat="unitName in $kindMaterial.units">
-                            <span>{{unitName.shortname}}</span>
-                        </div>
-                    </div>
-                    <div class="form-group col-lg-12">
+                    <div class="form-group col-lg-1" style="margin-top: 24px; float: right;">
                         <input type="hidden" name="save" value="contact">
                         <button type="submit" class="btn btn-primary" ng-click="saveKindMaterial(kindMaterial, kindMaterialForm)">Сохранить</button>
                     </div>
                 </div>
             </form>
 
-            <table ng-table="tableParams" show-filter="true" class="table table-bordered table-hover table-striped table-condensed editable-table demoTable" ng-form="tableForm" disable-filter="isAdding" demo-tracked-table="tableTracker">
-                <colgroup>
-                    <col width="*2" />
-                    <col width="*2" />
-                    <col width="*0.5" />
-                    <col width="85" />
+            <table ng-table="tableParams" show-filter="true" class="demoTable table table-bordered table-hover table-striped table-condensed editable-table" ng-form="tableForm" disable-filter="isAdding" demo-tracked-table="tableTracker">
+                <colgroup span="3">
+                    <col width="2*" />
+                    <col width="2*" />
+                    <col width="1*" />
                 </colgroup>
+                <colgroup width="85">
                 <tr ng-repeat="row in $data" ng-form="rowForm" demo-tracked-table-row="row">
                     <td data-title="'Артикул'" sortable="'articul'" filter="{'articul': 'text' }" ng-switch="row.isEditing" ng-class="articul.$dirty ? 'bg-warning' : ''" ng-form="articul" demo-tracked-table-cell>
                         <span ng-switch-default class="editable-text">{{row.articul}}</span>
@@ -63,15 +56,23 @@
                     </td>
                     <td data-title="'Ед.изм.'" sortable="'units'" filter="{'units': 'text' }" ng-switch="row.isEditing" ng-class="units.$dirty ? 'bg-warning' : ''" ng-form="units" demo-tracked-table-cell>
                         <span ng-switch-default class="editable-text">{{row.units}}</span>
-                        <!--<div class="controls" ng-class="units.$invalid && units.$dirty ? 'has-error' : ''" ng-switch-when="true">
-                            <input type="text" name="units" ng-model="row.units" class="editable-input form-control input-sm" required />
-                        </div>-->
+                        <div class="controls" ng-class="unitIds.$invalid && unitIds.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                            <multiselect class="input-xlarge multiselect" ng-controller="KindMaterialController"
+                                ng-model="row.unitIds"
+                                options="p.id as p.name for p in units"
+                                select-limit="50"
+                                header="Выберите ед.изм."
+                                selected-header="единиц изм."
+                                enable-filter="false"
+                                multiple="true">
+                            </multiselect>
+                        </div>
                     </td>
                     <td>
-                        <button class="btn btn-primary btn-sm" ng-click="update(row, rowForm)" ng-if="row.isEditing" ng-disabled="rowForm.$pristine || rowForm.$invalid"><span class="glyphicon glyphicon-ok"></span></button>
-                        <button class="btn btn-default btn-sm" ng-click="cancel(row, rowForm)" ng-if="row.isEditing"><span class="glyphicon glyphicon-remove"></span></button>
+                        <button class="btn btn-primary btn-sm" ng-click="updateKindMaterial(row, rowForm)" ng-if="row.isEditing" ng-disabled="rowForm.$pristine || rowForm.$invalid"><span class="glyphicon glyphicon-ok"></span></button>
+                        <button class="btn btn-default btn-sm" ng-click="cancelKindMaterial(row, rowForm)" ng-if="row.isEditing"><span class="glyphicon glyphicon-remove"></span></button>
                         <button class="btn btn-default btn-sm" ng-click="row.isEditing = true" ng-if="!row.isEditing"><span class="glyphicon glyphicon-pencil"></span></button>
-                        <button class="btn btn-danger btn-sm" ng-click="delete(row.id)" ng-if="!row.isEditing"><span class="glyphicon glyphicon-trash"></span></button>
+                        <button class="btn btn-danger btn-sm" ng-click="deleteKindMaterial(row.id)" ng-if="!row.isEditing"><span class="glyphicon glyphicon-trash"></span></button>
                     </td>
                 </tr>
             </table>

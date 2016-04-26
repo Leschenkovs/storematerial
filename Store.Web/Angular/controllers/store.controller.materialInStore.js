@@ -89,9 +89,9 @@
                         materialInStoreId: value.materialInStoreId
                     });
                     $scope.tableParamsPrice.reload().then(function(data) {
-                        if (data.length === 0 && self.tableParamsPrice.total() > 0) {
-                            self.tableParamsPrice.page(self.tableParamsPrice.page() - 1);
-                            self.tableParamsPrice.reload();
+                        if (data.length === 0 && $scope.tableParamsPrice.total() > 0) {
+                            $scope.tableParamsPrice.page($scope.tableParamsPrice.page() - 1);
+                            $scope.tableParamsPrice.reload();
                         }
                     });
                 },
@@ -108,9 +108,9 @@
                         return id === item.id;
                     });
                     $scope.tableParamsPrice.reload().then(function (data) {
-                        if (data.length === 0 && self.tableParamsPrice.total() > 0) {
-                            self.tableParamsPrice.page(self.tableParamsPrice.page() - 1);
-                            self.tableParamsPrice.reload();
+                        if (data.length === 0 && $scope.tableParamsPrice.total() > 0) {
+                            $scope.tableParamsPrice.page($scope.tableParamsPrice.page() - 1);
+                            $scope.tableParamsPrice.reload();
                         }
                     });
                 }

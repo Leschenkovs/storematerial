@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web.UI.WebControls;
 using Store.Bll.Exception;
 using Store.Common;
 using Store.Common.Helper;
@@ -13,6 +14,7 @@ namespace Store.Bll.Bll
     {
         new List<KindMaterial> GetAll();
         KindMaterial Save(KindMaterial entity, int[] unitIds);
+        KindMaterial Update(KindMaterial entity, int[] unitIds);
         new bool Delete(int id);
     }
 
@@ -47,13 +49,46 @@ namespace Store.Bll.Bll
 
             foreach (int idUnit in unitIds)
             {
-                UnitMaterial unitMaterial = FactoryDal.UnitMaterialDal.Create();
-                unitMaterial.UnitId = idUnit;
-                newEntity.UnitMaterials.Add(unitMaterial);
+                newEntity.UnitMaterials.Add(GetNewUnitMaterial(idUnit));
             }
             Save(newEntity);
 
             return newEntity;
+        }
+
+        public KindMaterial Update(KindMaterial model, int[] unitIds)
+        {
+            CacheHelper.CleanCache(GlobalConstants.KindMaterialsKey);
+
+            // Save only properties
+            Save(model);
+            KindMaterial entity = GetById(model.Id);
+
+            // Remove old UnitMaterial
+            int[] idsForDelete = entity.UnitMaterials.Where(um => !unitIds.Contains(um.UnitId)).Select(x => x.Id).ToArray();
+            foreach (int i in idsForDelete)
+            {
+                entity.UnitMaterials.Remove(entity.UnitMaterials.First(x => x.Id == i));
+            }
+
+            //foreach (UnitMaterial unitMaterial in entity.UnitMaterials.Where(um => !unitIds.Contains(um.UnitId)).ToArray())
+            //{
+            //    entity.UnitMaterials.Remove(unitMaterial);
+            //}
+            // Add new UnitMaterial
+            foreach (int unitId in unitIds.Where(unitId => entity.UnitMaterials.All(x => x.UnitId != unitId)))
+            {
+                entity.UnitMaterials.Add(GetNewUnitMaterial(unitId));
+            }
+            Save(entity);
+            return entity;
+        }
+
+        private UnitMaterial GetNewUnitMaterial(int id)
+        {
+            UnitMaterial unitMaterial = FactoryDal.UnitMaterialDal.Create();
+            unitMaterial.UnitId = id;
+            return unitMaterial;
         }
 
         public new bool Delete(int id)
@@ -65,7 +100,8 @@ namespace Store.Bll.Bll
 
         private bool IsExistMaterialInStore(int id)
         {
-            return FactoryDal.KindMaterialDal.First(x => x.Id == id).UnitMaterials.Any(x => x.MaterialInStoreObj.Count > 0);
+            KindMaterial model = GetById(id);
+            return model != null && model.UnitMaterials.Any(x => x.MaterialInStoreObj != null && x.MaterialInStoreObj.Count > 0);
         }
     }
 }

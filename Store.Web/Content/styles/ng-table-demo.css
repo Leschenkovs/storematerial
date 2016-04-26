@@ -1,5 +1,6 @@
 .demoTable td:last-child {
   min-width: 90px;
+  text-align: left;
 }
 
 /** Editable table

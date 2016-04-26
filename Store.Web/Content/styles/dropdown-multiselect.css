@@ -4,6 +4,7 @@
 
     multiselect > .btn-group {
         min-width: 180px;
+        width: 100%;
     }
 
     multiselect .btn {

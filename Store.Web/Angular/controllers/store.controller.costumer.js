@@ -58,9 +58,9 @@
                             'description': value.description
                         });
                         $scope.tableParams.reload().then(function(data) {
-                            if (data.length === 0 && self.tableParams.total() > 0) {
-                                self.tableParams.page(self.tableParams.page() - 1);
-                                self.tableParams.reload();
+                            if (data.length === 0 && $scope.tableParams.total() > 0) {
+                                $scope.tableParams.page($scope.tableParams.page() - 1);
+                                $scope.tableParams.reload();
                             }
                         });
                         $scope.costumer =
@@ -86,9 +86,9 @@
                         return id === item.id;
                     });
                     $scope.tableParams.reload().then(function (data) {
-                        if (data.length === 0 && self.tableParams.total() > 0) {
-                            self.tableParams.page(self.tableParams.page() - 1);
-                            self.tableParams.reload();
+                        if (data.length === 0 && $scope.tableParams.total() > 0) {
+                            $scope.tableParams.page($scope.tableParams.page() - 1);
+                            $scope.tableParams.reload();
                         }
                     });
                 }

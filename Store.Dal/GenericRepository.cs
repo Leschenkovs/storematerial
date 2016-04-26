@@ -29,7 +29,6 @@ namespace Store.Dal
 
         public C Context
         {
-
             get { return _entities; }
             set { _entities = value; }
         }
@@ -68,7 +67,7 @@ namespace Store.Dal
             }
             catch (Exception e)
             {
-                return false;
+                throw;
             }
         }
 
@@ -83,7 +82,7 @@ namespace Store.Dal
             }
             catch (Exception e)
             {
-                return null;
+                throw;
             }
         }
 

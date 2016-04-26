@@ -48,7 +48,8 @@ namespace Store.Web.Controllers
         public KindMaterialDTO UpdateKindMaterial([FromBody] KindMaterialDTO model)
         {
             KindMaterial entity = Mapper.Map<KindMaterialDTO, KindMaterial>(model);
-            model = Mapper.Map<KindMaterial, KindMaterialDTO>(_kindMaterialBll.Save(entity));
+            entity = _kindMaterialBll.Update(entity, model.unitIds);
+            model = Mapper.Map<KindMaterial, KindMaterialDTO>(entity);
             return model;
         }
 
