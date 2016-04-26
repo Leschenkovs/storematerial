@@ -12,7 +12,7 @@ namespace Store.Bll.Bll
     public interface IKindMaterialBll : IBaseBll<KindMaterial>
     {
         new List<KindMaterial> GetAll();
-        new KindMaterial Save(KindMaterial entity);
+        KindMaterial Save(KindMaterial entity, int[] unitIds);
         new bool Delete(int id);
     }
 
@@ -37,10 +37,23 @@ namespace Store.Bll.Bll
             return result;
         }
 
-        public new KindMaterial Save(KindMaterial entity)
+        public KindMaterial Save(KindMaterial entity, int[] unitIds)
         {
             CacheHelper.CleanCache(GlobalConstants.KindMaterialsKey);
-            return base.Save(entity);
+
+            KindMaterial newEntity = Create();
+            newEntity.Name = entity.Name;
+            newEntity.Articul = entity.Articul;
+
+            foreach (int idUnit in unitIds)
+            {
+                UnitMaterial unitMaterial = FactoryDal.UnitMaterialDal.Create();
+                unitMaterial.UnitId = idUnit;
+                newEntity.UnitMaterials.Add(unitMaterial);
+            }
+            Save(newEntity);
+
+            return newEntity;
         }
 
         public new bool Delete(int id)

@@ -17,12 +17,14 @@
                         <input type="text" name="name" ng-model="kindMaterial.name" class="form-control" required maxlength="30">
                     </div>
                     <div class="form-group col-lg-4">
-                        <multiselect class="input-xlarge multiselect"
-                                     ng-model="kindMaterial.units"
+                        <multiselect class="input-xlarge multiselect" style="margin-top: 24px; float: left;"
+                                     ng-class="{ 'has-error': kindMaterial.unitIds.$touched && kindMaterial.unitIds.$invalid }"
+                                     ng-model="kindMaterial.unitIds"
                                      options="p.id as p.name for p in units" 
                                      select-limit="50"
                                      header="Выберите ед.изм."
                                      selected-header="единиц изм."
+                                     enable-filter="false"
                                      multiple="true" >
                         </multiselect>
                     </div>
@@ -34,7 +36,7 @@
                     </div>
                     <div class="form-group col-lg-12">
                         <input type="hidden" name="save" value="contact">
-                        <button type="submit" class="btn btn-primary" ng-click="saveUnitMaterial(kindMaterial, kindMaterialForm)">Сохранить</button>
+                        <button type="submit" class="btn btn-primary" ng-click="saveKindMaterial(kindMaterial, kindMaterialForm)">Сохранить</button>
                     </div>
                 </div>
             </form>

@@ -7,14 +7,16 @@ namespace Store.Web.App_Start
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/Store.Web/base").Include(
-               "~/Scripts/jquery-1.9.1.min.js",
-               "~/Scripts/jquery-1.9.1.intellisense.js*",
                "~/Scripts/bootstrap.min.js",
                "~/Scripts/ng-table.js",
                "~/Scripts/underscore.min.js",
                 //"~/Scripts/modernizr.custom.js",
                "~/Scripts/lodash.min.js",
                "~/Scripts/multiselect.js"
+              ));
+
+            bundles.Add(new ScriptBundle("~/Store.Web/jquery").Include(
+                "~/Scripts/jquery-1.9.1.min.js"
               ));
 
             bundles.Add(new ScriptBundle("~/Store.Web/angular").Include(

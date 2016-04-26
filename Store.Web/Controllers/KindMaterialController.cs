@@ -36,17 +36,11 @@ namespace Store.Web.Controllers
         }
 
         [HttpPost]
-        public KindMaterialDTO CreateKindMaterial([FromBody] CreateKindMaterialDTO model)
+        public KindMaterialDTO CreateKindMaterial([FromBody] KindMaterialDTO model)
         {
-            KindMaterial entity = Mapper.Map<CreateKindMaterialDTO, KindMaterial>(model);
-            entity = _kindMaterialBll.Save(entity); // save kindMaterial
-            foreach (int idUnit in model.units)
-            {
-                UnitMaterial obj = new UnitMaterial{KindMaterialId = entity.Id, UnitId = idUnit};
-                _unitMaterialBll.Save(obj); // save UnitMaterials
-            }
-
-            KindMaterialDTO modelToView = Mapper.Map<KindMaterial, KindMaterialDTO>(_kindMaterialBll.GetById(entity.Id)); // get new kindMaterial with units
+            KindMaterial entity = Mapper.Map<KindMaterialDTO, KindMaterial>(model);
+            entity = _kindMaterialBll.Save(entity, model.unitIds);
+            KindMaterialDTO modelToView = Mapper.Map<KindMaterial, KindMaterialDTO>(entity); 
             return modelToView;
         }
 

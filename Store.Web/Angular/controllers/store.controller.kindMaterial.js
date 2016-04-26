@@ -51,7 +51,6 @@
         };
 
         $scope.saveUnitMaterial = function (unitMaterial, unitMaterialForm) {
-            //debugger;
             if (unitMaterialForm.$valid) {
                 UnitMaterialService.addUnitMaterial(unitMaterial).then(function (value) {
                     if (value) {
@@ -108,28 +107,18 @@
             });
         };
 
-        $scope.save = function (kindMaterial, createKindMaterial) {
-            if (createKindMaterial.$valid) {
+        $scope.saveKindMaterial = function (kindMaterial, kindMaterialForm) {
+            if (kindMaterialForm.$valid) {
                 KindMaterialService.addKindMaterial(kindMaterial).then(function (value) {
                     if (value) {
-                        $scope.tableParams.settings().dataset.unshift({
-                            'id': value.id,
-                            'articul': value.articul,
-                            'name': value.name,
-                            'units': ""
-                        });
+                        $scope.tableParams.settings().dataset.unshift(value);
                         $scope.tableParams.reload().then(function (data) {
                             if (data.length === 0 && self.tableParams.total() > 0) {
                                 self.tableParams.page(self.tableParams.page() - 1);
                                 self.tableParams.reload();
                             }
                         });
-                        $scope.kindMaterial =
-                            {
-                                id: "",
-                                articul: "",
-                                name: ""
-                            };
+                        $scope.kindMaterial = null;
                     } else {
                         alert("Ошибка добавления записи!");
                     };

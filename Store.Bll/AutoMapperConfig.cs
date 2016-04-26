@@ -76,16 +76,11 @@ namespace Store.Bll
                 .ForMember("Articul", opt => opt.MapFrom(src => src.articul))
                 .ForMember("Name", opt => opt.MapFrom(src => src.name));
 
-            Mapper.CreateMap<CreateKindMaterialDTO, KindMaterial>()
-                .ForMember("Id", opt => opt.MapFrom(src => src.id))
-                .ForMember("Articul", opt => opt.MapFrom(src => src.articul))
-                .ForMember("Name", opt => opt.MapFrom(src => src.name));
-
-
             Mapper.CreateMap<KindMaterial, KindMaterialDTO>()
                 .ForMember("id", opt => opt.MapFrom(src => src.Id))
                 .ForMember("articul", opt => opt.MapFrom(src => src.Articul))
                 .ForMember("name", opt => opt.MapFrom(src => src.Name))
+                .ForMember("unitIds", opt => opt.MapFrom(src => src.UnitMaterials.Select(x => x.UnitObj.Id).ToArray()))
                 .ForMember("units", opt => opt.MapFrom(src => src.UnitMaterials.Select(x => x.UnitObj.ShortName).Aggregate((current, a) => (current + " / " + a))));
         }
 
