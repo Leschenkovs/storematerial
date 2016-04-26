@@ -16,6 +16,10 @@
             materialInStoreId: ""
         };
 
+        $scope.cancel = function () {
+            $state.go("supply/index");
+        };
+
         SupplyService.getAllSupplies().then(function (value) {
             originalData = angular.copy(value);
             $scope.tableParams = new ngTableParams({ page: 1, count: 5 }, {

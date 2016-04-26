@@ -60,6 +60,10 @@
                         });
                 }
             };
+
+            $scope.cancel = function() {
+                $state.go("materialInStore/index");
+            };
         }
 
     };

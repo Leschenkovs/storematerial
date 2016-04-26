@@ -1,5 +1,5 @@
 .demoTable td:last-child {
-  min-width: 90px;
+  min-width: 50px;
   text-align: left;
 }
 

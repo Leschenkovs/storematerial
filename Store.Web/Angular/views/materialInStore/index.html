@@ -36,48 +36,48 @@
 
             <div style="width: 50%; float: left;">
                 <table ng-table="tableParams" show-filter="true" class="table table-bordered table-hover  table-condensed editable-table demoTable" ng-form="tableForm" disable-filter="isAdding" demo-tracked-table="tableTracker">
-	                <colgroup>
-		                <col width="*1"/>
-		                <col width="*1"/>
-		                <col width="*1"/>
+	                <colgroup span="4">
+		                <col width="30"/>
+		                <col/>
 		                <col width="50"/>
+		                <col width="110"/>
 	                </colgroup>
-	                <tr ng-repeat="row in $data" ng-form="rowForm" demo-tracked-table-row="row" ng-click="setSelected(row.unitMaterialId)" ng-class="{'selected': row.unitMaterialId === createPrice.materialInStoreId, 'mouseEnter': mouseOn==true }" ng-mouseenter="mouseOn=true" ng-mouseleave="mouseOn=false">
-		                <td>
-                      <a href="#/experse/create/{{row.unitMaterialId}}">
+                  <tr ng-repeat="row in $data" ng-form="rowForm" demo-tracked-table-row="row" ng-click="setSelected(row.unitMaterialId)" ng-class="{'selected': row.unitMaterialId === createPrice.materialInStoreId, 'mouseEnter': mouseOn==true }" ng-mouseenter="mouseOn=true" ng-mouseleave="mouseOn=false">
+                    <td>
+                      <a ng-show="row.count>0" ng-click="createExperse(row.unitMaterialId)">
                         <span class="icon">
                           <i aria-hidden="true" class="icon-truck"></i>
                         </span>
                       </a>
-		                </td>
-		                <td data-title="'Вид материала'" sortable="'kindMaterialName'" filter="{'kindMaterialName': 'text' }" ng-form="kindMaterialName">
-			                <span class="editable-text">{{row.kindMaterialName}}</span>
-		                </td>
-		                <td data-title="'Ед.изм'" sortable="'unitName'" ng-form="unitName">
-			                <span class="editable-text">{{row.unitName}}</span>
-		                </td>
-		                <td data-title="'Кол-во'" sortable="'count'" filter="{'count': 'text' }" ng-form="count">
-			                <span class="editable-text">{{row.count}}</span>
-		                </td>
-	                </tr>
+                    </td>
+                    <td data-title="'Вид материала'" sortable="'kindMaterialName'" filter="{'kindMaterialName': 'text' }" ng-form="kindMaterialName" class="text-left">
+                      <span class="editable-text">{{row.kindMaterialName}}</span>
+                    </td>
+                    <td data-title="'Ед.изм'" sortable="'unitName'" ng-form="unitName" class="text-left">
+                      <span class="editable-text">{{row.unitName}}</span>
+                    </td>
+                    <td data-title="'Кол-во'" sortable="'count'" filter="{'count': 'text' }" ng-form="count" class="text-left">
+                      <span class="editable-text">{{row.count}}</span>
+                    </td>
+                  </tr>
                 </table>
             </div>
 
           <div style="width: 48%; float: right;">
             <table ng-table="tableParamsPrice" class="table table-bordered table-hover table-striped table-condensed editable-table demoTable" ng-form="tableFormPrice" demo-tracked-table="tableTracker">
-              <colgroup>
-                <col width="*1.5" />
-                <col width="*2" />
-                <col width="100" />
+              <colgroup span="3">
+                <col />
+                <col />
+                <col width="90" />
               </colgroup>
-              <tr ng-repeat="rowPrice in $data | filter:{materialInStoreId:createPrice.materialInStoreId}" ng-form="rowFormPrice" demo-tracked-table-row="rowPrice">
-                <td data-title="'Цена реализации'" ng-switch="rowPrice.isEditing" ng-class="priceValue.$dirty ? 'bg-warning' : ''" ng-form="priceValue" demo-tracked-table-cell>
-                  <span ng-switch-default class="editable-text">{{rowPrice.priceValue | currency : "RUB" : 0}}</span>
+              <tr ng-repeat="rowPrice in $data | filter:{materialInStoreId:createPrice.materialInStoreId}" ng-form="rowFormPrice" demo-tracked-table-row="rowPrice" >
+                <td data-title="'Цена реализации'" ng-switch="rowPrice.isEditing" ng-class="priceValue.$dirty ? 'bg-warning' : ''" ng-form="priceValue" demo-tracked-table-cell class="text-left">
+                  <span ng-switch-default class="editable-text">{{rowPrice.priceValue | currency : RUB : 0}}</span>
                   <div class="controls" ng-class="priceValue.$invalid && priceValue.$dirty ? 'has-error' : ''" ng-switch-when="true">
                     <input type="text" name="priceValue" ng-model="rowPrice.priceValue" class="editable-input form-control input-sm" required />
                   </div>
                 </td>
-                <td data-title="'Период'" sortable="'dateOt'" ng-form="dateOt">
+                <td data-title="'Период'" sortable="'dateOt'" ng-form="dateOt" class="text-left">
                   <span class="editable-text">{{rowPrice.dateOt | date:'MMMM yyyy'}}</span>
                 </td>
 

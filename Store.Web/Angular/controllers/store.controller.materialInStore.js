@@ -35,13 +35,24 @@
         });
 
         $scope.setSelected = function (unitMaterialId) {
-            //$scope.isCollapsed = !$scope.isCollapsed;
             var a = _.find(originalData, function (rw) { return rw.unitMaterialId === unitMaterialId; });
             $scope.selectedMaterial.name = a.kindMaterialName;
             $scope.selectedMaterial.unit = a.unitName;
             $scope.selectedMaterial.materialInStoreId = a.unitMaterialId;
 
             $scope.createPrice.materialInStoreId = unitMaterialId;
+        };
+
+        $scope.createExperse = function(unitMaterialId) {
+            var dateNow = new Date();
+            var arr = _.filter(originalDataPrice, function(rw) {
+                return rw.materialInStoreId === unitMaterialId && new Date(rw.dateOt).getMonth() == dateNow.getMonth() && new Date(rw.dateOt).getYear() == dateNow.getYear();
+            });
+            if (arr.length == 0) {
+                alert("Отсутствует цена реализации на текущий месяц для материала! Отгрузка невозможна!");
+            } else {
+                $state.go('experse/create', { id: unitMaterialId });
+            }
         };
 
 // Prices
@@ -130,24 +141,11 @@
             minDate: new Date(),
         };
         $scope.dateOptions = {
-            //dateDisabled: disabled,
             formatYear: 'yy',
             maxDate: new Date(2019, 12, 1),
             minDate: new Date(),
-            //startingDay: 1,
             minMode: 'month'
         };
-        // Disable weekend selection
-        //function disabled(data) {
-        //    var date = data.date,
-        //      mode = data.mode;
-        //    return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
-        //}
-        //function disabled(data) {
-        //    var date = data.date,
-        //      mode = data.mode;
-        //    return mode === 'month' && (date.getMonth() === 2 || date.getMonth() === 6);
-        //}
 
         $scope.toggleMin = function () {
             $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();

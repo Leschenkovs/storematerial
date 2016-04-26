@@ -1,52 +1,6 @@
 ﻿<div class="row">
   <div class="box">
     <div class="col-lg-12">
-      <hr>
-      <!--<h2 class="intro-text text-center">
-        Оформление отгрузки со склада
-      </h2>-->
-      <hr>
-        <!--<form name="createExperse" novalidate>
-            <div class="row">
-                <div class="form-group col-lg-4">
-                    <label>Вид материала</label>
-                    <span ng-model="experse.kindMaterialName"><strong class="error-message">{{experse.kindMaterialName}}</strong></span>
-                </div>
-
-                <div class="form-group col-lg-4">
-                    <label>Ед. изм.</label>
-                    <span ng-model="experse.unitShortName"><strong class="error-message">{{experse.unitShortName}}</strong></span>
-                </div>
-
-                <div class="form-group col-lg-4">
-                    <label>Остаток на складе</label>
-                    <span ng-model="experse.lostCount"><strong class="error-message">{{experse.lostCount}}</strong></span>
-                </div>
-
-                <div class="form-group col-lg-4" ng-class="{ 'has-error': createExperse.count.$touched && createExperse.count.$invalid }">
-                    <label><strong class="error-message">*</strong>Количество</label>
-                    <input type="text" name="count" ng-model="experse.count" class="form-control" required>
-                </div>
-
-                <div class="form-group col-lg-4">
-                    <label>Потребитель</label>
-                    <select ng-model="experse.costumerId"
-                            ng-options="obj.id as obj.name for obj in costumers"
-                            class="form-control"
-                            required>
-                        <option value="">-- Выберите потребителя --</option>
-                    </select>
-                </div>
-                <div class="clearfix"></div>
-                <div class="form-group col-lg-12">
-                    <button type="submit" class="btn btn-success" ng-click="save(experse, createExperse)">Сохранить</button>
-                    <a href="#/materialInStore/index" class="btn btn-primary" id="Cancel">
-                        <span>Отмена</span>
-                    </a>
-                </div>
-            </div>
-        </form>-->
-
         <form id="create-form" name="createExperse" novalidate>
             <div class="heading">Оформление отгрузки со склада</div>
             <div class="left">
@@ -72,7 +26,7 @@
                     <input type="number" name="count" ng-model="experse.count" class="form-control" required>
                 </div>
                 <div class="form-group col-lg-12">
-                    <label>Потребитель</label>
+                    <label><strong class="error-message">*</strong>Потребитель</label>
                     <select ng-model="experse.costumerId"
                             ng-options="obj.id as obj.name for obj in costumers"
                             class="form-control"
@@ -80,9 +34,11 @@
                         <option value="">-- Выберите потребителя --</option>
                     </select>
                 </div>
-                <div class="form-group col-lg-12">
-                    <button href="#/materialInStore/index" class="submitCancelForm" id="Cancel">Отмена</button>
-                </div>
+	            <div class="form-group col-lg-12">
+                 <button ng-click="cancel()" class="submitCancelForm" id="Cancel">
+                   Отмена
+                 </button>
+	            </div>
             </div>
         </form>
     </div>

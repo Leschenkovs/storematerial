@@ -42,38 +42,38 @@
                     <col width="*1" />
                     <col width="85" />
                 </colgroup>
-                <tr ng-repeat="row in $data" ng-form="rowForm" demo-tracked-table-row="row">
-                    <td data-title="'Название'" sortable="'name'" filter="{'name': 'text' }" ng-switch="row.isEditing" ng-class="name.$dirty ? 'bg-warning' : ''" ng-form="name" demo-tracked-table-cell>
-                        <span ng-switch-default class="editable-text">{{row.name}}</span>
-                        <div class="controls" ng-class="name.$invalid && name.$dirty ? 'has-error' : ''" ng-switch-when="true">
-                            <input type="text" name="name" ng-model="row.name" class="editable-input form-control input-sm" required />
-                        </div>
-                    </td>
-                    <td data-title="'Адрес'" sortable="'address'" filter="{'address': 'text' }" ng-switch="row.isEditing" ng-class="address.$dirty ? 'bg-warning' : ''" ng-form="address" demo-tracked-table-cell>
-                        <span ng-switch-default class="editable-text">{{row.address}}</span>
-                        <div class="controls" ng-class="address.$invalid && address.$dirty ? 'has-error' : ''" ng-switch-when="true">
-                            <input type="text" name="address" ng-model="row.address" class="editable-input form-control input-sm" required />
-                        </div>
-                    </td>
-                    <td data-title="'Телефон'" sortable="'telephone'" filter="{'telephone': 'text' }" ng-switch="row.isEditing" ng-class="telephone.$dirty ? 'bg-warning' : ''" ng-form="telephone" demo-tracked-table-cell>
-                        <span ng-switch-default class="editable-text">{{row.telephone}}</span>
-                        <div class="controls" ng-class="telephone.$invalid && telephone.$dirty ? 'has-error' : ''" ng-switch-when="true">
-                            <input type="text" name="telephone" ng-model="row.telephone" class="editable-input form-control input-sm" required />
-                        </div>
-                    </td>
-                    <td data-title="'Описание'" sortable="'description'" filter="{'description': 'text' }" ng-switch="row.isEditing" ng-class="description.$dirty ? 'bg-warning' : ''" ng-form="description" demo-tracked-table-cell>
-                        <span ng-switch-default class="editable-text">{{row.description}}</span>
-                        <div class="controls" ng-class="description.$invalid && description.$dirty ? 'has-error' : ''" ng-switch-when="true">
-                            <input type="text" name="description" ng-model="row.description" class="editable-input form-control input-sm" required />
-                        </div>
-                    </td>
-                    <td>
-                        <button class="btn btn-primary btn-sm" ng-click="update(row, rowForm)" ng-if="row.isEditing" ng-disabled="rowForm.$pristine || rowForm.$invalid"><span class="glyphicon glyphicon-ok"></span></button>
-                        <button class="btn btn-default btn-sm" ng-click="cancel(row, rowForm)" ng-if="row.isEditing"><span class="glyphicon glyphicon-remove"></span></button>
-                        <button class="btn btn-default btn-sm" ng-click="row.isEditing = true" ng-if="!row.isEditing"><span class="glyphicon glyphicon-pencil"></span></button>
-                        <button class="btn btn-danger btn-sm" ng-click="delete(row.id)" ng-if="!row.isEditing"><span class="glyphicon glyphicon-trash"></span></button>
-                    </td>
-                </tr>
+              <tr ng-repeat="row in $data" ng-form="rowForm" demo-tracked-table-row="row" class="text-left">
+                <td data-title="'Название'" sortable="'name'" filter="{'name': 'text' }" ng-switch="row.isEditing" ng-class="name.$dirty ? 'bg-warning' : ''" ng-form="name" demo-tracked-table-cell>
+                  <span ng-switch-default class="editable-text">{{row.name}}</span>
+                  <div class="controls" ng-class="name.$invalid && name.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                    <input type="text" name="name" ng-model="row.name" class="editable-input form-control input-sm" required />
+                  </div>
+                </td>
+                <td data-title="'Адрес'" sortable="'address'" filter="{'address': 'text' }" ng-switch="row.isEditing" ng-class="address.$dirty ? 'bg-warning' : ''" ng-form="address" demo-tracked-table-cell>
+                  <span ng-switch-default class="editable-text">{{row.address}}</span>
+                  <div class="controls" ng-class="address.$invalid && address.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                    <input type="text" name="address" ng-model="row.address" class="editable-input form-control input-sm" required />
+                  </div>
+                </td>
+                <td data-title="'Телефон'" sortable="'telephone'" filter="{'telephone': 'text' }" ng-switch="row.isEditing" ng-class="telephone.$dirty ? 'bg-warning' : ''" ng-form="telephone" demo-tracked-table-cell>
+                  <span ng-switch-default class="editable-text">{{row.telephone}}</span>
+                  <div class="controls" ng-class="telephone.$invalid && telephone.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                    <input type="text" name="telephone" ng-model="row.telephone" class="editable-input form-control input-sm" required />
+                  </div>
+                </td>
+                <td data-title="'Описание'" sortable="'description'" filter="{'description': 'text' }" ng-switch="row.isEditing" ng-class="description.$dirty ? 'bg-warning' : ''" ng-form="description" demo-tracked-table-cell>
+                  <span ng-switch-default class="editable-text">{{row.description}}</span>
+                  <div class="controls" ng-class="description.$invalid && description.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                    <input type="text" name="description" ng-model="row.description" class="editable-input form-control input-sm" required />
+                  </div>
+                </td>
+                <td>
+                  <button class="btn btn-primary btn-sm" ng-click="update(row, rowForm)" ng-if="row.isEditing" ng-disabled="rowForm.$pristine || rowForm.$invalid"><span class="glyphicon glyphicon-ok"></span></button>
+                  <button class="btn btn-default btn-sm" ng-click="cancel(row, rowForm)" ng-if="row.isEditing"><span class="glyphicon glyphicon-remove"></span></button>
+                  <button class="btn btn-default btn-sm" ng-click="row.isEditing = true" ng-if="!row.isEditing"><span class="glyphicon glyphicon-pencil"></span></button>
+                  <button class="btn btn-danger btn-sm" ng-click="delete(row.id)" ng-if="!row.isEditing"><span class="glyphicon glyphicon-trash"></span></button>
+                </td>
+              </tr>
             </table>
 
         </div>

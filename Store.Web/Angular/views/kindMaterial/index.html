@@ -40,41 +40,40 @@
                     <col width="2*" />
                     <col width="1*" />
                 </colgroup>
-                <colgroup width="85">
-                <tr ng-repeat="row in $data" ng-form="rowForm" demo-tracked-table-row="row">
-                    <td data-title="'Артикул'" sortable="'articul'" filter="{'articul': 'text' }" ng-switch="row.isEditing" ng-class="articul.$dirty ? 'bg-warning' : ''" ng-form="articul" demo-tracked-table-cell>
-                        <span ng-switch-default class="editable-text">{{row.articul}}</span>
-                        <div class="controls" ng-class="articul.$invalid && articul.$dirty ? 'has-error' : ''" ng-switch-when="true">
-                            <input type="text" name="articul" ng-model="row.articul" class="editable-input form-control input-sm" required />
-                        </div>
-                    </td>
-                    <td data-title="'Название'" sortable="'name'" filter="{'name': 'text' }" ng-switch="row.isEditing" ng-class="name.$dirty ? 'bg-warning' : ''" ng-form="name" demo-tracked-table-cell>
-                        <span ng-switch-default class="editable-text">{{row.name}}</span>
-                        <div class="controls" ng-class="name.$invalid && name.$dirty ? 'has-error' : ''" ng-switch-when="true">
-                            <input type="text" name="name" ng-model="row.name" class="editable-input form-control input-sm" required />
-                        </div>
-                    </td>
-                    <td data-title="'Ед.изм.'" sortable="'units'" filter="{'units': 'text' }" ng-switch="row.isEditing" ng-class="units.$dirty ? 'bg-warning' : ''" ng-form="units" demo-tracked-table-cell>
-                        <span ng-switch-default class="editable-text">{{row.units}}</span>
-                        <div class="controls" ng-class="unitIds.$invalid && unitIds.$dirty ? 'has-error' : ''" ng-switch-when="true">
-                            <multiselect class="input-xlarge multiselect" ng-controller="KindMaterialController"
-                                ng-model="row.unitIds"
-                                options="p.id as p.name for p in units"
-                                select-limit="50"
-                                header="Выберите ед.изм."
-                                selected-header="единиц изм."
-                                enable-filter="false"
-                                multiple="true">
-                            </multiselect>
-                        </div>
-                    </td>
-                    <td>
-                        <button class="btn btn-primary btn-sm" ng-click="updateKindMaterial(row, rowForm)" ng-if="row.isEditing" ng-disabled="rowForm.$pristine || rowForm.$invalid"><span class="glyphicon glyphicon-ok"></span></button>
-                        <button class="btn btn-default btn-sm" ng-click="cancelKindMaterial(row, rowForm)" ng-if="row.isEditing"><span class="glyphicon glyphicon-remove"></span></button>
-                        <button class="btn btn-default btn-sm" ng-click="row.isEditing = true" ng-if="!row.isEditing"><span class="glyphicon glyphicon-pencil"></span></button>
-                        <button class="btn btn-danger btn-sm" ng-click="deleteKindMaterial(row.id)" ng-if="!row.isEditing"><span class="glyphicon glyphicon-trash"></span></button>
-                    </td>
-                </tr>
+              <tr ng-repeat="row in $data" ng-form="rowForm" demo-tracked-table-row="row" class="text-left">
+                <td data-title="'Артикул'" sortable="'articul'" filter="{'articul': 'text' }" ng-switch="row.isEditing" ng-class="articul.$dirty ? 'bg-warning' : ''" ng-form="articul" demo-tracked-table-cell>
+                  <span ng-switch-default class="editable-text">{{row.articul}}</span>
+                  <div class="controls" ng-class="articul.$invalid && articul.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                    <input type="text" name="articul" ng-model="row.articul" class="editable-input form-control input-sm" required />
+                  </div>
+                </td>
+                <td data-title="'Название'" sortable="'name'" filter="{'name': 'text' }" ng-switch="row.isEditing" ng-class="name.$dirty ? 'bg-warning' : ''" ng-form="name" demo-tracked-table-cell>
+                  <span ng-switch-default class="editable-text">{{row.name}}</span>
+                  <div class="controls" ng-class="name.$invalid && name.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                    <input type="text" name="name" ng-model="row.name" class="editable-input form-control input-sm" required />
+                  </div>
+                </td>
+                <td data-title="'Ед.изм.'" sortable="'units'" filter="{'units': 'text' }" ng-switch="row.isEditing" ng-class="units.$dirty ? 'bg-warning' : ''" ng-form="units" demo-tracked-table-cell>
+                  <span ng-switch-default class="editable-text">{{row.units}}</span>
+                  <div class="controls" ng-class="unitIds.$invalid && unitIds.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                    <multiselect class="input-xlarge multiselect" ng-controller="KindMaterialController"
+                                 ng-model="row.unitIds"
+                                 options="p.id as p.name for p in units"
+                                 select-limit="50"
+                                 header="Выберите ед.изм."
+                                 selected-header="единиц изм."
+                                 enable-filter="false"
+                                 multiple="true">
+                    </multiselect>
+                  </div>
+                </td>
+                <td>
+                  <button class="btn btn-primary btn-sm" ng-click="updateKindMaterial(row, rowForm)" ng-if="row.isEditing" ng-disabled="rowForm.$pristine || rowForm.$invalid"><span class="glyphicon glyphicon-ok"></span></button>
+                  <button class="btn btn-default btn-sm" ng-click="cancelKindMaterial(row, rowForm)" ng-if="row.isEditing"><span class="glyphicon glyphicon-remove"></span></button>
+                  <button class="btn btn-default btn-sm" ng-click="row.isEditing = true" ng-if="!row.isEditing"><span class="glyphicon glyphicon-pencil"></span></button>
+                  <button class="btn btn-danger btn-sm" ng-click="deleteKindMaterial(row.id)" ng-if="!row.isEditing"><span class="glyphicon glyphicon-trash"></span></button>
+                </td>
+              </tr>
             </table>
 
         </div>
