@@ -21,8 +21,7 @@ namespace Store.Dal.Mapping
             Property(t => t.UnitMaterialId).HasColumnName("UnitMaterialId");
 
             // Relationships  
-            HasRequired(t => t.UnitMaterialObj).WithOptional(t=>t.MaterialInStoreObj);
-
+            HasRequired(t => t.UnitMaterialObj).WithOptional(t => t.MaterialInStoreObj).WillCascadeOnDelete(true);
         }
     }
 }

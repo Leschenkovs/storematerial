@@ -54,7 +54,7 @@ namespace Store.Bll
 		private IKindMaterialBll _kindMaterialBll;
 		public IKindMaterialBll KindMaterialBll
 		{
-		  get { return _kindMaterialBll ?? (_kindMaterialBll = new KindMaterialBll(_factoryDal)); }
+		  get { return _kindMaterialBll ?? (_kindMaterialBll = new KindMaterialBll(_factoryDal, UnitMaterialBll)); }
 		}
 
 		private ISupplyBll _supplyBll;

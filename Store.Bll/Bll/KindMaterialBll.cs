@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Web.UI.WebControls;
 using Store.Bll.Exception;
 using Store.Common;
 using Store.Common.Helper;
@@ -20,12 +20,14 @@ namespace Store.Bll.Bll
 
     public class KindMaterialBll : BaseBll<KindMaterial, IKindMaterialDal>, IKindMaterialBll
     {
+        private IUnitMaterialBll _unitMaterialBll;
         protected IFactoryDal FactoryDal;
 
-        public KindMaterialBll(IFactoryDal factoryDal)
+        public KindMaterialBll(IFactoryDal factoryDal, IUnitMaterialBll unitMaterialBll)
             : base(factoryDal.KindMaterialDal)
         {
             FactoryDal = factoryDal;
+            _unitMaterialBll = unitMaterialBll;
         }
 
         public new List<KindMaterial> GetAll()
@@ -65,22 +67,24 @@ namespace Store.Bll.Bll
             KindMaterial entity = GetById(model.Id);
 
             // Remove old UnitMaterial
-            int[] idsForDelete = entity.UnitMaterials.Where(um => !unitIds.Contains(um.UnitId)).Select(x => x.Id).ToArray();
-            foreach (int i in idsForDelete)
+            foreach (UnitMaterial unitMaterial in entity.UnitMaterials.Where(um => !unitIds.Contains(um.UnitId)))
             {
-                entity.UnitMaterials.Remove(entity.UnitMaterials.First(x => x.Id == i));
+                if (IsExistUnitMaterialInSotreByUnitMaterial(unitMaterial.Id))
+                {
+                    throw new DbOwnException(String.Format(
+                            "На складе имеются остатки материала '{0}', использующие единицу измереия '{1}', удаление не возможно!",
+                            unitMaterial.KindMaterialObj.Name, unitMaterial.UnitObj.ShortName));
+                }
+                _unitMaterialBll.Delete(unitMaterial.Id);
             }
-
-            //foreach (UnitMaterial unitMaterial in entity.UnitMaterials.Where(um => !unitIds.Contains(um.UnitId)).ToArray())
-            //{
-            //    entity.UnitMaterials.Remove(unitMaterial);
-            //}
             // Add new UnitMaterial
             foreach (int unitId in unitIds.Where(unitId => entity.UnitMaterials.All(x => x.UnitId != unitId)))
             {
                 entity.UnitMaterials.Add(GetNewUnitMaterial(unitId));
             }
             Save(entity);
+            entity = GetById(model.Id);
+            
             return entity;
         }
 
@@ -93,15 +97,24 @@ namespace Store.Bll.Bll
 
         public new bool Delete(int id)
         {
-            bool isExistMaterialInStore = IsExistMaterialInStore(id);
-            if (isExistMaterialInStore) { throw new DbOwnException("На складе имеются остатки этого материала, удаление не возможно!"); }
+            bool isExistMaterialInStore = IsExistMaterialInStoreByKindMaterialId(id);
+            if (isExistMaterialInStore)
+            {
+                throw new DbOwnException("На складе имеются остатки этого материала, удаление не возможно!");
+            }
             return base.Delete(id);
         }
 
-        private bool IsExistMaterialInStore(int id)
+        private bool IsExistMaterialInStoreByKindMaterialId(int id)
         {
             KindMaterial model = GetById(id);
             return model != null && model.UnitMaterials.Any(x => x.MaterialInStoreObj != null && x.MaterialInStoreObj.Count > 0);
+        }
+
+        private bool IsExistUnitMaterialInSotreByUnitMaterial(int unitMaterial)
+        {
+            MaterialInStore model = FactoryDal.MaterialInStoreDal.GetAll().FirstOrDefault(x => x.UnitMaterialId == unitMaterial);
+            return model != null && model.Count != 0;
         }
     }
 }
