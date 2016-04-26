@@ -16,6 +16,7 @@ namespace Store.Web.Controllers
     public class KindMaterialController : BaseApiController
     {
         private readonly IKindMaterialBll _kindMaterialBll;
+        private readonly IUnitMaterialBll _unitMaterialBll;
 
         public KindMaterialController(IFactoryBll factoryBll)
         {
@@ -24,6 +25,7 @@ namespace Store.Web.Controllers
                 throw new ArgumentNullException("factoryBll");
             }
             _kindMaterialBll = factoryBll.KindMaterialBll;
+            _unitMaterialBll = factoryBll.UnitMaterialBll;
         }
 
         [HttpGet]
@@ -34,11 +36,18 @@ namespace Store.Web.Controllers
         }
 
         [HttpPost]
-        public KindMaterialDTO CreateKindMaterial([FromBody] KindMaterialDTO model)
+        public KindMaterialDTO CreateKindMaterial([FromBody] CreateKindMaterialDTO model)
         {
-            KindMaterial entity = Mapper.Map<KindMaterialDTO, KindMaterial>(model);
-            model = Mapper.Map<KindMaterial, KindMaterialDTO>(_kindMaterialBll.Save(entity));
-            return model;
+            KindMaterial entity = Mapper.Map<CreateKindMaterialDTO, KindMaterial>(model);
+            entity = _kindMaterialBll.Save(entity); // save kindMaterial
+            foreach (int idUnit in model.units)
+            {
+                UnitMaterial obj = new UnitMaterial{KindMaterialId = entity.Id, UnitId = idUnit};
+                _unitMaterialBll.Save(obj); // save UnitMaterials
+            }
+
+            KindMaterialDTO modelToView = Mapper.Map<KindMaterial, KindMaterialDTO>(_kindMaterialBll.GetById(entity.Id)); // get new kindMaterial with units
+            return modelToView;
         }
 
         [HttpPut]
