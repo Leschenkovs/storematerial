@@ -14,19 +14,19 @@
 
                             <label class="col-md-1 control-label" for="description">Описание</label>
                             <div class="col-md-5">
-                                <textarea type="text" name="description" ng-model="provider.description" class="form-control input-md" required maxlength="50"></textarea>
+                                <textarea type="text" name="description" ng-model="provider.description" class="form-control input-md" maxlength="50"></textarea>
                             </div>
                         </div>
 
                         <div class="form-group col-lg-12">
                             <label class="col-md-1 control-label" for="address">Адрес</label>
                             <div class="col-md-5">
-                                <input type="text" name="address" ng-model="provider.address" class="form-control input-md" required maxlength="30">
+                                <input type="text" name="address" ng-model="provider.address" class="form-control input-md" maxlength="30">
                             </div>
 
                             <label class="col-md-1 control-label" for="telephone">Телефон</label>
                             <div class="col-md-5">
-                                <input type="text" name="telephone" ng-model="provider.telephone" class="form-control input-md" required maxlength="10">
+                                <input type="text" name="telephone" ng-model="provider.telephone" class="form-control input-md" maxlength="10">
                             </div>
                         </div>
                         <div class="form-group col-lg-12">
@@ -62,21 +62,21 @@
                     <td data-title="'Адрес'" sortable="'address'" filter="{'address': 'text' }" ng-switch="row.isEditing" ng-class="address.$dirty ? 'bg-warning' : ''" ng-form="address" demo-tracked-table-cell>
                         <span ng-switch-default class="editable-text">{{row.address}}</span>
                         <div class="controls" ng-class="address.$invalid && address.$dirty ? 'has-error' : ''" ng-switch-when="true">
-                            <input type="text" name="address" ng-model="row.address" class="editable-input form-control input-sm" required />
+                            <input type="text" name="address" ng-model="row.address" class="editable-input form-control input-sm"  />
                         </div>
                     </td>
 
                     <td data-title="'Телефон'" sortable="'telephone'" filter="{'telephone': 'text' }" ng-switch="row.isEditing" ng-class="telephone.$dirty ? 'bg-warning' : ''" ng-form="telephone" demo-tracked-table-cell>
                         <span ng-switch-default class="editable-text">{{row.telephone}}</span>
                         <div class="controls" ng-class="telephone.$invalid && telephone.$dirty ? 'has-error' : ''" ng-switch-when="true">
-                            <input type="text" name="telephone" ng-model="row.telephone" class="editable-input form-control input-sm" required />
+                            <input type="text" name="telephone" ng-model="row.telephone" class="editable-input form-control input-sm"  />
                         </div>
                     </td>
 
                     <td data-title="'Описание'" sortable="'description'" filter="{'description': 'text' }" ng-switch="row.isEditing" ng-class="description.$dirty ? 'bg-warning' : ''" ng-form="description" demo-tracked-table-cell>
                         <span ng-switch-default class="editable-text">{{row.description}}</span>
                         <div class="controls" ng-class="description.$invalid && description.$dirty ? 'has-error' : ''" ng-switch-when="true">
-                            <input type="text" name="description" ng-model="row.description" class="editable-input form-control input-sm" required />
+                            <input type="text" name="description" ng-model="row.description" class="editable-input form-control input-sm"  />
                         </div>
                     </td>
 

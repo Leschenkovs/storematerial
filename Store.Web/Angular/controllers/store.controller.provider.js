@@ -39,10 +39,21 @@
             }
         };
 
+        function removeRow(id) {
+            for (var i in originalData) {
+                if (originalData[i].id === id) {
+                    return originalData.splice(i, 1);
+                }
+            }
+        };
+
         $scope.update = function(row, rowForm) {
             ProviderService.updateProvider(row).then(function(value) {
                 var originalRow = resetRow(row, rowForm);
                 angular.extend(originalRow, row);
+            },
+            function (errorObject) {
+                alert(errorObject.ExceptionMessage);
             });
         };
 
@@ -51,13 +62,8 @@
             if (createProvider.$valid) {
                 ProviderService.addProvider(provider).then(function(value) {
                     if (value) {
-                        $scope.tableParams.settings().dataset.unshift({
-                            'id': value.id,
-                            'name': value.name,
-                            'address': value.address,
-                            'telephone': value.telephone,
-                            'description': value.description
-                        });
+                        originalData.push(value);
+                        $scope.tableParams.settings().dataset.unshift(value);
                         $scope.tableParams.reload().then(function(data) {
                             if (data.length === 0 && $scope.tableParams.total() > 0) {
                                 $scope.tableParams.page($scope.tableParams.page() - 1);
@@ -75,6 +81,9 @@
                     } else {
                         alert("Ошибка добавления записи!");
                     };
+                },
+                function (errorObject) {
+                    alert(errorObject.ExceptionMessage);
                 });
             }
         };
@@ -82,6 +91,7 @@
         $scope.delete = function(id) {
             ProviderService.deleteProvider(id).then(function(value) {
                 if (value) {
+                    removeRow(id);
                     _.remove($scope.tableParams.settings().dataset, function(item) {
                         return id === item.id;
                     });
@@ -92,6 +102,9 @@
                         }
                     });
                 }
+            },
+            function (errorObject) {
+                alert(errorObject.ExceptionMessage);
             });
         };
     };

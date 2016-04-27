@@ -1,4 +1,12 @@
-﻿form#create-form {
+﻿#area-chart,
+#line-chart,
+#bar-chart,
+#stacked,
+#pie-chart{
+  min-height: 250px;
+}
+
+form#create-form {
     background: #F6F5F6;
     width: 45em;
     margin: 2em auto;

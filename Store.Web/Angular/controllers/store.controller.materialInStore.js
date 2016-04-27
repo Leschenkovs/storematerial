@@ -80,10 +80,21 @@
             }
         };
 
+        function removeRow(id) {
+            for (var i in originalDataPrice) {
+                if (originalDataPrice[i].id === id) {
+                    return originalDataPrice.splice(i, 1);
+                }
+            }
+        };
+
         $scope.update = function (rowPrice, rowFormPrice) {
             PriceService.updatePrice(rowPrice).then(function (value) {
                 var originalRow = resetRow(rowPrice, rowFormPrice);
                 angular.extend(originalRow, rowPrice);
+            },
+            function (errorObject) {
+                alert(errorObject.ExceptionMessage);
             });
         };
 
@@ -94,6 +105,7 @@
                     $scope.createPrice.priceValue = "";
                     $scope.createPrice.dateOt = new Date();
 
+                    originalDataPrice.push(value);
                     $scope.tableParamsPrice.settings().dataset.unshift(value);
                     $scope.tableParamsPrice.reload().then(function(data) {
                         if (data.length === 0 && $scope.tableParamsPrice.total() > 0) {
@@ -111,6 +123,7 @@
         $scope.delete = function (id) {
             PriceService.deletePrice(id).then(function (value) {
                 if (value) {
+                    removeRow(id);
                     _.remove($scope.tableParamsPrice.settings().dataset, function (item) {
                         return id === item.id;
                     });
@@ -121,7 +134,10 @@
                         }
                     });
                 }
-            });
+            },
+             function (errorObject) {
+                 alert(errorObject.ExceptionMessage);
+             });
         };
 
 
