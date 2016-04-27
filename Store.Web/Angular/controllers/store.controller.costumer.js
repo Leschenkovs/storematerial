@@ -53,7 +53,7 @@
                 angular.extend(originalRow, row);
             },
             function (errorObject) {
-                alert(errorObject.ExceptionMessage);
+                bootbox.alert(errorObject.ExceptionMessage);
             });
         };
 
@@ -78,11 +78,11 @@
                             description: ""
                         };
                     } else {
-                        alert("Ошибка добавления записи!");
+                        bootbox.alert("Ошибка добавления записи!");
                     };
                 },
                 function (errorObject) {
-                    alert(errorObject.ExceptionMessage);
+                    bootbox.alert(errorObject.ExceptionMessage);
                 });
             }
         };
@@ -104,7 +104,7 @@
                 }
             },
             function (errorObject) {
-                alert(errorObject.ExceptionMessage);
+                bootbox.alert(errorObject.ExceptionMessage);
             });
         };
     };

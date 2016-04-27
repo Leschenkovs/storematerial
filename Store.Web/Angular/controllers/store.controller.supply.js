@@ -47,7 +47,7 @@
                         $state.go("supply/index");
                     },
                     function (errorObject) {
-                        alert(errorObject.ExceptionMessage);
+                        bootbox.alert(errorObject.ExceptionMessage);
                     });
             }
         };

@@ -45,7 +45,7 @@
                 if (value) {
                     $scope.unitMaterials.splice(index, 1);
                 } else {
-                    alert("Ошибка удаления записи!");
+                    bootbox.alert("ОШИБКА удаления записи!");
                 };
             });
         };
@@ -65,7 +65,7 @@
                             kindMaterialId: ""
                         };
                     } else {
-                        alert("Ошибка добавления записи!");
+                        bootbox.alert("ОШИБКА добавления записи!");
                     };
                 });
             }
@@ -104,7 +104,7 @@
                 angular.extend(originalRow, response);
             },
             function (errorObject) {
-                alert(errorObject.ExceptionMessage);
+                bootbox.alert(errorObject.ExceptionMessage);
             });
         };
 
@@ -125,7 +125,7 @@
                         $scope.kindMaterial = null;
                         reloadTableParams();
                     } else {
-                        alert("Ошибка добавления записи!");
+                        bootbox.alert("ОШИБКА добавления записи!");
                     };
                 });
             }
@@ -139,7 +139,7 @@
                     });
                     reloadTableParams();
                 } else {
-                    alert("Ошибка удаления!");
+                    bootbox.alert("ОШИБКА удаления!");
                 }
             });
         };

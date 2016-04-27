@@ -15,7 +15,7 @@
                 });
             },
             function (errorObject) {
-                alert(errorObject.ExceptionMessage);
+                bootbox.alert(errorObject.ExceptionMessage);
             });
 
         $scope.cancel = function (row, rowForm) {
@@ -53,7 +53,7 @@
                         udateOrDeleteCurrentUser(row.id);
                     },
                     function (errorObject) {
-                        alert(errorObject.ExceptionMessage);
+                        bootbox.alert(errorObject.ExceptionMessage);
                     });
             };
         };
@@ -78,7 +78,7 @@
                         $state.go("user/index");
                     },
                     function (errorObject) {
-                        alert(errorObject.ExceptionMessage);
+                        bootbox.alert(errorObject.ExceptionMessage);
                     });
             }
         };

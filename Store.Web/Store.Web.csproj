@@ -282,6 +282,7 @@
     <Content Include="Scripts\angular\date.js" />
     <Content Include="Scripts\angular\ui-bootstrap-tpls.min.js" />
     <Content Include="Scripts\angular\ui-bootstrap.min.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\common.js" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />

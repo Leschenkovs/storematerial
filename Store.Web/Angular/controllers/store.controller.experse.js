@@ -40,7 +40,7 @@
                     $scope.experse.userId = $rootScope.globals.currentUser.userid;
                 },
                 function(errorObject) {
-                    alert(errorObject.ExceptionMessage);
+                    bootbox.alert(errorObject.ExceptionMessage);
                 });
 
             CostumerService.getAllCostumers().then(function(value) {
@@ -56,7 +56,7 @@
                         },
                         function(errorObject) {
                             passMaterialInStoreId = "";
-                            alert(errorObject.ExceptionMessage);
+                            bootbox.alert(errorObject.ExceptionMessage);
                         });
                 }
             };

@@ -50,7 +50,7 @@
             });
 
             if (arr.length == 0) {
-                alert("Отсутствует цена реализации на текущий месяц для материала! Отгрузка невозможна!");
+                bootbox.alert("Отсутствует цена реализации на текущий месяц для материала! Отгрузка невозможна!");
             } else {
                 $state.go('experse/create', { id: unitMaterialId });
             }
@@ -94,7 +94,7 @@
                 angular.extend(originalRow, rowPrice);
             },
             function (errorObject) {
-                alert(errorObject.ExceptionMessage);
+                bootbox.alert(errorObject.ExceptionMessage);
             });
         };
 
@@ -115,7 +115,7 @@
                     });
                 },
                 function (errorObject) {
-                    alert(errorObject.ExceptionMessage);
+                    bootbox.alert(errorObject.ExceptionMessage);
                 });
             }
         };
@@ -136,7 +136,7 @@
                 }
             },
              function (errorObject) {
-                 alert(errorObject.ExceptionMessage);
+                 bootbox.alert(errorObject.ExceptionMessage);
              });
         };
 

@@ -12,7 +12,8 @@ namespace Store.Web.App_Start
                "~/Scripts/underscore.min.js",
                 //"~/Scripts/modernizr.custom.js",
                "~/Scripts/lodash.min.js",
-               "~/Scripts/multiselect.js"
+               "~/Scripts/multiselect.js",
+					"~/Scripts/bootbox.min.js"
               ));
 
             bundles.Add(new ScriptBundle("~/Store.Web/jquery").Include(

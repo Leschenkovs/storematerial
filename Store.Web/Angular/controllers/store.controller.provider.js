@@ -79,11 +79,11 @@
                             description: ""
                         };
                     } else {
-                        alert("Ошибка добавления записи!");
+                        bootbox.alert("ОШИБКА добавления записи!");
                     };
                 },
                 function (errorObject) {
-                    alert(errorObject.ExceptionMessage);
+                    bootbox.alert(errorObject.ExceptionMessage);
                 });
             }
         };
@@ -104,7 +104,7 @@
                 }
             },
             function (errorObject) {
-                alert(errorObject.ExceptionMessage);
+                bootbox.alert(errorObject.ExceptionMessage);
             });
         };
     };
