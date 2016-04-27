@@ -23,6 +23,10 @@
             angular.extend(row, originalRow);
         };
 
+        $scope.cancelForm = function () {
+            $state.go("user/index");
+        };
+
         function resetRow(row, rowForm) {
             row.isEditing = false;
             rowForm.$setPristine();

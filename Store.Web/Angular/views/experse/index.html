@@ -27,7 +27,7 @@
                   <span ng-switch-default class="editable-text">{{row.count}}</span>
                 </td>
                 <td data-title="'Стоимость'" sortable="'fullCost'" filter="{'fullCost': 'text' }" ng-switch="row.isEditing" ng-form="fullCost" demo-tracked-table-cell>
-                  <span ng-switch-default class="editable-text">{{row.fullCost | currency: RUB:0}}</span>
+                  <span ng-switch-default class="editable-text">{{row.fullCost | currency: "$" :0}}</span>
                 </td>
                 <td data-title="'Работник'" sortable="'userFio'" filter="{'userFio': 'text' }" ng-switch="row.isEditing" ng-form="userFio" demo-tracked-table-cell>
                   <span ng-switch-default class="editable-text">{{row.userFio}}</span>

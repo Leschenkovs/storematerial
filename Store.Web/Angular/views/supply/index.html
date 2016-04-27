@@ -29,7 +29,7 @@
                   <span ng-switch-default class="editable-text">{{row.count}}</span>
                 </td>
                 <td data-title="'Закуп.цена'" sortable="'priceSupply'" filter="{'priceSupply': 'text' }" ng-switch="row.isEditing" ng-form="priceSupply" demo-tracked-table-cell>
-                  <span ng-switch-default class="editable-text">{{row.priceSupply | currency:RUB:0}}</span>
+                  <span ng-switch-default class="editable-text">{{row.priceSupply | currency : "$" : 0}}</span>
                 </td>
                 <td data-title="'№ ТТН'" sortable="'ttn'" filter="{'ttn': 'text' }" ng-switch="row.isEditing" ng-form="ttn" demo-tracked-table-cell>
                   <span ng-switch-default class="editable-text">{{row.ttn}}</span>
@@ -47,7 +47,7 @@
             </table>
 
             <div>
-                <a href="#/supply/create" class="btn btn-primary" style="width: 70%;letter-spacing: 0.2em;">
+                <a href="#/supply/create" class="btn btn-primary" style=" width: 84%;letter-spacing: 0.2em;margin-top: 1%;float: left;">
                     <span>Оформить поставку</span>
                 </a>
             </div>

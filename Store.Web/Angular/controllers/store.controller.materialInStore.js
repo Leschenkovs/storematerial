@@ -45,9 +45,10 @@
 
         $scope.createExperse = function(unitMaterialId) {
             var dateNow = new Date();
-            var arr = _.filter(originalDataPrice, function(rw) {
+            var arr = _.filter(originalDataPrice, function (rw) {
                 return rw.materialInStoreId === unitMaterialId && new Date(rw.dateOt).getMonth() == dateNow.getMonth() && new Date(rw.dateOt).getYear() == dateNow.getYear();
             });
+
             if (arr.length == 0) {
                 alert("Отсутствует цена реализации на текущий месяц для материала! Отгрузка невозможна!");
             } else {
@@ -93,12 +94,7 @@
                     $scope.createPrice.priceValue = "";
                     $scope.createPrice.dateOt = new Date();
 
-                    $scope.tableParamsPrice.settings().dataset.unshift({
-                        id: value.id,
-                        priceValue: value.priceValue,
-                        dateOt: value.dateOt,
-                        materialInStoreId: value.materialInStoreId
-                    });
+                    $scope.tableParamsPrice.settings().dataset.unshift(value);
                     $scope.tableParamsPrice.reload().then(function(data) {
                         if (data.length === 0 && $scope.tableParamsPrice.total() > 0) {
                             $scope.tableParamsPrice.page($scope.tableParamsPrice.page() - 1);

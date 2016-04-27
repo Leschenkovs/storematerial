@@ -1,15 +1,16 @@
 ﻿form#create-form {
-  background: #F6F5F6;
-  width: 45em;
-  margin: 2em auto;
-  overflow: hidden;
-  position: relative;
-  -moz-border-radius: 0.3em;
-  -webkit-border-radius: 0.3em;
-  border-radius: 0.3em;
-  -moz-box-shadow: 0 0 0.2em #000;
-  -webkit-box-shadow: 0 0 0.2em #000;
-  box-shadow: 0 0 0.2em #000;
+    background: #F6F5F6;
+    width: 45em;
+    margin: 2em auto;
+    overflow: hidden;
+    position: relative;
+    -moz-border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+    border: 1px solid #F85F64;
+    border-radius: 0.4em;
+    -moz-box-shadow: 0 0 0.2em #000;
+    -webkit-box-shadow: 0 0 0.2em #000;
+    box-shadow: 0 0 2em #FFF;
 }
 form#create-form div.heading {
   background: #f85f64;
@@ -183,14 +184,14 @@ div.right div.connect {
 }
 
 .autorized {
-    display: block;
+display: block;
     background: rgb(239, 238, 239);
     width: 200px;
     height: 63px;
     border-radius: 10px;
     position: absolute;
-    right: 120px;
-    top: 60px;
+    right: 2%;
+    top: 3%;
 }
 
 .autorized table tr td {

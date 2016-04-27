@@ -258,7 +258,9 @@ a, button {
 	.no-touch .nav a:hover ,
 	.nav a:active ,
 	.nav a:focus {
+	    position: relative;
 		height: 6.3em;
+        z-index: 9999;
 	}	
 
 	/* Making the text follow the height animation */

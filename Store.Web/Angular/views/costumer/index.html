@@ -1,79 +1,90 @@
 ﻿<div class="row">
     <div class="box">
         <div class="col-lg-12">
-            <hr>
+            <fieldset style="border: solid 1px #337AB7;border-radius: 8px;padding: 10px;margin-bottom: 30px;">
+                <legend>Добавление данных о новом потребителе</legend>
+                <form name="createCostumer" novalidate>
+                    <div class='row'>
+                        <div class="form-group col-lg-12">
+                            <label class="col-md-1 control-label" for="name"><strong class="error-message">*</strong>Название</label>
+                            <div class="col-md-5">
+                                <input type="text" name="name" ng-model="costumer.name" class="form-control input-md" required maxlength="30" ng-class="{ 'has-error': createCostumer.name.$touched && createCostumer.name.$invalid }">
+                            </div>
+                            
+                            <label class="col-md-1 control-label" for="description">Описание</label>
+                            <div class="col-md-5">
+                                <textarea type="text" name="description" ng-model="costumer.description" class="form-control input-md" required maxlength="50"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group col-lg-12">
+                            <label class="col-md-1 control-label" for="address">Адрес</label>
+                            <div class="col-md-5">
+                                <input type="text" name="address" ng-model="costumer.address" class="form-control input-md" required maxlength="30" >
+                            </div>
+
+                            <label class="col-md-1 control-label" for="telephone">Телефон</label>
+                            <div class="col-md-5">
+                                <input type="text" name="telephone" ng-model="costumer.telephone" class="form-control input-md" required maxlength="10">
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-12">
+                            <button type="submit" class="btn btn-primary" ng-click="save(costumer, createCostumer)" style="width: 95%;letter-spacing: 0.4em;">Сохранить</button>
+                        </div>
+                    </div>
+                </form>
+            </fieldset>
+            
             <h2 class="intro-text text-center">
                 Список потребителей
             </h2>
             <hr>
 
-            <form role="form" name="createCostumer" novalidate>
-                <div class="row">
-                    <div class="form-group col-lg-4" ng-class="{ 'has-error': createCostumer.name.$touched && createCostumer.name.$invalid }">
-                        <label for="name"><strong class="error-message">*</strong>Название</label>
-                        <input type="text" name="name" ng-model="costumer.name" class="form-control" required maxlength="30">
-                    </div>
-                    <div class="form-group col-lg-4">
-                        <label for="address">Адрес</label>
-                        <input type="text" name="address" ng-model="costumer.address" class="form-control" maxlength="30">
-                    </div>
-                    <div class="form-group col-lg-4">
-                        <label for="telephone">Телефон</label>
-                      <input type="text" name="telephone" ng-model="costumer.telephone" class="form-control" maxlength="10">
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="form-group col-lg-12">
-                        <label for="description">Описание</label>
-                        <textarea class="form-control" rows="2" name="description" ng-model="costumer.description" maxlength="50"></textarea>
-                    </div>
-                    <div class="form-group col-lg-12">
-                        <input type="hidden" name="save" value="contact">
-                        <button type="submit" class="btn btn-primary" ng-click="save(costumer, createCostumer)">Сохранить</button>
-                    </div>
-                </div>
-            </form>
-
             <table ng-table="tableParams" show-filter="true" class="table table-bordered table-hover table-striped table-condensed editable-table demoTable" ng-form="tableForm" disable-filter="isAdding" demo-tracked-table="tableTracker">
-                <colgroup>
-                    <col width="*0.5" />
-                    <col width="*3.5" />
-                    <col width="*2" />
-                    <col width="*2" />
-                    <col width="*1" />
+                <colgroup span="5">
+                    <col/>
+                    <col/>
+                    <col width="120" />
+                    <col/>
+                    <col/>
                     <col width="85" />
                 </colgroup>
-              <tr ng-repeat="row in $data" ng-form="rowForm" demo-tracked-table-row="row" class="text-left">
-                <td data-title="'Название'" sortable="'name'" filter="{'name': 'text' }" ng-switch="row.isEditing" ng-class="name.$dirty ? 'bg-warning' : ''" ng-form="name" demo-tracked-table-cell>
-                  <span ng-switch-default class="editable-text">{{row.name}}</span>
-                  <div class="controls" ng-class="name.$invalid && name.$dirty ? 'has-error' : ''" ng-switch-when="true">
-                    <input type="text" name="name" ng-model="row.name" class="editable-input form-control input-sm" required />
-                  </div>
-                </td>
-                <td data-title="'Адрес'" sortable="'address'" filter="{'address': 'text' }" ng-switch="row.isEditing" ng-class="address.$dirty ? 'bg-warning' : ''" ng-form="address" demo-tracked-table-cell>
-                  <span ng-switch-default class="editable-text">{{row.address}}</span>
-                  <div class="controls" ng-class="address.$invalid && address.$dirty ? 'has-error' : ''" ng-switch-when="true">
-                    <input type="text" name="address" ng-model="row.address" class="editable-input form-control input-sm" required />
-                  </div>
-                </td>
-                <td data-title="'Телефон'" sortable="'telephone'" filter="{'telephone': 'text' }" ng-switch="row.isEditing" ng-class="telephone.$dirty ? 'bg-warning' : ''" ng-form="telephone" demo-tracked-table-cell>
-                  <span ng-switch-default class="editable-text">{{row.telephone}}</span>
-                  <div class="controls" ng-class="telephone.$invalid && telephone.$dirty ? 'has-error' : ''" ng-switch-when="true">
-                    <input type="text" name="telephone" ng-model="row.telephone" class="editable-input form-control input-sm" required />
-                  </div>
-                </td>
-                <td data-title="'Описание'" sortable="'description'" filter="{'description': 'text' }" ng-switch="row.isEditing" ng-class="description.$dirty ? 'bg-warning' : ''" ng-form="description" demo-tracked-table-cell>
-                  <span ng-switch-default class="editable-text">{{row.description}}</span>
-                  <div class="controls" ng-class="description.$invalid && description.$dirty ? 'has-error' : ''" ng-switch-when="true">
-                    <input type="text" name="description" ng-model="row.description" class="editable-input form-control input-sm" required />
-                  </div>
-                </td>
-                <td>
-                  <button class="btn btn-primary btn-sm" ng-click="update(row, rowForm)" ng-if="row.isEditing" ng-disabled="rowForm.$pristine || rowForm.$invalid"><span class="glyphicon glyphicon-ok"></span></button>
-                  <button class="btn btn-default btn-sm" ng-click="cancel(row, rowForm)" ng-if="row.isEditing"><span class="glyphicon glyphicon-remove"></span></button>
-                  <button class="btn btn-default btn-sm" ng-click="row.isEditing = true" ng-if="!row.isEditing"><span class="glyphicon glyphicon-pencil"></span></button>
-                  <button class="btn btn-danger btn-sm" ng-click="delete(row.id)" ng-if="!row.isEditing"><span class="glyphicon glyphicon-trash"></span></button>
-                </td>
-              </tr>
+                <tr ng-repeat="row in $data" ng-form="rowForm" demo-tracked-table-row="row" class="text-left">
+                    <td data-title="'Название'" sortable="'name'" filter="{'name': 'text' }" ng-switch="row.isEditing" ng-class="name.$dirty ? 'bg-warning' : ''" ng-form="name" demo-tracked-table-cell>
+                        <span ng-switch-default class="editable-text">{{row.name}}</span>
+                        <div class="controls" ng-class="name.$invalid && name.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                            <input type="text" name="name" ng-model="row.name" class="editable-input form-control input-sm" required />
+                        </div>
+                    </td>
+
+                    <td data-title="'Адрес'" sortable="'address'" filter="{'address': 'text' }" ng-switch="row.isEditing" ng-class="address.$dirty ? 'bg-warning' : ''" ng-form="address" demo-tracked-table-cell>
+                        <span ng-switch-default class="editable-text">{{row.address}}</span>
+                        <div class="controls" ng-class="address.$invalid && address.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                            <input type="text" name="address" ng-model="row.address" class="editable-input form-control input-sm" required />
+                        </div>
+                    </td>
+
+                    <td data-title="'Телефон'" sortable="'telephone'" filter="{'telephone': 'text' }" ng-switch="row.isEditing" ng-class="telephone.$dirty ? 'bg-warning' : ''" ng-form="telephone" demo-tracked-table-cell>
+                        <span ng-switch-default class="editable-text">{{row.telephone}}</span>
+                        <div class="controls" ng-class="telephone.$invalid && telephone.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                            <input type="text" name="telephone" ng-model="row.telephone" class="editable-input form-control input-sm" required />
+                        </div>
+                    </td>
+
+                    <td data-title="'Описание'" sortable="'description'" filter="{'description': 'text' }" ng-switch="row.isEditing" ng-class="description.$dirty ? 'bg-warning' : ''" ng-form="description" demo-tracked-table-cell>
+                        <span ng-switch-default class="editable-text">{{row.description}}</span>
+                        <div class="controls" ng-class="description.$invalid && description.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                            <input type="text" name="description" ng-model="row.description" class="editable-input form-control input-sm" required />
+                        </div>
+                    </td>
+
+                    <td>
+                        <button class="btn btn-primary btn-sm" ng-click="update(row, rowForm)" ng-if="row.isEditing" ng-disabled="rowForm.$pristine || rowForm.$invalid"><span class="glyphicon glyphicon-ok"></span></button>
+                        <button class="btn btn-default btn-sm" ng-click="cancel(row, rowForm)" ng-if="row.isEditing"><span class="glyphicon glyphicon-remove"></span></button>
+                        <button class="btn btn-default btn-sm" ng-click="row.isEditing = true" ng-if="!row.isEditing"><span class="glyphicon glyphicon-pencil"></span></button>
+                        <button class="btn btn-danger btn-sm" ng-click="delete(row.id)" ng-if="!row.isEditing"><span class="glyphicon glyphicon-trash"></span></button>
+                    </td>
+                </tr>
             </table>
 
         </div>
