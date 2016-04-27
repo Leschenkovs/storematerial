@@ -13,6 +13,7 @@ namespace Store.Web.App_Start
                 //"~/Scripts/modernizr.custom.js",
                "~/Scripts/lodash.min.js",
                "~/Scripts/multiselect.js"
+
               ));
 
             bundles.Add(new ScriptBundle("~/Store.Web/jquery").Include(
