@@ -10,10 +10,16 @@
 
         KindMaterialService.getAllKindMaterials().then(function (value) {
             $scope.kindMaterials = value;
+        },
+        function (errorObject) {
+            bootbox.alert(errorObject.ExceptionMessage);
         });
 
         UnitMaterialService.getAllUnitMaterials().then(function (value) {
             $scope.unitMaterials = value;
+        },
+        function (errorObject) {
+            bootbox.alert(errorObject.ExceptionMessage);
         });
 
         $scope.getChart = function () {
@@ -23,6 +29,9 @@
                     resultArray.map(function (a) { return a.supply; }),
                     resultArray.map(function (a) { return a.experse; })
                 ];
+            },
+            function (errorObject) {
+                bootbox.alert(errorObject.ExceptionMessage);
             });
 
         };
@@ -36,11 +45,6 @@
         }, 3000);
     };
 
-    // register your controller into a dependent module 
-    //angular
-    //    .module("store.WebUI.Controllers",["chart.js", function() {    
-    //    }])
-    //    .controller("BarCtrl", ["$scope", "$state", "$timeout", BarCtrl]);
     angular
     .module("store.WebUI.Controllers")
     .controller("BarCtrl", ["$scope", "$state", "$timeout", "KindMaterialService", "UnitMaterialService", "MaterialInStoreService", BarCtrl]);

@@ -26,18 +26,30 @@
                 filterDelay: 0,
                 dataset: angular.copy(value)
             });
+        },
+        function (errorObject) {
+            bootbox.alert(errorObject.ExceptionMessage);
         });
 
         ProviderService.getAllProviders().then(function (value) {
             $scope.providers = value;
+        },
+        function (errorObject) {
+            bootbox.alert(errorObject.ExceptionMessage);
         });
 
         UnitMaterialService.getAllUnitMaterials().then(function (value) {
             $scope.unitMaterials = value;
+        },
+        function (errorObject) {
+            bootbox.alert(errorObject.ExceptionMessage);
         });
 
         KindMaterialService.getAllKindMaterials().then(function (value) {
             $scope.kindMaterials = value;
+        },
+        function (errorObject) {
+            bootbox.alert(errorObject.ExceptionMessage);
         });
 
         $scope.save = function (supply, createSupply) {
@@ -65,6 +77,9 @@
                         }
                     });
                 }
+            },
+            function (errorObject) {
+                bootbox.alert(errorObject.ExceptionMessage);
             });
         };
     };

@@ -11,6 +11,9 @@
             resultArray = value;
             $scope.series = resultArray.map(function (a) { return a.costumerName; });
             $scope.data = resultArray.map(function (a) { return a.costs.map(function (b) { return b.fullCost; }); });
+        },
+        function (errorObject) {
+            bootbox.alert(errorObject.ExceptionMessage);
         });
 
 
@@ -37,11 +40,6 @@
         //}, 3000);
     };
 
-    // register your controller into a dependent module 
-    //angular
-    //    .module("store.WebUI.Controllers", ["chart.js", function () {
-    //    }])
-    //    .controller("LineCtrl", ["$scope", "$state", "$timeout", LineCtrl]);
 
     angular
     .module("store.WebUI.Controllers")

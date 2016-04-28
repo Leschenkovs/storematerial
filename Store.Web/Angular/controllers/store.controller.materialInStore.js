@@ -32,6 +32,9 @@
                 filterDelay: 0,
                 dataset: angular.copy(value)
             });
+        },
+        function (errorObject) {
+            bootbox.alert(errorObject.ExceptionMessage);
         });
 
         $scope.setSelected = function (unitMaterialId) {
@@ -59,10 +62,13 @@
 // Prices
         PriceService.getAllPrices().then(function (value) {
             originalDataPrice = angular.copy(value);
-            $scope.tableParamsPrice = new ngTableParams({ page: 1, count: 12 }, {
+            $scope.tableParamsPrice = new ngTableParams({ page: 1, count: 50 }, {
                 filterDelay: 0,
                 dataset: angular.copy(value)
             });
+        },
+        function (errorObject) {
+            bootbox.alert(errorObject.ExceptionMessage);
         });
 
         $scope.cancel = function (rowPrice, rowFormPrice) {

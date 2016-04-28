@@ -13,6 +13,9 @@
                 filterDelay: 0,
                 dataset: angular.copy(value)
             });
+        },
+        function (errorObject) {
+            bootbox.alert(errorObject.ExceptionMessage);
         });
 
         $scope.costumer =

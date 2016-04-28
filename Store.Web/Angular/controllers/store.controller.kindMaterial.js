@@ -25,12 +25,18 @@
         ///////// List Units
         UnitService.getAllUnits().then(function (value) {
             $scope.units = value;
+        },
+        function (errorObject) {
+            bootbox.alert(errorObject.ExceptionMessage);
         });
 
         //////// For UnitMaterial
         $scope.getUnitMaterial = function (id) {
             UnitMaterialService.getByKindMaterialId(id).then(function (value) {
                 $scope.unitMaterials = value;
+            },
+            function (errorObject) {
+                bootbox.alert(errorObject.ExceptionMessage);
             });
         };
 
@@ -47,6 +53,9 @@
                 } else {
                     bootbox.alert("ОШИБКА удаления записи!");
                 };
+            },
+            function (errorObject) {
+                bootbox.alert(errorObject.ExceptionMessage);
             });
         };
 
@@ -67,6 +76,9 @@
                     } else {
                         bootbox.alert("ОШИБКА добавления записи!");
                     };
+                },
+                function (errorObject) {
+                    bootbox.alert(errorObject.ExceptionMessage);
                 });
             }
         };
@@ -80,6 +92,9 @@
                 filterDelay: 0,
                 dataset: angular.copy(value)
             });
+        },
+        function (errorObject) {
+            bootbox.alert(errorObject.ExceptionMessage);
         });
 
         $scope.cancelKindMaterial = function (row, rowForm) {
@@ -127,6 +142,9 @@
                     } else {
                         bootbox.alert("ОШИБКА добавления записи!");
                     };
+                },
+                function (errorObject) {
+                    bootbox.alert(errorObject.ExceptionMessage);
                 });
             }
         };
@@ -141,6 +159,9 @@
                 } else {
                     bootbox.alert("ОШИБКА удаления!");
                 }
+            },
+            function (errorObject) {
+                bootbox.alert(errorObject.ExceptionMessage);
             });
         };
     };

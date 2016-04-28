@@ -12,6 +12,9 @@
 
             $scope.labels = materialInStore.map(function(a) { return a.kindMaterialName + ', ' + a.unitName; });
             $scope.data = materialInStore.map(function(a) { return a.count; });
+        },
+    function (errorObject) {
+        bootbox.alert(errorObject.ExceptionMessage);
     });
 
     };

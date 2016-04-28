@@ -97,6 +97,9 @@
                     });
                     udateOrDeleteCurrentUser(id);
                 }
+            },
+            function (errorObject) {
+                bootbox.alert(errorObject.ExceptionMessage);
             });
         };;
     };
