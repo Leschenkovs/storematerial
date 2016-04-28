@@ -22,6 +22,24 @@
                 controller: "IndexController"
             });
 
+            $stateProvider.state("barChart", {
+                url: "/barChart",
+                templateUrl: "/Angular/views/charts/barChart.html",
+                controller: "BarCtrl"
+            });
+
+            $stateProvider.state("lineChart", {
+                url: "/lineChart",
+                templateUrl: "/Angular/views/charts/lineChart.html",
+                controller: "LineCtrl"
+            });
+
+            $stateProvider.state("doughtNutChart", {
+                url: "/doughtNutChart",
+                templateUrl: "/Angular/views/charts/doughtNutChart.html",
+                controller: "DoughtnutCtrl"
+            });
+
             $stateProvider.state("user/index", {
                 url: "/user/index",
                 templateUrl: "/Angular/views/user/index.html",

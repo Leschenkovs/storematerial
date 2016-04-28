@@ -7,7 +7,7 @@
     //angular.module("store.WebUI.Filters", []);
     //angular.module("store.WebUI.Factories", []);
     //angular.module("store.WebUI.Helpers", []);
-    angular.module("store.WebUI.Externals", ["ui", "long2know", "ngSanitize", "ui.router", "ngTable", "ngCookies", 'ui.bootstrap']);
+    angular.module("store.WebUI.Externals", ["chart.js", "ui", "long2know", "ngSanitize", "ui.router", "ngTable", "ngCookies", 'ui.bootstrap']);
 
     var app = angular.module("store.WebUI", ["store.WebUI.Externals", "store.WebUI.Controllers", "store.WebUI.Directives", "store.WebUI.Services"]);
     app.value('userinfo', { fio: 'a12345654321x' });
@@ -27,4 +27,17 @@
             });
         }
     ]);
+
+    app.config(function (ChartJsProvider) {
+        // Configure all charts
+        ChartJsProvider.setOptions({
+            colours: ['#97BBCD', '#DCDCDC', '#F7464A', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'],
+            responsive: true
+        });
+        // Configure all doughnut charts
+        ChartJsProvider.setOptions('Doughnut', {
+            animateScale: true
+        });
+    });
+
 })();

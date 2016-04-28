@@ -476,6 +476,14 @@ legend {
           transition: left 300ms, right 300ms;
 }
 
+.second {
+      top: 45%;
+}
+
+.second_color {
+    background: #FD8B83;
+}
+
 /* label */
 
 .wdg-contact-me__label {

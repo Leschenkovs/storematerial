@@ -13,7 +13,9 @@ namespace Store.Web.App_Start
                 //"~/Scripts/modernizr.custom.js",
                "~/Scripts/lodash.min.js",
                "~/Scripts/multiselect.js",
-					"~/Scripts/bootbox.min.js"
+					"~/Scripts/bootbox.min.js",
+                    //"~/Scripts/Chart.min.js",
+                    "~/Scripts/Chart.bundle.min.js"
               ));
 
             bundles.Add(new ScriptBundle("~/Store.Web/jquery").Include(
@@ -35,12 +37,15 @@ namespace Store.Web.App_Start
                 "~/Scripts/angular/angular-ui-router.min.js",
                 "~/Scripts/angular/angular-ui-ieshiv.min.js",
                 "~/Scripts/angular/angular-ui.min.js",
-                "~/Scripts/angular/date.js"
+                "~/Scripts/angular/date.js",
+                "~/Scripts/angular/Chart.js",
+                "~/Scripts/angular/angular-chart.min.js"
                 ));
 
             bundles.Add(new StyleBundle("~/Store.Web/css").Include(
                 "~/Content/styles/*.css",
-                "~/Content/*.css"
+                "~/Content/*.css",
+                "~/Content/angular-chart.css"
                 ));
 
             bundles.Add(new ScriptBundle("~/Store.Web/app").Include(
