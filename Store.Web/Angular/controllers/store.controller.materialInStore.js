@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
 
-    var MaterialInStoreController = function ($scope, $state, $filter, MaterialInStoreService, PriceService, ngTableParams) {
+    var MaterialInStoreController = function ($scope, $state, $filter, $rootScope, MaterialInStoreService, PriceService, ngTableParams) {
 
 
         // TABLES
@@ -9,6 +9,7 @@
         var originalData = [];
         var originalDataPrice = [];
         $scope.isCollapsed = false;
+        var isWriteRole = $rootScope.writeRole;
 
         $scope.createPrice =
         {
@@ -184,5 +185,5 @@
 
     angular
         .module("store.WebUI.Controllers")
-        .controller("MaterialInStoreController", ["$scope", "$state", "$filter", "MaterialInStoreService", "PriceService", "ngTableParams", MaterialInStoreController]);
+        .controller("MaterialInStoreController", ["$scope", "$state", "$filter", "$rootScope", "MaterialInStoreService", "PriceService", "ngTableParams", MaterialInStoreController]);
 })();

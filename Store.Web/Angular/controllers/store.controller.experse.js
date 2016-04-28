@@ -6,6 +6,7 @@
         var originalData = [];
         var passMaterialInStoreId = $state.params.id;
         var stateName = $state.current.name;
+        var isWriteRole = $rootScope.writeRole;
 
         $scope.experse =
         {

@@ -16,7 +16,7 @@
 		            <col width="120"/>
 		            <col/>
 		            <col width="120"/>
-		            <col width="30"/>
+                 <col width="30" />
 	            </colgroup>
               <tr ng-repeat="row in $data" ng-form="rowForm" demo-tracked-table-row="row" class="text-left">
                 <td data-title="'Вид материала'" sortable="'kindMaterialName'" filter="{'kindMaterialName': 'text' }" ng-switch="row.isEditing" ng-form="kindMaterialName" demo-tracked-table-cell>
@@ -40,17 +40,17 @@
                 <td data-title="'Поставщик'" sortable="'providerName'" filter="{'providerName': 'text' }" ng-switch="row.isEditing" ng-form="providerName" demo-tracked-table-cell>
                   <span ng-switch-default class="editable-text">{{row.providerName}}</span>
                 </td>
-                <td>
+                <td ng-show="isWriteRole">
                   <button class="btn btn-danger btn-sm" ng-click="deleteSupply(row.id)" ng-if="!row.isEditing"><span class="glyphicon glyphicon-trash"></span></button>
                 </td>
               </tr>
             </table>
 
-            <div>
-                <a href="#/supply/create" class="btn btn-primary" style=" width: 84%;letter-spacing: 0.2em;margin-top: 1%;float: left;">
-                    <span>Оформить поставку</span>
-                </a>
-            </div>
+          <div ng-show="isWriteRole">
+            <a href="#/supply/create" class="btn btn-primary" style=" width: 84%;letter-spacing: 0.2em;margin-top: 1%;float: left;">
+              <span>Оформить поставку</span>
+            </a>
+          </div>
         </div>
     </div>
 </div>

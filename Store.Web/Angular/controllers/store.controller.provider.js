@@ -1,9 +1,10 @@
 ﻿(function() {
     "use strict";
 
-    var ProviderController = function($scope, $state, $filter, ProviderService, ngTableParams) {
+    var ProviderController = function($scope, $state, $filter, $rootScope, ProviderService, ngTableParams) {
 
         var originalData = [];
+        var isWriteRole = $rootScope.writeRole;
 
         ProviderService.getAllProviders().then(function(value) {
             $scope.providers = value;
@@ -114,5 +115,5 @@
 
     angular
         .module("store.WebUI.Controllers")
-        .controller("ProviderController", ["$scope", "$state", "$filter", "ProviderService", "ngTableParams", ProviderController]);
+        .controller("ProviderController", ["$scope", "$state", "$filter", "$rootScope", "ProviderService", "ngTableParams", ProviderController]);
 })();

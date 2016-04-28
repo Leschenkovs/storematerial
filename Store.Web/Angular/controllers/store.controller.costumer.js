@@ -1,9 +1,10 @@
 ﻿(function () {
     "use strict";
 
-    var CostumerController = function ($scope, $state, $filter, CostumerService, ngTableParams) {
+    var CostumerController = function ($scope, $state, $filter, $rootScope, CostumerService, ngTableParams) {
 
         var originalData = [];
+        var isWriteRole = $rootScope.writeRole;
 
         CostumerService.getAllCostumers().then(function (value) {
             $scope.costumers = value;
@@ -114,5 +115,5 @@
 
     angular
         .module("store.WebUI.Controllers")
-        .controller("CostumerController", ["$scope", "$state", "$filter", "CostumerService", "ngTableParams", CostumerController]);
+        .controller("CostumerController", ["$scope", "$state", "$filter", "$rootScope", "CostumerService", "ngTableParams", CostumerController]);
 })();

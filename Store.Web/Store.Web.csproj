@@ -232,7 +232,6 @@
     <Content Include="Angular\views\experse\create.html" />
     <Content Include="Angular\views\experse\index.html" />
     <Content Include="Angular\views\kindMaterial\index.html" />
-    <Content Include="Angular\views\kindMaterial\unitList.html" />
     <Content Include="Angular\views\materialInStore\index.html" />
     <Content Include="Angular\views\provider\index.html" />
     <Content Include="Angular\views\supply\create.html" />

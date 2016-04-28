@@ -25,11 +25,14 @@
                     roleName: userinfo.roleName,
                     position: userinfo.position,
                     userid: userinfo.id
-        }
+                }
             };
 
             $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
             $cookieStore.put('globals', $rootScope.globals);
+
+            $rootScope.writeRole = userinfo.roleCode === 'admin' || userinfo.roleCode === 'read_write';
+
         };
 
         service.ClearCredentials = function () {

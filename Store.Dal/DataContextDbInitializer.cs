@@ -84,7 +84,7 @@ namespace Store.Dal
                 new MaterialInStore {UnitMaterialId= 3,Count = 1000},
                 new MaterialInStore {UnitMaterialId= 4,Count = 1040},
                 new MaterialInStore {UnitMaterialId= 5,Count = 200},
-                new MaterialInStore {UnitMaterialId= 6,Count = 90},
+                new MaterialInStore {UnitMaterialId= 6,Count = 90}
 
             });
             context.SaveChanges();

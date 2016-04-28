@@ -25,6 +25,8 @@
                     $location.path('/login');
                 }
             });
+
+            //$rootScope.writeRole = $rootScope.globals.currentUser.role === 'admin' || $rootScope.globals.currentUser.role === 'read_write';
         }
     ]);
 

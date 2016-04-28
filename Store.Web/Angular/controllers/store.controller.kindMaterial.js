@@ -4,9 +4,10 @@
     ///////////// Work with checkbox
     //https://long2know.com/2015/07/angular-multiselect-dropdown/
 
-    var KindMaterialController = function ($scope, $state, $filter, KindMaterialService, UnitMaterialService, UnitService, ngTableParams) {
+    var KindMaterialController = function ($scope, $state, $filter, $rootScope, KindMaterialService, UnitMaterialService, UnitService, ngTableParams) {
 
         var originalData = [];
+        var isWriteRole = $rootScope.writeRole;
 
         $scope.kindMaterial =
         {
@@ -168,5 +169,5 @@
 
     angular
         .module("store.WebUI.Controllers")
-        .controller("KindMaterialController", ["$scope", "$state", "$filter", "KindMaterialService", "UnitMaterialService", "UnitService", "ngTableParams", KindMaterialController]);
+        .controller("KindMaterialController", ["$scope", "$state", "$filter", "$rootScope", "KindMaterialService", "UnitMaterialService", "UnitService", "ngTableParams", KindMaterialController]);
 })();

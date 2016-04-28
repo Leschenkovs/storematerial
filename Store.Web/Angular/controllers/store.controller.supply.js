@@ -1,9 +1,10 @@
 ﻿(function() {
     "use strict";
 
-    var SupplyController = function ($scope, $state, $filter, SupplyService, ProviderService, UnitMaterialService, KindMaterialService, ngTableParams) {
+    var SupplyController = function ($scope, $state, $filter, $rootScope, SupplyService, ProviderService, UnitMaterialService, KindMaterialService, ngTableParams) {
 
         var originalData = [];
+        var isWriteRole = $rootScope.writeRole;
 
         $scope.supply =
         {
@@ -86,5 +87,5 @@
 
     angular
         .module("store.WebUI.Controllers")
-        .controller("SupplyController", ["$scope", "$state", "$filter", "SupplyService", "ProviderService", "UnitMaterialService", "KindMaterialService", "ngTableParams", SupplyController]);
+        .controller("SupplyController", ["$scope", "$state", "$filter", "$rootScope", "SupplyService", "ProviderService", "UnitMaterialService", "KindMaterialService", "ngTableParams", SupplyController]);
 })();
