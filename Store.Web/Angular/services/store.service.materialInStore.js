@@ -13,6 +13,19 @@
             return deferrred.promise;
         };
 
+        this.getSupplyAndExperseInfo = function (id) {
+            var deferred = $q.defer();
+
+            $http.get("api/materialInStore?materialInStoreId=" + id).
+                success(function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).
+                error(function (data, status, headers, config) {
+                    deferred.reject(data);
+                });
+            return deferred.promise;
+        };
+
     };
 
     angular

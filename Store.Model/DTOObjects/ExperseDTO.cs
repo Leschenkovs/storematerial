@@ -30,4 +30,5 @@ namespace Store.Model.DTOObjects
         public string kindMaterialName { get; set; }
         public string unitShortName { get; set; }
     }
+
 }

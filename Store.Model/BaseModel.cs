@@ -7,8 +7,14 @@ namespace Store.Model
     {
         public BaseModel()
         {
+            Random rdm = new Random();
+            DateTime now = DateTime.Now;
+            int month = rdm.Next(1, 13);
+            int day = rdm.Next(1, 32);
             if (Convert.ToInt64(Id) < 1L)
-                AddedDate = DateTime.Now;
+            {
+                AddedDate = new DateTime(now.Year,month,day);
+            }
         }
 
         public virtual T Id { get; set; }

@@ -25,6 +25,8 @@ namespace Store.Dal
 				new Unit {Name = "штука", ShortName = "шт"},
 				new Unit {Name = "тонна", ShortName = "т"},
 				new Unit {Name = "килограмм", ShortName = "кг"},
+                new Unit {Name = "палета", ShortName = "палета"},
+                new Unit {Name = "упаковка", ShortName = "упк"},
 				new Unit {Name = "грамм", ShortName = "г"},
 				new Unit {Name = "литр", ShortName = "л"},
 				new Unit {Name = "миллилитр", ShortName = "мл"},
@@ -39,7 +41,7 @@ namespace Store.Dal
 				new Provider {Name = "СтроМинск", Address = "Минск", Telephone = "0336245675", Description = "Описание"},
 				new Provider {Name = "ГводиМагазин", Address = "Гродно", Telephone = "0294586974", Description = ""},
 				new Provider {Name = "ОбоЛаки", Address = "Бобруйск", Telephone = "0274512365", Description = "Описание 2"},
-                new Provider {Name = "1Мага", Address = "Лев", Telephone = "0000", Description = "Описание"},
+                new Provider {Name = "Мага", Address = "Лев", Telephone = "0000", Description = "Описание"},
 				new Provider {Name = "2Маг", Address = "Птер", Telephone = "7785758", Description = ""},
 				new Provider {Name = "3мага", Address = "Бобруйск", Telephone = "222", Description = " 2"}
 
@@ -59,31 +61,32 @@ namespace Store.Dal
 				new KindMaterial {Articul = "102938499999", Name = "Доски"},
 				new KindMaterial {Articul = "102953245347", Name = "Краска"},
 				new KindMaterial {Articul = "324293849944", Name = "Гвозди"},
+                new KindMaterial {Articul = "235235343455", Name = "Винт"}
 			});
 			context.SaveChanges();
 
             context.UnitMaterials.AddRange(new List<UnitMaterial>
-			{
-				new UnitMaterial {Id=1,KindMaterialId = context.KindMaterials.First(x => x.Name == "Доски").Id, UnitId = context.Units.First(x => x.ShortName == "шт").Id},
-				new UnitMaterial {Id=2,KindMaterialId = context.KindMaterials.First(x => x.Name == "Доски").Id, UnitId = context.Units.First(x => x.ShortName == "л").Id},
-				new UnitMaterial {Id=3,KindMaterialId = context.KindMaterials.First(x => x.Name == "Краска").Id, UnitId = context.Units.First(x => x.ShortName == "рулон").Id},
-                new UnitMaterial {Id=4,KindMaterialId = context.KindMaterials.First(x => x.Name == "Краска").Id, UnitId = context.Units.First(x => x.ShortName == "шт").Id},
-				new UnitMaterial {Id=5,KindMaterialId = context.KindMaterials.First(x => x.Name == "Краска").Id, UnitId = context.Units.First(x => x.ShortName == "л").Id},
-				new UnitMaterial {Id=6,KindMaterialId = context.KindMaterials.First(x => x.Name == "Гвозди").Id, UnitId = context.Units.First(x => x.ShortName == "рулон").Id}
+            {
+                new UnitMaterial {Id=1,KindMaterialId = context.KindMaterials.First(x => x.Name == "Доски").Id, UnitId = context.Units.First(x => x.ShortName == "шт").Id},
+                new UnitMaterial {Id=2,KindMaterialId = context.KindMaterials.First(x => x.Name == "Доски").Id, UnitId = context.Units.First(x => x.ShortName == "упк").Id},
+                new UnitMaterial {Id=3,KindMaterialId = context.KindMaterials.First(x => x.Name == "Винт").Id, UnitId = context.Units.First(x => x.ShortName == "упк").Id},
+                new UnitMaterial {Id=4,KindMaterialId = context.KindMaterials.First(x => x.Name == "Краска").Id, UnitId = context.Units.First(x => x.ShortName == "мл").Id},
+                new UnitMaterial {Id=5,KindMaterialId = context.KindMaterials.First(x => x.Name == "Краска").Id, UnitId = context.Units.First(x => x.ShortName == "л").Id},
+                new UnitMaterial {Id=6,KindMaterialId = context.KindMaterials.First(x => x.Name == "Гвозди").Id, UnitId = context.Units.First(x => x.ShortName == "упк").Id}
 
-			});
+            });
             context.SaveChanges();
 
             context.MaterialInStores.AddRange(new List<MaterialInStore>
-			{
-				new MaterialInStore {UnitMaterialId= 1,Count = 100},
-				new MaterialInStore {UnitMaterialId= 2,Count = 555},
-				new MaterialInStore {UnitMaterialId= 3,Count = 1000},
-				new MaterialInStore {UnitMaterialId= 4,Count = 10340},
-				new MaterialInStore {UnitMaterialId= 5,Count = 20},
-				new MaterialInStore {UnitMaterialId= 6,Count = 50},
+            {
+                new MaterialInStore {UnitMaterialId= 1,Count = 100},
+                new MaterialInStore {UnitMaterialId= 2,Count = 555},
+                new MaterialInStore {UnitMaterialId= 3,Count = 1000},
+                new MaterialInStore {UnitMaterialId= 4,Count = 1040},
+                new MaterialInStore {UnitMaterialId= 5,Count = 200},
+                new MaterialInStore {UnitMaterialId= 6,Count = 90},
 
-			});
+            });
             context.SaveChanges();
 
 			//********************

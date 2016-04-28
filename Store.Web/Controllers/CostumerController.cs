@@ -27,12 +27,44 @@ namespace Store.Web.Controllers
             _costumerBll = factoryBll.CostumerBll;
         }
 
+        [Route("api/costumer/GetCostumers")]
         [HttpGet]
         public List<CostumerDTO> GetCostumers([FromUri] QueryRequest queryRequest)
         {
             List<CostumerDTO> costumers = Mapper.Map<IQueryable<Costumer>, List<CostumerDTO>>(_costumerBll.GetAll());
             return costumers;
         }
+
+        [Route("api/costumer/GetCostumersInfoForChart")]
+        [HttpGet]
+        public List<CostumerInfoForChartDTO> GetCostumersInfoForChart([FromUri] QueryRequest queryRequest)
+        {
+            List<Costumer> costumers = _costumerBll.GetAll().ToList();
+
+            int year = DateTime.Now.Year;
+            List<CostumerInfoForChartDTO> list = new List<CostumerInfoForChartDTO>();
+
+            foreach (Costumer costumer in costumers)
+            {
+                CostumerInfoForChartDTO obj = new CostumerInfoForChartDTO
+                {
+                    costumerName = costumer.Name,
+                    costs = new List<CostumerCost>()
+                };
+                for (int i = 1; i < 13; i++)
+                {
+                    obj.costs.Add(new CostumerCost
+                    {
+                        month = i,
+                        fullCost = costumer.Experses.Where(x => x.AddedDate.Year == year && x.AddedDate.Month == i).Sum(x=>x.FullCost)
+                    });
+                }
+                list.Add(obj);
+            }
+
+            return list;
+        }
+
 
         [HttpGet]
         public CostumerDTO GetCostumer([FromUri] int id)

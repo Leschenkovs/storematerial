@@ -5,19 +5,20 @@
     var DoughtnutCtrl = function ($scope, $state, $timeout, MaterialInStoreService) {
 
         var materialInStore = [];
+        $scope.dateNow = new Date();
 
-        MaterialInStoreService.getMaterialInStores().then(function (value) {
+        MaterialInStoreService.getMaterialInStores().then(function(value) {
             materialInStore = angular.copy(value);
-        });
 
-        $scope.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
-        $scope.data = [300, 500, 100];
+            $scope.labels = materialInStore.map(function(a) { return a.kindMaterialName + ', ' + a.unitName; });
+            $scope.data = materialInStore.map(function(a) { return a.count; });
+    });
 
     };
 
 
     angular
     .module("store.WebUI.Controllers")
-    .controller("DoughtnutCtrl", ["$scope", "$state", "$timeout"," MaterialInStoreService", DoughtnutCtrl]);
+    .controller("DoughtnutCtrl", ["$scope", "$state", "$timeout","MaterialInStoreService", DoughtnutCtrl]);
 
 })();

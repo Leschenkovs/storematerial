@@ -5,6 +5,7 @@
 .radar-legend,
 .polararea-legend,
 .doughnut-legend {
+    /*float: right;*/
   list-style-type: none;
   margin-top: 5px;
   text-align: center;
@@ -23,7 +24,7 @@
 .radar-legend li,
 .polararea-legend li,
 .doughnut-legend li {
-  display: inline-block;
+  display: inline-flex;
   white-space: nowrap;
   position: relative;
   margin-bottom: 4px;

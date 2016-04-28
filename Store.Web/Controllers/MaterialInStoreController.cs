@@ -34,5 +34,26 @@ namespace Store.Web.Controllers
             return list;
         }
 
+        [HttpGet]
+        public List<MaterialInStoreCountSupplyAndExperseDTO> GetSupplyAndExperseInfo([FromUri] int materialInStoreId)
+        {
+            int year = DateTime.Now.Year;
+            List<MaterialInStoreCountSupplyAndExperseDTO> list = new List<MaterialInStoreCountSupplyAndExperseDTO>();
+            MaterialInStore model = _materialInStoreBll.GetById(materialInStoreId);
+            for (int i = 1; i <= 12; i++)
+            {
+                MaterialInStoreCountSupplyAndExperseDTO obj = new MaterialInStoreCountSupplyAndExperseDTO
+                {
+                    month = i,
+                    experse = model.Experses.Where(x=>x.AddedDate.Year == year && x.AddedDate.Month == i).Sum(x=>x.Count),
+                    supply = model.Supplies.Where(x => x.AddedDate.Year == year && x.AddedDate.Month == i).Sum(x => x.Count)
+                };
+                list.Add(obj);
+            }
+
+            return list.OrderBy(x=>x.month).ToList();
+        }
+
+
     }
 }

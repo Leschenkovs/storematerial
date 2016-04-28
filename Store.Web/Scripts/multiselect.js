@@ -541,8 +541,8 @@
                         "</div>" +
                     "</li>" +
                     "<li ng-show=\"multiple\">" +
-                        "<button class=\"btn-link btn-small\" ng-click=\"checkAll()\"><i class=\"icon-ok\"></i> Check all</button>" +
-                        "<button class=\"btn-link btn-small\" ng-click=\"uncheckAll()\"><i class=\"icon-remove\"></i> Uncheck all</button>" +
+                        "<button class=\"btn-link btn-small\" ng-click=\"checkAll()\"><i class=\"icon-ok\"></i> Все</button>" +
+                        "<button class=\"btn-link btn-small\" ng-click=\"uncheckAll()\"><i class=\"icon-remove\"></i> Отмена</button>" +
                     "</li>" +
                     "<li ng-show=\"maxSelected\">" +
                         "<small>Selected maximum of </small><small ng-bind=\"selectLimit\"></small>" +

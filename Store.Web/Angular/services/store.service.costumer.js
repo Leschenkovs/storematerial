@@ -5,13 +5,24 @@
 
         this.getAllCostumers = function () {
             var deferrred = $q.defer();
-            $http.get("api/costumer").success(function (data) {
+            $http.get("api/costumer/GetCostumers").success(function (data) {
                 deferrred.resolve(data);
             }).error(function (data, status) {
-                deferrred.reject(status);
+                deferrred.reject(data);
             });
             return deferrred.promise;
         };
+
+        this.getCostumersInfoForChart = function () {
+            var deferrred = $q.defer();
+            $http.get("api/costumer/GetCostumersInfoForChart").success(function (data) {
+                deferrred.resolve(data);
+            }).error(function (data, status) {
+                deferrred.reject(data);
+            });
+            return deferrred.promise;
+        };
+
 
         this.addCostumer = function (entity) {
             var deferred = $q.defer();
