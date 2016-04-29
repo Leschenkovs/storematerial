@@ -7,7 +7,7 @@
             var deferrred = $q.defer();
             $http.get("api/costumer/GetCostumers").success(function (data) {
                 deferrred.resolve(data);
-            }).error(function (data, status) {
+            }).error(function (data) {
                 deferrred.reject(data);
             });
             return deferrred.promise;
@@ -17,7 +17,7 @@
             var deferrred = $q.defer();
             $http.get("api/costumer/GetCostumersInfoForChart").success(function (data) {
                 deferrred.resolve(data);
-            }).error(function (data, status) {
+            }).error(function (data) {
                 deferrred.reject(data);
             });
             return deferrred.promise;
@@ -27,11 +27,11 @@
         this.addCostumer = function (entity) {
             var deferred = $q.defer();
             $http.post("api/costumer", entity).
-                success(function (data, status, headers, config) {
+                success(function (data) {
                     deferred.resolve(data);
                 }).
-                error(function (data, status, headers, config) {
-                    deferred.reject(status);
+                error(function (data) {
+                    deferred.reject(data);
                 });
             return deferred.promise;
         };
@@ -40,11 +40,11 @@
             var deferred = $q.defer();
 
             $http.delete("api/costumer?id=" + id).
-                success(function (data, status, headers, config) {
+                success(function (data) {
                     deferred.resolve(data);
                 }).
-                error(function (data, status, headers, config) {
-                    deferred.reject(status);
+                error(function (data) {
+                    deferred.reject(data);
                 });
             return deferred.promise;
         };
@@ -52,11 +52,11 @@
         this.updateCostumer = function (entity) {
             var deferred = $q.defer();
             $http.put("api/costumer", entity).
-                success(function (data, status, headers, config) {
+                success(function (data) {
                     deferred.resolve(data);
                 }).
-                error(function (data, status, headers, config) {
-                    deferred.reject(status);
+                error(function (data) {
+                    deferred.reject(data);
                 });
             return deferred.promise;
         };

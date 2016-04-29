@@ -12,7 +12,7 @@ using Store.Web.Attributes;
 
 namespace Store.Web.Controllers
 {
-    [StoreAuthorize(Roles = "admin,read_write,read")]
+    //[StoreAuthorize(Roles = "admin,read_write,read")]
     [RoutePrefix("api/supply")]
     public class SupplyController : BaseApiController
     {
@@ -34,6 +34,7 @@ namespace Store.Web.Controllers
             return list;
         }
 
+        [StoreAuthorize(Roles = "admin,read_write")]
         [HttpPost]
         public bool CreateSupply([FromBody] CreateSupplyDTO model)
         {
@@ -41,6 +42,7 @@ namespace Store.Web.Controllers
             return entityReuslt;
         }
 
+        [StoreAuthorize(Roles = "admin,read_write")]
         [HttpDelete]
         public bool DeleteSupply([FromUri] int id)
         {

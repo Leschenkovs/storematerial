@@ -74,12 +74,14 @@
         $scope.save = function (user, createUser) {
             if (createUser.$valid) {
                 UserService.addUser(user).then(
-                    function (value) {
+                    function(value) {
                         $state.go("user/index");
                     },
-                    function (errorObject) {
+                    function(errorObject) {
                         bootbox.alert(errorObject.ExceptionMessage);
                     });
+            } else {
+                bootbox.alert("Заполните все поля!");
             }
         };
 

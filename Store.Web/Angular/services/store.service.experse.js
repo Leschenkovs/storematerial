@@ -7,7 +7,7 @@
             var deferrred = $q.defer();
             $http.get("api/experse").success(function (data) {
                 deferrred.resolve(data);
-            }).error(function (data, status) {
+            }).error(function (data) {
                 deferrred.reject(data);
             });
             return deferrred.promise;
@@ -17,7 +17,7 @@
             var deferred = $q.defer();
 
             $http.get("api/experse?materialInStoreId=" + id).
-                success(function (data, status, headers, config) {
+                success(function (data) {
                     deferred.resolve(data);
                 }).
                 error(function (data, status, headers, config) {

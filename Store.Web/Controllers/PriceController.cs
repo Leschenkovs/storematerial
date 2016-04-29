@@ -12,7 +12,7 @@ using Store.Web.Attributes;
 
 namespace Store.Web.Controllers
 {
-    [StoreAuthorize(Roles = "admin,read_write,read")]
+    //[StoreAuthorize(Roles = "admin,read_write,read")]
     [RoutePrefix("api/price")]
     public class PriceController : BaseApiController
     {
@@ -41,6 +41,7 @@ namespace Store.Web.Controllers
             return list;
         }
 
+        [StoreAuthorize(Roles = "admin,account")]
         [HttpPost]
         public PriceDTO CreatePrice([FromBody] PriceDTO model)
         {
@@ -49,6 +50,7 @@ namespace Store.Web.Controllers
             return model;
         }
 
+        [StoreAuthorize(Roles = "admin,account")]
         [HttpPut]
         public PriceDTO UpdatePrice([FromBody] PriceDTO model)
         {
@@ -57,6 +59,7 @@ namespace Store.Web.Controllers
             return model;
         }
 
+        [StoreAuthorize(Roles = "admin,account")]
         [HttpDelete]
         public bool DeletePrice([FromUri] int id)
         {

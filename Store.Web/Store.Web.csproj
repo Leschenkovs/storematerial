@@ -195,10 +195,8 @@
     <Content Include="Angular\controllers\store.controller.experse.js" />
     <Content Include="Angular\controllers\store.controller.kindMaterial.js" />
     <Content Include="Angular\controllers\store.controller.materialInStore.js" />
-    <Content Include="Angular\controllers\store.controller.price.js" />
     <Content Include="Angular\controllers\store.controller.provider.js" />
     <Content Include="Angular\controllers\store.controller.supply.js" />
-    <Content Include="Angular\controllers\store.controller.unitMaterial.js" />
     <Content Include="Angular\controllers\store.controller.user.js" />
     <Content Include="Angular\controllers\store.controller.index.js" />
     <Content Include="Angular\directives\store.directive.sideMenu.js" />
@@ -253,14 +251,14 @@
     <Content Include="Content\images\bcg.jpg" />
     <Content Include="Content\images\book.ico" />
     <Content Include="Content\images\favicon.ico" />
-    <Content Include="Content\images\image_1.jpg" />
-    <Content Include="Content\images\image_2.jpg" />
-    <Content Include="Content\images\image_3.jpg" />
-    <Content Include="Content\images\image_4.jpg" />
     <Content Include="Content\images\img_3.jpg" />
     <Content Include="Content\images\img_4.png" />
     <Content Include="Content\images\img_5.jpg" />
+    <Content Include="Content\images\img_6.jpg" />
     <Content Include="Content\images\remove.ico" />
+    <Content Include="Content\images\user_1.ico" />
+    <Content Include="Content\images\user_2.ico" />
+    <Content Include="Content\images\user_3.png" />
     <Content Include="Content\popup.css" />
     <Content Include="Content\select2.css" />
     <Content Include="Content\select2.png" />
@@ -291,6 +289,7 @@
     <Content Include="Scripts\angular\angular-ui-router.min.js" />
     <Content Include="Scripts\angular\angular.min.js" />
     <Content Include="Scripts\angular\date.js" />
+    <Content Include="Scripts\angular\mask.min.js" />
     <Content Include="Scripts\angular\ui-bootstrap-tpls.min.js" />
     <Content Include="Scripts\angular\ui-bootstrap.min.js" />
     <Content Include="Scripts\bootbox.min.js" />

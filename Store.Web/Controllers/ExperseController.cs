@@ -12,7 +12,7 @@ using Store.Web.Attributes;
 
 namespace Store.Web.Controllers
 {
-    [StoreAuthorize(Roles = "admin,read_write,read")]
+    //[StoreAuthorize(Roles = "admin,read_write,read")]
     [RoutePrefix("api/experse")]
     public class ExperseController : BaseApiController
     {
@@ -44,6 +44,7 @@ namespace Store.Web.Controllers
             return model;
         }
 
+        [StoreAuthorize(Roles = "admin,read_write")]
         [HttpPost]
         public bool CreateExperse([FromBody] CreateExperseDTO model)
         {

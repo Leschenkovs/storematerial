@@ -14,10 +14,11 @@
                         <input type="text" name="Password" ng-model="user.password" class="form-control" required maxlength="15">
                     </div>
 
-                    <div class="form-group col-lg-12" style=" margin-top: -4.5%">
-                        <label for="RoleId">Роль</label>
+                    <div class="form-group col-lg-12" style=" margin-top: -4.5%" ng-class="{ 'has-error': createUser.RoleId.$touched && createUser.RoleId.$invalid }">
+                        <label for="RoleId"><strong class="error-message">*</strong>Роль</label>
                         <select ng-model="user.roleId"
                                 ng-options="obj.id as obj.name for obj in roles"
+                                name="RoleId"
                                 class="form-control"
                                 required
                                 id="role">

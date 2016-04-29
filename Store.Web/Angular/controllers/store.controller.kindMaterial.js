@@ -7,7 +7,7 @@
     var KindMaterialController = function ($scope, $state, $filter, $rootScope, KindMaterialService, UnitMaterialService, UnitService, ngTableParams) {
 
         var originalData = [];
-        var isWriteRole = $rootScope.writeRole;
+        $scope.isWriteRole = $rootScope.writeRole;
 
         $scope.kindMaterial =
         {
@@ -89,7 +89,7 @@
             $scope.kindMaterials = value;
 
             originalData = angular.copy(value);
-            $scope.tableParams = new ngTableParams({ page: 1, count: 5 }, {
+            $scope.tableParams = new ngTableParams({ page: 1, count: 10 }, {
                 filterDelay: 0,
                 dataset: angular.copy(value)
             });
@@ -135,19 +135,22 @@
 
         $scope.saveKindMaterial = function (kindMaterial, kindMaterialForm) {
             if (kindMaterialForm.$valid) {
-                KindMaterialService.addKindMaterial(kindMaterial).then(function (value) {
-                    if (value) {
-                        $scope.tableParams.settings().dataset.unshift(value);
-                        $scope.kindMaterial = null;
-                        reloadTableParams();
-                    } else {
-                        bootbox.alert("ОШИБКА добавления записи!");
-                    };
-                },
-                function (errorObject) {
-                    bootbox.alert(errorObject.ExceptionMessage);
-                });
+                KindMaterialService.addKindMaterial(kindMaterial).then(function(value) {
+                        if (value) {
+                            $scope.tableParams.settings().dataset.unshift(value);
+                            $scope.kindMaterial = null;
+                            reloadTableParams();
+                        } else {
+                            bootbox.alert("ОШИБКА добавления записи!");
+                        };
+                    },
+                    function(errorObject) {
+                        bootbox.alert(errorObject.ExceptionMessage);
+                    });
+            } else {
+                bootbox.alert("Заполните все поля!");
             }
+
         };
 
         $scope.deleteKindMaterial = function (id) {

@@ -4,12 +4,15 @@
     angular
         .module("store.WebUI")
         .config(["$stateProvider", "$urlRouterProvider", "$locationProvider", function ($stateProvider, $urlRouterProvider, $locationProvider) {
+
+            // Authentication
             $stateProvider.state("login", {
                 url: "/login",
                 templateUrl: "/Angular/views/authentication/login.html",
                 controller: "AuthenticationController"
             });
 
+            // Index
             $stateProvider.state("index", {
                 url: "/",
                 templateUrl: "/Angular/views/index.html",
@@ -22,6 +25,7 @@
                 controller: "IndexController"
             });
 
+            // Charts
             $stateProvider.state("barChart", {
                 url: "/barChart",
                 templateUrl: "/Angular/views/charts/barChart.html",
@@ -40,6 +44,7 @@
                 controller: "DoughtnutCtrl"
             });
 
+            // User
             $stateProvider.state("user/index", {
                 url: "/user/index",
                 templateUrl: "/Angular/views/user/index.html",
@@ -52,6 +57,7 @@
                 controller: "UserController"
             });
 
+            // Supply
             $stateProvider.state("supply/index", {
                 url: "/supply/index",
                 templateUrl: "/Angular/views/supply/index.html",
@@ -64,12 +70,14 @@
                 controller: "SupplyController"
             });
 
+            // Provider
             $stateProvider.state("provider/index", {
                 url: "/provider/index",
                 templateUrl: "/Angular/views/provider/index.html",
                 controller: "ProviderController"
             });
 
+            // Experse
             $stateProvider.state("experse/index", {
                 url: "/experse/index",
                 templateUrl: "/Angular/views/experse/index.html",
@@ -82,18 +90,21 @@
                 controller: "ExperseController"
             });
 
+            // Costumer
             $stateProvider.state("costumer/index", {
                 url: "/costumer/index",
                 templateUrl: "/Angular/views/costumer/index.html",
                 controller: "CostumerController"
             });
 
+            // MaterialInStore
             $stateProvider.state("materialInStore/index", {
                 url: "/materialInStore/index",
                 templateUrl: "/Angular/views/materialInStore/index.html",
                 controller: "MaterialInStoreController"
             });
 
+            // KindMaterial
             $stateProvider.state("kindMaterial/index", {
                 url: "/kindMaterial/index",
                 templateUrl: "/Angular/views/kindMaterial/index.html",

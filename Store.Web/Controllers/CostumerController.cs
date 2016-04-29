@@ -12,7 +12,7 @@ using Store.Web.Attributes;
 
 namespace Store.Web.Controllers
 {
-    [StoreAuthorize(Roles = "admin,read_write,read")]
+    //[StoreAuthorize(Roles = "admin,read_write,read")]
     [RoutePrefix("api/costumer")]
     public class CostumerController : BaseApiController
     {
@@ -73,6 +73,7 @@ namespace Store.Web.Controllers
             return model;
         }
 
+        [StoreAuthorize(Roles = "admin,read_write")]
         [HttpPost]
         public CostumerDTO CreateCostumer([FromBody] CostumerDTO model)
         {
@@ -81,6 +82,7 @@ namespace Store.Web.Controllers
             return model;
         }
 
+        [StoreAuthorize(Roles = "admin,read_write")]
         [HttpPut]
         public CostumerDTO UpdateCostumer([FromBody] CostumerDTO model)
         {
@@ -89,6 +91,7 @@ namespace Store.Web.Controllers
             return model;
         }
 
+        [StoreAuthorize(Roles = "admin,read_write")]
         [HttpDelete]
         public bool DeleteCostumer([FromUri] int id)
         {

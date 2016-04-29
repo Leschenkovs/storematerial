@@ -12,7 +12,7 @@ using Store.Web.Attributes;
 
 namespace Store.Web.Controllers
 {
-    [StoreAuthorize(Roles = "admin,read_write,read")]
+    //[StoreAuthorize(Roles = "admin,read_write,read")]
     [RoutePrefix("api/unitMaterial")]
     public class UnitMaterialController : BaseApiController
     {
@@ -41,6 +41,7 @@ namespace Store.Web.Controllers
             return list;
         }
 
+        [StoreAuthorize(Roles = "admin,read_write")]
         [HttpPost]
         public UnitMaterialDTO CreateUnitMaterial([FromBody] UnitMaterialDTO model)
         {
@@ -49,6 +50,7 @@ namespace Store.Web.Controllers
             return model;
         }
 
+        [StoreAuthorize(Roles = "admin,read_write")]
         [HttpDelete]
         public bool DeleteUnitMaterial([FromUri] int id)
         {

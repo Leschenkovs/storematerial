@@ -8,6 +8,7 @@ using Store.Bll.Bll;
 using Store.Model;
 using Store.Model.DTOObjects;
 using Store.Model.RequestObjects;
+using Store.Web.Attributes;
 
 namespace Store.Web.Controllers
 {
@@ -39,24 +40,27 @@ namespace Store.Web.Controllers
             return model;
         }
 
+        [StoreAuthorize(Roles = "admin,read_write")]
         [HttpPost]
-        public ProviderDTO CreateUser([FromBody]ProviderDTO model)
+        public ProviderDTO CreateProvider([FromBody]ProviderDTO model)
         {
             Provider entity = Mapper.Map<ProviderDTO, Provider>(model);
             model = Mapper.Map<Provider, ProviderDTO>(_providerBll.Save(entity));
             return model;
         }
 
+        [StoreAuthorize(Roles = "admin,read_write")]
         [HttpPut]
-        public ProviderDTO UpdateUser([FromBody]ProviderDTO model)
+        public ProviderDTO UpdateProvider([FromBody]ProviderDTO model)
         {
             Provider entity = Mapper.Map<ProviderDTO, Provider>(model);
             model = Mapper.Map<Provider, ProviderDTO>(_providerBll.Save(entity)); // AddorUpdate
             return model;
         }
 
+        [StoreAuthorize(Roles = "admin,read_write")]
         [HttpDelete]
-        public bool DeleteUser([FromUri]int id)
+        public bool DeleteProvider([FromUri]int id)
         {
             return _providerBll.Delete(id);
         }

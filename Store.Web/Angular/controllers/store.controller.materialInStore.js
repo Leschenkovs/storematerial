@@ -9,7 +9,8 @@
         var originalData = [];
         var originalDataPrice = [];
         $scope.isCollapsed = false;
-        var isWriteRole = $rootScope.writeRole;
+        $scope.isWriteRole = $rootScope.writeRole;
+        $scope.isAccountRole = $rootScope.accountRole;
 
         $scope.createPrice =
         {
@@ -107,23 +108,25 @@
 
         $scope.save = function(createPrice, createPriceForm) {
             if (createPriceForm.$valid) {
-                PriceService.addPrice(createPrice).then(function (value) {
-                    $scope.createPrice.id = "";
-                    $scope.createPrice.priceValue = "";
-                    $scope.createPrice.dateOt = new Date();
+                PriceService.addPrice(createPrice).then(function(value) {
+                        $scope.createPrice.id = "";
+                        $scope.createPrice.priceValue = "";
+                        $scope.createPrice.dateOt = new Date();
 
-                    originalDataPrice.push(value);
-                    $scope.tableParamsPrice.settings().dataset.unshift(value);
-                    $scope.tableParamsPrice.reload().then(function(data) {
-                        if (data.length === 0 && $scope.tableParamsPrice.total() > 0) {
-                            $scope.tableParamsPrice.page($scope.tableParamsPrice.page() - 1);
-                            $scope.tableParamsPrice.reload();
-                        }
+                        originalDataPrice.push(value);
+                        $scope.tableParamsPrice.settings().dataset.unshift(value);
+                        $scope.tableParamsPrice.reload().then(function(data) {
+                            if (data.length === 0 && $scope.tableParamsPrice.total() > 0) {
+                                $scope.tableParamsPrice.page($scope.tableParamsPrice.page() - 1);
+                                $scope.tableParamsPrice.reload();
+                            }
+                        });
+                    },
+                    function(errorObject) {
+                        bootbox.alert(errorObject.ExceptionMessage);
                     });
-                },
-                function (errorObject) {
-                    bootbox.alert(errorObject.ExceptionMessage);
-                });
+            } else {
+                bootbox.alert("Заполните все поля!");
             }
         };
 

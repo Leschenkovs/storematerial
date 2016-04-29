@@ -8,7 +8,7 @@ namespace Store.Dal
 	//DropCreateDatabaseAlways<DataContext>
 	//DropCreateDatabaseIfModelChanges<DataContext>
 
-    public class DataContextDbInitializer : DropCreateDatabaseIfModelChanges<DataContext>
+    public class DataContextDbInitializer : DropCreateDatabaseAlways<DataContext>
 	{
 		protected override void Seed(DataContext context)
 		{
@@ -16,7 +16,8 @@ namespace Store.Dal
 			{
 				new Role {Code = "admin", Name = "администратор"},
 				new Role {Code = "read", Name = "просмотр"},
-				new Role {Code = "read_write", Name = "просмотр_запись"}
+				new Role {Code = "read_write", Name = "просмотр_запись"},
+                new Role {Code = "account", Name = "бухгалтерия"}
 			});
 			context.SaveChanges();
 
@@ -38,21 +39,21 @@ namespace Store.Dal
 
             context.Providers.AddRange(new List<Provider>
 			{
-				new Provider {Name = "СтроМинск", Address = "Минск", Telephone = "0336245675", Description = "Описание"},
-				new Provider {Name = "ГводиМагазин", Address = "Гродно", Telephone = "0294586974", Description = ""},
-				new Provider {Name = "ОбоЛаки", Address = "Бобруйск", Telephone = "0274512365", Description = "Описание 2"},
-                new Provider {Name = "Мага", Address = "Лев", Telephone = "0000", Description = "Описание"},
-				new Provider {Name = "2Маг", Address = "Птер", Telephone = "7785758", Description = ""},
-				new Provider {Name = "3мага", Address = "Бобруйск", Telephone = "222", Description = " 2"}
+				new Provider {Name = "Металлургия", Address = "Минск", Telephone = "0336245675", Description = "Описание"},
+				new Provider {Name = "Склад 500", Address = "Гродно", Telephone = "0294586974", Description = ""},
+				new Provider {Name = "Склад 880", Address = "Бобруйск", Telephone = "0274512365", Description = "Описание 2"},
+                new Provider {Name = "Склад 503", Address = "Лев", Telephone = "0000", Description = "Описание"},
+				new Provider {Name = "Филиал 5", Address = "Птер", Telephone = "7785758", Description = ""},
+				new Provider {Name = "Филиал 6", Address = "Бобруйск", Telephone = "222", Description = " 2"}
 
 			});
             context.SaveChanges();
 
             context.Costumers.AddRange(new List<Costumer>
 			{
-				new Costumer {Name = "ЗаводМетала", Address = "Минск", Telephone = "1265478569", Description = "Описание"},
-				new Costumer {Name = "ЗаводМосква", Address = "Минск", Telephone = "1265478569", Description = "Описание"},
-				new Costumer {Name = "ЗаводХлодильников", Address = "Минск", Telephone = "1265478569", Description = "Описание"}
+				new Costumer {Name = "Материк", Address = "Минск", Telephone = "1265478569", Description = "Описание"},
+				new Costumer {Name = "СтройМастер", Address = "Минск", Telephone = "1265478569", Description = "Описание"},
+				new Costumer {Name = "Стройтрест", Address = "Минск", Telephone = "1265478569", Description = "Описание"}
 			});
             context.SaveChanges();
 
@@ -79,12 +80,12 @@ namespace Store.Dal
 
             context.MaterialInStores.AddRange(new List<MaterialInStore>
             {
-                new MaterialInStore {UnitMaterialId= 1,Count = 100},
-                new MaterialInStore {UnitMaterialId= 2,Count = 555},
-                new MaterialInStore {UnitMaterialId= 3,Count = 1000},
-                new MaterialInStore {UnitMaterialId= 4,Count = 1040},
-                new MaterialInStore {UnitMaterialId= 5,Count = 200},
-                new MaterialInStore {UnitMaterialId= 6,Count = 90}
+                new MaterialInStore {UnitMaterialId= 1,Count = 0},
+                new MaterialInStore {UnitMaterialId= 2,Count = 0},
+                new MaterialInStore {UnitMaterialId= 3,Count = 0},
+                new MaterialInStore {UnitMaterialId= 4,Count = 0},
+                new MaterialInStore {UnitMaterialId= 5,Count = 0},
+                new MaterialInStore {UnitMaterialId= 6,Count = 0}
 
             });
             context.SaveChanges();
@@ -93,12 +94,10 @@ namespace Store.Dal
 			// Test data
 			context.Users.AddRange(new List<User>
 			{
-				new User {Login = "111111", Password = "1", Fio = "Кууруза А.В.", RoleId = context.Roles.First(x => x.Code == "admin").Id, Position = "Оператор", Department = "Склад"},
-                new User {Login = "122222", Password = "1", Fio = "Новикова А.В.", RoleId = context.Roles.First(x => x.Code == "read").Id, Position = "Кладовщик", Department = "Склад 203"},
-				new User {Login = "155555", Password = "1", Fio = "Лещенко А.В.", RoleId = context.Roles.First(x => x.Code == "read_write").Id, Position = "Кладовщик", Department = "Склад 3"},
-                new User {Login = "188888", Password = "1", Fio = "Петров А.В.", RoleId = context.Roles.First(x => x.Code == "read").Id, Position = "Грузчик", Department = "Склад 203"},
-				new User {Login = "200000", Password = "1", Fio = "Вадим А.В.", RoleId = context.Roles.First(x => x.Code == "read_write").Id, Position = "Бухгалетр", Department = "Склад 3"}
-
+				new User {Login = "admin", Password = "admin", Fio = "Администратор", RoleId = context.Roles.First(x => x.Code == "admin").Id, Position = "программист", Department = "ОИТ"},
+                new User {Login = "111111", Password = "1", Fio = "Новикова А.В.", RoleId = context.Roles.First(x => x.Code == "account").Id, Position = "Бухгалтер", Department = "Склад 203"},
+				new User {Login = "222222", Password = "1", Fio = "Лещенко А.В.", RoleId = context.Roles.First(x => x.Code == "read_write").Id, Position = "Кладовщик", Department = "Склад 3"},
+                new User {Login = "333333", Password = "1", Fio = "Петров А.В.", RoleId = context.Roles.First(x => x.Code == "read").Id, Position = "Грузчик", Department = "Склад 203"}
 			});
 			context.SaveChanges();
 		}

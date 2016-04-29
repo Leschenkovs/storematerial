@@ -32,7 +32,7 @@
             $cookieStore.put('globals', $rootScope.globals);
 
             $rootScope.writeRole = userinfo.roleCode === 'admin' || userinfo.roleCode === 'read_write';
-
+            $rootScope.accountRole = userinfo.roleCode === 'admin' || userinfo.roleCode === 'account';
         };
 
         service.ClearCredentials = function () {

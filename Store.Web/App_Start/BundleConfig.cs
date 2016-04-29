@@ -39,7 +39,8 @@ namespace Store.Web.App_Start
                 "~/Scripts/angular/angular-ui.min.js",
                 "~/Scripts/angular/date.js",
                 "~/Scripts/angular/Chart.js",
-                "~/Scripts/angular/angular-chart.min.js"
+                "~/Scripts/angular/angular-chart.min.js",
+                "~/Scripts/angular/mask.min.js"
                 ));
 
             bundles.Add(new StyleBundle("~/Store.Web/css").Include(

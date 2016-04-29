@@ -9,7 +9,14 @@
             restrict: 'EA',
             replace: true,
             templateUrl: 'Angular/partials/userinfo.html',
-            controller: function($scope) {}
+            controller: function ($scope, $rootScope, $state) {
+                var off = $rootScope.$on('$stateChangeSuccess', function () {
+                    var user = $rootScope.globals.currentUser;
+                    if (user)
+                        $scope.forUser = (user.role == 'admin' ? { width: '16.66666666666667%' } : { width: '20%' });
+                });
+                $scope.$on('$destroy', off);
+            }
         };
     };
 

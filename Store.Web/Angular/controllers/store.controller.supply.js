@@ -4,7 +4,7 @@
     var SupplyController = function ($scope, $state, $filter, $rootScope, SupplyService, ProviderService, UnitMaterialService, KindMaterialService, ngTableParams) {
 
         var originalData = [];
-        var isWriteRole = $rootScope.writeRole;
+        $scope.isWriteRole = $rootScope.writeRole;
 
         $scope.supply =
         {
@@ -23,7 +23,7 @@
 
         SupplyService.getAllSupplies().then(function (value) {
             originalData = angular.copy(value);
-            $scope.tableParams = new ngTableParams({ page: 1, count: 5 }, {
+            $scope.tableParams = new ngTableParams({ page: 1, count: 10 }, {
                 filterDelay: 0,
                 dataset: angular.copy(value)
             });
@@ -62,6 +62,8 @@
                     function (errorObject) {
                         bootbox.alert(errorObject.ExceptionMessage);
                     });
+            } else {
+                bootbox.alert("Заполните все поля!");
             }
         };
 

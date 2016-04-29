@@ -1,15 +1,36 @@
-﻿<div class="autorized" ng-show="$root.globals.currentUser">
-    <div style="padding: 8px;">
-        <table style="width: 100%">
-            <tr><td style="float: left;">
-                    Должность:<span style="color: black;">{{$root.globals.currentUser.position}}</span>
-                </td></tr>
-            <tr><td style="float: left; font-size: 1em;">
-                    ФИО:<span style="color: black;"> {{$root.globals.currentUser.fullname}}</span>
-                </td></tr>
-            <tr><td style="float: left;">
-                    Права:<span style="color: black;"> {{$root.globals.currentUser.roleName}}</span>
-                </td></tr>
-        </table>
+﻿<div class="autorized" ng-show="$root.globals.currentUser" ng-style="forUser">
+    <div style="padding-top: 5%;padding-left: 5%;">
+        <div class="form-group col-xs-2" style="margin-bottom: 0px;padding: 0px;">
+            <img style="width:50px; height:50px;" src="Content/images/user_2.ico" alt="" />
+        </div>
+
+        <div class="form-group col-xs-10" style="margin-bottom: 0px;padding: 0px;">
+            <div class="form-group col-xs-12" style="margin-bottom: 0px;padding: 0px;">
+                <div class="col-md-4 autirized_text">
+                    Должность:
+                </div>
+                <div class="col-md-8">
+                    <span style="color: #E5E7E8">{{$root.globals.currentUser.position}}</span>
+                </div>
+            </div>
+            <div class="form-group col-xs-12" style="margin-bottom: 0px;padding: 0px;">
+                <div class="col-md-4 autirized_text">
+                    ФИО:
+                </div>
+                <div class="col-md-8">
+                    <span style="color: #E5E7E8"> {{$root.globals.currentUser.fullname}}</span>
+                </div>
+            </div>
+            <div class="form-group col-xs-12" style="margin-bottom: 0px;padding: 0px;">
+                <div class="col-md-4 autirized_text">
+                    Права:
+                </div>
+                <div class="col-md-8 ">
+                    <span style="color: #E5E7E8"> {{$root.globals.currentUser.roleName}}</span>
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>
+

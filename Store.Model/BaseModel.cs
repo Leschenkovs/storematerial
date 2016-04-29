@@ -10,7 +10,7 @@ namespace Store.Model
             Random rdm = new Random();
             DateTime now = DateTime.Now;
             int month = rdm.Next(1, 13);
-            int day = rdm.Next(1, 32);
+            int day = rdm.Next(1, 29);
             if (Convert.ToInt64(Id) < 1L)
             {
                 AddedDate = new DateTime(now.Year,month,day);

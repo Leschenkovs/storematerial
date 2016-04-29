@@ -8,27 +8,28 @@
               <div class='row'>
                 <div class="form-group col-lg-12">
                   <label class="col-md-1 control-label" for="articul"><strong class="error-message">*</strong>Артикул</label>
-                  <div class="col-md-3" ng-class="{ 'has-error': kindMaterial.articul.$touched && kindMaterial.articul.$invalid }">
-                    <input type="number" name="articul" ng-model="kindMaterial.articul" class="form-control input-md" required maxlength="12">
-                  </div>
+                    <div class="col-md-3" ng-class="{ 'has-error': kindMaterialForm.articul.$touched && kindMaterialForm.articul.$invalid }">
+                        <input type="number" name="articul" ng-model="kindMaterial.articul" class="form-control input-md" required maxlength="12">
+                    </div>
 
                   <label class="col-md-1 control-label" for="name"><strong class="error-message">*</strong>Название</label>
-                  <div class="col-md-3" ng-class="{ 'has-error': kindMaterial.name.$touched && kindMaterial.name.$invalid }">
-                    <input type="text" name="name" ng-model="kindMaterial.name" class="form-control input-md" required maxlength="30">
-                  </div>
+                    <div class="col-md-3" ng-class="{ 'has-error': kindMaterialForm.name.$touched && kindMaterialForm.name.$invalid }">
+                        <input type="text" name="name" ng-model="kindMaterial.name" class="form-control input-md" required maxlength="30">
+                    </div>
 
                   <label class="col-md-1 control-label" for="unit"><strong class="error-message">*</strong>Ед.изм</label>
-                  <div class="col-md-3" ng-class="{ 'has-error': kindMaterial.unitIds.$touched && kindMaterial.unitIds.$invalid }">
-                    <multiselect class="input-xlarge multiselect"
-                                 ng-model="kindMaterial.unitIds"
-                                 options="p.id as p.name for p in units"
-                                 select-limit="50"
-                                 header="Выберите ед.изм."
-                                 selected-header="единиц изм."
-                                 enable-filter="false"
-                                 multiple="true">
-                    </multiselect>
-                  </div>
+                    <div class="col-md-3" ng-class="{ 'has-error': kindMaterialForm.unitIds.$touched && kindMaterialForm.unitIds.$invalid }">
+                        <multiselect class="input-xlarge multiselect"
+                                     ng-model="kindMaterial.unitIds"
+                                     options="p.id as p.name for p in units"
+                                     select-limit="50"
+                                     header="Выберите ед.изм."
+                                     selected-header="единиц изм."
+                                     enable-filter="false"
+                                     name="unitIds"
+                                     multiple="true">
+                        </multiselect>
+                    </div>
                 </div>
                 <div class="form-group col-lg-12">
                   <div class="col-md-12">
@@ -50,7 +51,7 @@
                     <col />
                     <col />
                     <col width="150" />
-                  <col width="85" />
+                    <col/>
                 </colgroup>
               <tr ng-repeat="row in $data" ng-form="rowForm" demo-tracked-table-row="row" class="text-left">
                 <td data-title="'Артикул'" sortable="'articul'" filter="{'articul': 'text' }" ng-switch="row.isEditing" ng-class="articul.$dirty ? 'bg-warning' : ''" ng-form="articul" demo-tracked-table-cell>

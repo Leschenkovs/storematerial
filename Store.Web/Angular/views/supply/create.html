@@ -31,12 +31,13 @@
 
 			    <div class="right">
 			        
-                    <div class="form-group col-lg-12">
+                    <div class="form-group col-lg-12" ng-class="{ 'has-error': createSupply.unitMaterialId.$touched && createSupply.unitMaterialId.$invalid }">
                         <label for="unitMaterialId"><strong class="error-message">*</strong>Ед. изм.</label>
                         <select ng-model="supply.unitMaterialId"
                                 ng-options="obj.id as obj.unitShotrName for obj in unitMaterials | filter: {kindMaterialId: kind}"
                                 class="form-control"
                                 required
+                                name="unitMaterialId"
                                 id="unitMaterial">
                             <option value="">-- Выберите ед. изм. --</option>
                         </select>
@@ -47,11 +48,12 @@
 			            <input type="number" name="priceSupply" ng-model="supply.priceSupply" class="form-control" required>
 			        </div>
 
-                    <div class="form-group col-lg-12">
+                    <div class="form-group col-lg-12" ng-class="{ 'has-error': createSupply.providerId.$touched && createSupply.providerId.$invalid }">
                         <label for="providerId"><strong class="error-message">*</strong>Поставщик</label>
                         <select ng-model="supply.providerId"
                                 ng-options="obj.id as obj.name for obj in providers"
                                 class="form-control"
+                                name="providerId"
                                 required
                                 id="role">
                             <option value="">-- Выберите поставщика --</option>

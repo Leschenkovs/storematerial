@@ -6,7 +6,7 @@
         var originalData = [];
         var passMaterialInStoreId = $state.params.id;
         var stateName = $state.current.name;
-        var isWriteRole = $rootScope.writeRole;
+        $scope.isWriteRole = $rootScope.writeRole;
 
         $scope.experse =
         {
@@ -24,7 +24,7 @@
         if (stateName === "experse/index") {
             ExperseService.getAllExperses().then(function(value) {
                 originalData = angular.copy(value);
-                $scope.tableParams = new ngTableParams({ page: 1, count: 5 }, {
+                $scope.tableParams = new ngTableParams({ page: 1, count: 10 }, {
                     filterDelay: 0,
                     dataset: angular.copy(value)
                 });
@@ -56,6 +56,10 @@
 
             $scope.save = function(experse, createExperse) {
                 if (createExperse.$valid) {
+                    if (experse.lostCount < experse.count) {
+                        bootbox.alert("Количество отгружаемого материала превышает остатки материала!");
+                        return;
+                    };
                     ExperseService.addExperse(experse).then(
                         function(response) {
                             passMaterialInStoreId = "";

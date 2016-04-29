@@ -8,7 +8,7 @@
             $http.get("api/unitMaterial").success(function (data) {
                 deferrred.resolve(data);
             }).error(function (data, status) {
-                deferrred.reject(status);
+                deferrred.reject(data);
             });
             return deferrred.promise;
         };
@@ -18,7 +18,7 @@
             $http.get("api/unitMaterial?id=" + id).success(function (data) {
                 deferrred.resolve(data);
             }).error(function (data, status) {
-                deferrred.reject(status);
+                deferrred.reject(data);
             });
             return deferrred.promise;
         };
@@ -30,7 +30,7 @@
                     deferred.resolve(data);
                 }).
                 error(function (data, status, headers, config) {
-                    deferred.reject(status);
+                    deferred.reject(data);
                 });
             return deferred.promise;
         };
@@ -42,7 +42,7 @@
                     deferred.resolve(data);
                 }).
                 error(function (data, status, headers, config) {
-                    deferred.reject(status);
+                    deferred.reject(data);
                 });
             return deferred.promise;
         };

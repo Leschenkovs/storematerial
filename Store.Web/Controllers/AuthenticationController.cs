@@ -29,7 +29,7 @@ namespace Store.Web.Controllers
             User user = _userBll.GetByLoginAndPassword(request.username, request.password);
             if (user == null)
             {
-                return Ok(new { success = false, message = "User code or password is incorrect" });
+                return Ok(new { success = false, message = "неверный логин или пароль" });
             }
             UserDTO model = Mapper.Map<UserDTO>(user);
             return Ok(new { success = true, user = model });

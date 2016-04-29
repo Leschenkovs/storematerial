@@ -11,12 +11,11 @@ using Store.Web.Attributes;
 
 namespace Store.Web.Controllers
 {
-    [StoreAuthorize(Roles = "admin,read_write,read")]
+    //[StoreAuthorize(Roles = "admin,read_write,read")]
     [RoutePrefix("api/kindMaterial")]
     public class KindMaterialController : BaseApiController
     {
         private readonly IKindMaterialBll _kindMaterialBll;
-        private readonly IUnitMaterialBll _unitMaterialBll;
 
         public KindMaterialController(IFactoryBll factoryBll)
         {
@@ -25,7 +24,6 @@ namespace Store.Web.Controllers
                 throw new ArgumentNullException("factoryBll");
             }
             _kindMaterialBll = factoryBll.KindMaterialBll;
-            _unitMaterialBll = factoryBll.UnitMaterialBll;
         }
 
         [HttpGet]
@@ -35,6 +33,7 @@ namespace Store.Web.Controllers
             return list;
         }
 
+        [StoreAuthorize(Roles = "admin,read_write")]
         [HttpPost]
         public KindMaterialDTO CreateKindMaterial([FromBody] KindMaterialDTO model)
         {
@@ -44,6 +43,7 @@ namespace Store.Web.Controllers
             return modelToView;
         }
 
+        [StoreAuthorize(Roles = "admin,read_write")]
         [HttpPut]
         public KindMaterialDTO UpdateKindMaterial([FromBody] KindMaterialDTO model)
         {
@@ -53,6 +53,7 @@ namespace Store.Web.Controllers
             return model;
         }
 
+        [StoreAuthorize(Roles = "admin,read_write")]
         [HttpDelete]
         public bool DeleteKindMaterial([FromUri] int id)
         {

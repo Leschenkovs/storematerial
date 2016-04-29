@@ -193,13 +193,15 @@ div.right div.connect {
 
 .autorized {
 display: block;
-    background: rgb(239, 238, 239);
-    width: 200px;
-    height: 63px;
-    border-radius: 10px;
+    display: block;
+    /* background: rgb(239, 238, 239); */
+    background: rgb(21, 40, 54);
+    width: 16.6667%;
+    height: 100px;
     position: absolute;
-    right: 2%;
-    top: 3%;
+    right: 0%;
+    top: 0%;
+    border-bottom: 1px solid #E5E7E8;
 }
 
 .autorized table tr td {
@@ -208,6 +210,11 @@ display: block;
     font-weight: 500;
     line-height: normal;
     color: #d9534f;
+}
+
+.autirized_text {
+    color: white;
+   text-shadow: 0.5px 0.5px 0.5px white;
 }
 
 .selected {

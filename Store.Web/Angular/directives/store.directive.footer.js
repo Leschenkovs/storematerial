@@ -9,7 +9,7 @@
             restrict: 'AE',
             replace: true,
             templateUrl: 'Angular/partials/footer.html'
-        }
+        };
     };
 
     // register your directive into a dependent module.
