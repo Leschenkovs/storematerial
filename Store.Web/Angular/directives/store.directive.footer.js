@@ -7,7 +7,7 @@
     var footerDirective = function () {
         return {
             restrict: 'AE',
-            replace: true,
+            replace: false,
             templateUrl: 'Angular/partials/footer.html'
         };
     };

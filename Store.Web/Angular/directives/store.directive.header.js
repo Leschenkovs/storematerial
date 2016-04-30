@@ -5,7 +5,7 @@
     var headerDirective = function() {
         return {
             restrict: 'AE',
-            replace: true,
+            replace: false,
             templateUrl: 'Angular/partials/header.html',
             controller: function ($scope, $rootScope, $state) {
                 var off = $rootScope.$on('$stateChangeSuccess', function () {

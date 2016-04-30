@@ -7,7 +7,7 @@
     var userinfoDirective = function () {
         return {
             restrict: 'EA',
-            replace: true,
+            replace: false,
             templateUrl: 'Angular/partials/userinfo.html',
             controller: function ($scope, $rootScope, $state) {
                 var off = $rootScope.$on('$stateChangeSuccess', function () {

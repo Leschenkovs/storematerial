@@ -7,7 +7,7 @@
     var sidemenuDirective = function () {
         return {
             restrict: 'EA',
-            replace: true,
+            replace: false,
             templateUrl: 'Angular/partials/sidemenu.html',
             controller: function($scope) {}
         };

@@ -52,7 +52,7 @@ namespace Store.Web.App_Start
             bundles.Add(new ScriptBundle("~/Store.Web/app").Include(
                 "~/Angular/app.js",
                 "~/Angular/app.config.js",
-                "~/Angular/helpers/*.js",
+                //"~/Angular/helpers/*.js",
                 "~/Angular/services/*.js",
                 "~/Angular/directives/*.js",
                 "~/Angular/controllers/*.js",

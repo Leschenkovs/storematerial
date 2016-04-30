@@ -258,7 +258,6 @@
     <Content Include="Content\images\remove.ico" />
     <Content Include="Content\images\user_1.ico" />
     <Content Include="Content\images\user_2.ico" />
-    <Content Include="Content\images\user_3.png" />
     <Content Include="Content\popup.css" />
     <Content Include="Content\select2.css" />
     <Content Include="Content\select2.png" />
@@ -305,6 +304,7 @@
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\lodash.min.js" />
     <Content Include="Scripts\multiselect.js" />
+    <None Include="Properties\PublishProfiles\Diplom.pubxml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
